@@ -22,22 +22,33 @@
 
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 
-        /* --- HEADER --- */
+         /* ================= HEADER RIBBON ================= */
         header {
+            position: relative; 
+            background: #fff; 
+            color: #333; 
             display: grid;
             grid-template-columns: 1fr auto 1fr; 
-            align-items: center;
-            padding: 40px 5%;
-            font-size: 0.85rem;
+            padding: 25px 5%;
+            font-size: 0.8rem;
             font-weight: 700;
-            letter-spacing: 0.05em;
             text-transform: uppercase;
-            background: #fff;
+            letter-spacing: 0.1em;
+            flex-shrink: 0; 
         }
-        
+
         .nav-left { justify-self: start; }
         .nav-right { justify-self: end; }
-        .nav-item { margin: 0 15px; position: relative; }
+        .nav-item { margin: 0 15px; opacity: 0.6; position: relative; }
+        .nav-item:hover { opacity: 1; color: #000; }
+        
+        .site-title { 
+            font-family: 'Lato', sans-serif;
+            font-weight: 900; 
+            font-size: 1rem; 
+            letter-spacing: 0.15em;
+            text-align: center;
+        }
         
         /* Underline effect on hover */
         .nav-item:hover { color: #000; }
