@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mruthyunjay KS | PhD Student</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #333;
+            margin: 0;
+            height: 100vh; /* Full screen height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
+        a:hover { opacity: 0.6; }
+
+        /* HEADER (Keep consistent with other pages) */
+        header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr; 
+            padding: 40px 5%;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .nav-left { justify-self: start; }
+        .nav-right { justify-self: end; }
+        .nav-item { margin: 0 15px; }
+        .site-title { font-weight: 900; font-size: 1.2rem; letter-spacing: 0.1em; }
+
+        /* THE BIG STATEMENT (Splash Content) */
+        .splash-container {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            /* Vertically Center this section */
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+            flex-grow: 1; 
+        }
+
+        .splash-text {
+            font-size: 3.5rem; /* Big and Bold */
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+
+        .highlight {
+            color: #4f46e5; /* A nice academic blue, or choose your favorite color */
+        }
+
+        /* BUTTONS */
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: 2px solid #333;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary { background: #333; color: #fff; }
+        .btn-outline { background: transparent; color: #333; }
+
+        /* MOBILE FIX */
+        @media (max-width: 768px) {
+            header { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+            .nav-left, .nav-right { justify-self: center; }
+            .splash-text { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="nav-left">
+            <a href="research.html" class="nav-item">What I Do</a>
+            <a href="#" class="nav-item">Publications</a>
+        </nav>
+        <div class="site-title">Mruthyunjay KS</div>
+        <nav class="nav-right">
+            <a href="about.html" class="nav-item">About</a>
+            <a href="#" class="nav-item">Contact</a>
+        </nav>
+    </header>
+
+    <div class="splash-container">
+        <div class="splash-text">
+            I am an evolutionary biologist and alpinist.<br>
+            I study how life <span class="highlight">adapts to extremes</span>.
+        </div>
+
+        <div class="cta-buttons">
+            <a href="research.html" class="btn btn-primary">See My Research</a>
+            <a href="about.html" class="btn btn-outline">Read My Story</a>
+        </div>
+    </div>
+
+    <footer style="height: 50px;"></footer>
+
+</body>
+</html>
