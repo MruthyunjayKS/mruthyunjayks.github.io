@@ -3,127 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MRUTHYUNJAY KUBENDRAN SUMATHI</title>
+    <title>My Research Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-            line-height: 1.6; 
-            color: #111; 
-            max-width: 900px; 
-            margin: 0 auto; 
-            padding: 60px 30px; 
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #fff;
         }
-        h1 { 
-            font-size: clamp(3rem, 8vw, 6rem); 
-            font-weight: 900; 
-            line-height: 1; 
-            margin-bottom: 0.5em; 
-            letter-spacing: -0.02em; 
+
+        a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
+        a:hover { opacity: 0.6; }
+
+        /* --- THE HEADER (Exact match to your request) --- */
+        header {
+            display: grid;
+            /* Grid creates 3 zones: Left Menu, Center Name, Right Menu */
+            grid-template-columns: 1fr auto 1fr; 
+            align-items: center;
+            padding: 40px 5%;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
-        .bio { 
-            font-size: clamp(1.2rem, 4vw, 1.8rem); 
-            font-weight: 400; 
-            margin-bottom: 4em; 
-            max-width: 600px; 
+
+        /* Navigation Groups */
+        .nav-left { justify-self: start; }
+        .nav-right { justify-self: end; }
+        
+        .nav-item { margin: 0 15px; }
+
+        /* The Name in the Center */
+        .site-title {
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            text-align: center;
+            white-space: nowrap;
         }
-        .cards { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 3rem; 
-            margin-top: 4em; 
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .card { 
-            background: #f8f9fa; 
-            padding: 3rem 2rem; 
-            border-radius: 12px; 
-            border-left: 6px solid #059669; 
-            transition: all 0.3s ease; 
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700; /* Bold but clean */
+            line-height: 1.3;
+            margin-bottom: 20px;
         }
-        .card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1); 
+
+        /* --- THE UNEVEN TILES (MASONRY GRID) --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* 3 Equal Columns */
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 100px 20px;
         }
-        .card h3 { 
-            font-size: 1.5rem; 
-            font-weight: 700; 
-            margin-bottom: 1rem; 
-            color: #059669; 
+
+        /* Grid Items */
+        .tile {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
-        .buttons { 
-            display: flex; 
-            gap: 1.5rem; 
-            flex-wrap: wrap; 
-            margin-top: 6rem; 
+
+        .tile img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
-        .btn { 
-            padding: 1rem 2.5rem; 
-            font-size: 1.1rem; 
-            font-weight: 600; 
-            border: 2px solid #059669; 
-            background: white; 
-            color: #059669; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            transition: all 0.3s ease; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 0.5rem; 
+
+        .tile-text {
+            font-size: 0.95rem;
+            line-height: 1.8; /* Airy text like hers */
+            color: #555;
+            font-weight: 300;
         }
-        .btn:hover { 
-            background: #059669; 
-            color: white; 
-            transform: translateY(-2px); 
+        
+        /* Typography for News/Headlines inside tiles */
+        .news-headline {
+            font-family: 'Georgia', serif; /* Serif font for news contrasts nicely */
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: block;
         }
-        @media (max-width: 768px) { 
-            body { padding: 40px 20px; } 
-            .cards { grid-template-columns: 1fr; gap: 2rem; } 
+
+        /* Custom spacing for visual balance */
+        .tile.center-tile {
+            margin-top: 40px; /* Pushes the center column down slightly for that "uneven" look */
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            margin-top: 20px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 900px) {
+            header {
+                grid-template-columns: 1fr; /* Stack header on phone */
+                gap: 20px;
+                text-align: center;
+            }
+            .nav-left, .nav-right { justify-self: center; }
+            
+            .grid-container {
+                grid-template-columns: 1fr; /* 1 Column on phone */
+            }
+            .tile.center-tile { margin-top: 0; }
         }
     </style>
 </head>
 <body>
-    <h1>MRUTHYUNJAY<br>KUBENDRAN SUMATHI</h1>
 
-    <p class="bio">
-        I am a microbial evolutionist and science communicator. 
-        One day I hope to map the temperature limits of life across the tree of life. 
-        Until then I spend most of my time coding phylogenies and climbing rocks.
-    </p>
+    <header>
+        <nav class="nav-left">
+            <a href="#" class="nav-item">What I Do</a>
+            <a href="#" class="nav-item">Publications</a>
+            <a href="#" class="nav-item">CV</a>
+        </nav>
 
-    <div class="cards">
-        <div class="card">
-            <h3>Thermodynamic Limits</h3>
-            <p>How low-energy microbes evolved hyperthermophily. Energy budgets and adaptation in archaea from boiling vents. 4 first-author papers planned. <strong>PhD UArizona</strong></p>
+        <div class="site-title">
+            <a href="#">YOUR NAME HERE</a>
         </div>
 
-        <div class="card">
-            <h3>Phylogenetics</h3>
-            <p>PGLS models, ancestral reconstruction, comparative genomics across 100+ thermophilic clades. R/Python reproducible pipelines. <strong>Committee approved</strong></p>
+        <nav class="nav-right">
+            <a href="#" class="nav-item">About</a>
+            <a href="#" class="nav-item">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>
+            I like researching space and talking about space - to scientists and non-scientists.
+        </h1>
+    </section>
+
+    <div class="grid-container">
+        
+        <div class="tile">
+            <img src="https://placehold.co/600x800/eeeeee/333333?text=Your+Photo" alt="My Profile Photo">
+            <div class="tile-text" style="font-size: 0.8rem; color: #888;">Photo credit: Photographer Name</div>
         </div>
 
-        <div class="card">
-            <h3>Astrobiology + SciComm</h3>
-            <p>Earth thermophiles as Mars analogs. TikTok/Insta explaining evolution to thousands. Postdoc target: US/Europe labs. <strong>Lion drive</strong></p>
+        <div class="tile center-tile">
+            <div class="tile-text">
+                <p>My interests lie in the molecular characterization of extra-solar planets and making science a more inclusive world.</p>
+                <p>I did my PhD with the <strong>ExoMol project</strong> where I simulated spectra for phosphine. I was then a postdoctoral associate at MIT.</p>
+                <p><strong>Currently:</strong> I am a professor working on the spectroscopy of biosignatures gases.</p>
+            </div>
+
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="My Video"></iframe>
+            </div>
         </div>
+
+        <div class="tile">
+            <div class="tile-text">
+                <span class="news-headline">Scientific American</span>
+                <img src="https://placehold.co/600x400/dddddd/333333?text=News+Image" alt="News">
+                <p><strong>When We Finally Find Aliens, They Might Smell Terrible.</strong><br>
+                A better understanding of what gases to search for in exoplanet atmospheres is key.</p>
+                <a href="#">Read article &rarr;</a>
+            </div>
+
+            <div class="tile-text" style="margin-top: 40px;">
+                <span class="news-headline">Wired Magazine</span>
+                <p>A wonderful article about how the "Phosphine on Venus?" story came to be.</p>
+                <a href="#">Read article &rarr;</a>
+            </div>
+        </div>
+
     </div>
 
-    <div class="buttons">
-        <a href="#publications" class="btn">Publications</a>
-        <a href="mailto:mruthyunjay@arizona.edu" class="btn">Email Me</a>
-        <a href="https://instagram.com/yourhandle" class="btn">Instagram</a>
-        <a href="https://github.com/mruthyunjayKS" class="btn">GitHub</a>
-    </div>
-
-    <script>
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
