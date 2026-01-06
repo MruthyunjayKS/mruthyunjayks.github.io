@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Research Portfolio</title>
+    <title>About Me | Mruthyunjay KS</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
         a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
         a:hover { opacity: 0.6; }
 
-        /* --- THE HEADER (Exact match to your request) --- */
+        /* --- HEADER SECTION --- */
         header {
             display: grid;
             /* Grid creates 3 zones: Left Menu, Center Name, Right Menu */
@@ -36,13 +36,11 @@
             text-transform: uppercase;
         }
 
-        /* Navigation Groups */
         .nav-left { justify-self: start; }
         .nav-right { justify-self: end; }
-        
         .nav-item { margin: 0 15px; }
 
-        /* The Name in the Center */
+        /* Site Title (Your Name) */
         .site-title {
             font-weight: 900;
             font-size: 1.2rem;
@@ -51,7 +49,7 @@
             white-space: nowrap;
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (The Quote) --- */
         .hero {
             text-align: center;
             padding: 80px 20px;
@@ -61,19 +59,19 @@
 
         .hero h1 {
             font-size: 2.5rem;
-            font-weight: 700; /* Bold but clean */
+            font-weight: 700; 
             line-height: 1.3;
             margin-bottom: 20px;
         }
 
-        /* --- THE UNEVEN TILES (MASONRY GRID) --- */
+        /* --- MAIN GRID LAYOUT (The Uneven Tiles) --- */
         .grid-container {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr; /* 3 Equal Columns */
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px 100px 20px;
+            padding: 0 20px 40px 20px; /* Bottom padding reduced so footer sits closer */
         }
 
         /* Grid Items */
@@ -91,26 +89,25 @@
 
         .tile-text {
             font-size: 0.95rem;
-            line-height: 1.8; /* Airy text like hers */
+            line-height: 1.8;
             color: #555;
             font-weight: 300;
         }
         
-        /* Typography for News/Headlines inside tiles */
         .news-headline {
-            font-family: 'Georgia', serif; /* Serif font for news contrasts nicely */
+            font-family: 'Georgia', serif;
             font-style: italic;
             font-size: 1.1rem;
             margin-bottom: 10px;
             display: block;
         }
 
-        /* Custom spacing for visual balance */
+        /* This pushes the center column down for the "Uneven" look */
         .tile.center-tile {
-            margin-top: 40px; /* Pushes the center column down slightly for that "uneven" look */
+            margin-top: 40px; 
         }
 
-        /* Video Container */
+        /* --- VIDEO CONTAINER --- */
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
@@ -126,18 +123,50 @@
             border: 0;
         }
 
+        /* --- BOTTOM NAVIGATION & FOOTER --- */
+        .bottom-nav-container {
+            padding: 60px 20px 40px 20px;
+            text-align: center;
+            background: #fff;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
+        }
+
+        .bottom-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto 30px auto;
+        }
+
+        .bottom-nav a {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #999; /* Grey by default */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Active link turns black */
+        .bottom-nav a:hover, .bottom-nav a.active {
+            color: #000; 
+        }
+
+        .copyright {
+            font-size: 0.7rem;
+            color: #bbb;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 20px;
+        }
+
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 900px) {
-            header {
-                grid-template-columns: 1fr; /* Stack header on phone */
-                gap: 20px;
-                text-align: center;
-            }
+            header { grid-template-columns: 1fr; gap: 20px; text-align: center; }
             .nav-left, .nav-right { justify-self: center; }
-            
-            .grid-container {
-                grid-template-columns: 1fr; /* 1 Column on phone */
-            }
+            .grid-container { grid-template-columns: 1fr; } /* Stack to 1 column */
             .tile.center-tile { margin-top: 0; }
         }
     </style>
@@ -146,17 +175,17 @@
 
     <header>
         <nav class="nav-left">
-            <a href="#" class="nav-item">What I Do</a>
+            <a href="research.html" class="nav-item">What I Do</a>
             <a href="#" class="nav-item">Publications</a>
             <a href="#" class="nav-item">CV</a>
         </nav>
 
         <div class="site-title">
-            <a href="#">YOUR NAME HERE</a>
+            <a href="index.html">Mruthyunjay KS</a>
         </div>
 
         <nav class="nav-right">
-            <a href="#" class="nav-item">About</a>
+            <a href="about.html" class="nav-item">About</a>
             <a href="#" class="nav-item">Contact</a>
         </nav>
     </header>
@@ -171,13 +200,17 @@
         
         <div class="tile">
             <img src="https://placehold.co/600x800/eeeeee/333333?text=Your+Photo" alt="My Profile Photo">
-            <div class="tile-text" style="font-size: 0.8rem; color: #888;">Photo credit: Photographer Name</div>
+            <div class="tile-text" style="font-size: 0.8rem; color: #888;">
+                Photo credit: [Photographer Name]
+            </div>
         </div>
 
         <div class="tile center-tile">
             <div class="tile-text">
                 <p>My interests lie in the molecular characterization of extra-solar planets and making science a more inclusive world.</p>
+                
                 <p>I did my PhD with the <strong>ExoMol project</strong> where I simulated spectra for phosphine. I was then a postdoctoral associate at MIT.</p>
+                
                 <p><strong>Currently:</strong> I am a professor working on the spectroscopy of biosignatures gases.</p>
             </div>
 
@@ -187,6 +220,7 @@
         </div>
 
         <div class="tile">
+            
             <div class="tile-text">
                 <span class="news-headline">Scientific American</span>
                 <img src="https://placehold.co/600x400/dddddd/333333?text=News+Image" alt="News">
@@ -203,6 +237,22 @@
         </div>
 
     </div>
+
+    <section class="bottom-nav-container">
+        <div class="bottom-nav">
+            <a href="research.html">All</a>
+            <a href="about.html" class="active">About Me</a>
+            <a href="analysis.html">Comparative Analysis</a>
+            <a href="thermococcus.html">Thermococcus</a>
+            <a href="#">Adaptive Dynamics</a>
+            <a href="#">Sci Comm</a>
+            <a href="alpinist.html">Alpinist Researcher</a>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 Mruthyunjay Kubendran Sumathi. All Rights Reserved.
+        </div>
+    </section>
 
 </body>
 </html>
