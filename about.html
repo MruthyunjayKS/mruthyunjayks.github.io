@@ -10,70 +10,71 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* --- GLOBAL STYLES --- */
-        body {
-            font-family: 'Lato', sans-serif;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #fff;
-        }
+    /* --- GLOBAL RESET --- */
+    * { box-sizing: border-box; }
+    
+    body {
+        font-family: 'Lato', sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh; 
+        display: flex;
+        flex-direction: column;
+        background: #fff; 
+    }
 
-        a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
-        a:hover { opacity: 0.6; }
+    a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 
-         /* ================= HEADER RIBBON ================= */
-        header {
-            position: relative; 
-            background: #fff; 
-            color: #333; 
-            display: grid;
-            grid-template-columns: 1fr auto 1fr; 
-            padding: 25px 5%;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            flex-shrink: 0; 
-        }
+    /* ================= HEADER (Standardized) ================= */
+    header {
+        position: relative; 
+        background: #fff; 
+        color: #333; 
+        display: grid;
+        grid-template-columns: 1fr auto 1fr; 
+        padding: 40px 5%; 
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        flex-shrink: 0; 
+    }
 
-        .nav-left { justify-self: start; }
-        .nav-right { justify-self: end; }
-        .nav-item { margin: 0 15px; opacity: 0.6; position: relative; }
-        .nav-item:hover { opacity: 1; color: #000; }
-        
-        .site-title { 
-            font-family: 'Lato', sans-serif;
-            font-weight: 900; 
-            font-size: 1rem; 
-            letter-spacing: 0.15em;
-            text-align: center;
-        }
+    .nav-left { justify-self: start; }
+    .nav-right { justify-self: end; }
+    .nav-item { margin: 0 15px; position: relative; }
+    
+    .nav-item:hover { color: #000; }
+    
+    .site-title { 
+        font-family: 'Lato', sans-serif;
+        font-weight: 900; 
+        font-size: 1.2rem; 
+        letter-spacing: 0.1em;
+        text-align: center;
+        white-space: nowrap;
+    }
 
-        /* Site Title (Your Name) */
-        .site-title {
-            font-weight: 900;
-            font-size: 1.2rem;
-            letter-spacing: 0.1em;
-            text-align: center;
-            white-space: nowrap;
-        }
+    /* ================= HERO QUOTE (Standardized) ================= */
+    .hero {
+        text-align: center;
+        padding: 120px 20px 80px 20px; 
+        background: #fff;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        /* --- HERO SECTION (The Quote) --- */
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700; 
-            line-height: 1.3;
-            margin-bottom: 20px;
-        }
+    .hero h1 {
+        font-family: 'Playfair Display', serif; 
+        font-size: 3.5rem; 
+        font-weight: 700;
+        margin: 0;
+        line-height: 1.2;
+        max-width: 900px;
+    }
 
         /* --- MAIN GRID LAYOUT (The Uneven Tiles) --- */
         .grid-container {
