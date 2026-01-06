@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Research</title>
+    <title>Research | Mruthyunjay KS</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,12 +16,13 @@
             color: #333;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9; /* Slightly off-white for richness */
+            background-color: #f9f9f9; 
+            line-height: 1.6;
         }
 
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 
-        /* --- HEADER (Matches your About Page) --- */
+        /* --- HEADER --- */
         header {
             display: grid;
             grid-template-columns: 1fr auto 1fr; 
@@ -33,10 +34,16 @@
             text-transform: uppercase;
             background: #fff;
         }
+        
         .nav-left { justify-self: start; }
         .nav-right { justify-self: end; }
-        .nav-item { margin: 0 15px; }
+        .nav-item { margin: 0 15px; position: relative; }
+        
+        /* Underline effect on hover */
+        .nav-item:hover { color: #000; }
+        
         .site-title {
+            font-family: 'Lato', sans-serif; /* Keep name clean and bold */
             font-weight: 900;
             font-size: 1.2rem;
             letter-spacing: 0.1em;
@@ -44,19 +51,23 @@
             white-space: nowrap;
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (Big Quote) --- */
         .hero {
             text-align: center;
-            padding: 100px 20px 60px 20px;
+            /* Increased padding as requested for more space */
+            padding: 120px 20px 80px 20px; 
             background: #fff;
         }
+        
         .hero h1 {
-            font-size: 3rem;
-            font-family: 'Lato', sans-serif;
-            font-weight: 900;
+            font-family: 'Playfair Display', serif; /* The elegant font */
+            font-size: 3.5rem; /* Bigger size */
+            font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.2;
+            color: #222;
         }
+        
         .hero p {
             font-size: 1.2rem;
             color: #666;
@@ -65,16 +76,16 @@
             font-weight: 300;
         }
 
-        /* --- CORE RESEARCH AREAS (The Cards) --- */
+        /* --- RESEARCH CARDS SECTION --- */
         .research-section {
-            padding: 80px 20px;
+            padding: 80px 20px 120px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-label {
             text-align: center;
-            color: #d9534f; /* That academic "red" accent */
+            color: #d9534f; /* Academic red accent */
             font-size: 0.8rem;
             font-weight: 700;
             letter-spacing: 2px;
@@ -84,7 +95,7 @@
 
         .section-title {
             text-align: center;
-            font-family: 'Playfair Display', serif; /* Serif font for elegance */
+            font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             margin-top: 0;
             margin-bottom: 60px;
@@ -96,38 +107,28 @@
             gap: 30px;
         }
 
-        /* Individual Card Style */
+        /* CARD STYLE */
         .card {
             background: #fff;
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* Soft shadow */
+            border-radius: 4px; /* Slightly squarer corners */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
+            border-top: 3px solid transparent;
         }
 
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border-top: 3px solid #d9534f; /* Red accent on hover */
         }
 
-        /* Icons (Using simple styling to avoid complex SVGs for now) */
         .icon-box {
-            width: 50px;
-            height: 50px;
-            background: #eef2ff;
-            color: #4f46e5;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-bottom: 20px;
         }
-        /* Different colors for different cards */
-        .card:nth-child(2) .icon-box { background: #fff1f2; color: #e11d48; }
-        .card:nth-child(3) .icon-box { background: #f0fdf4; color: #16a34a; }
 
         .card h3 {
             font-family: 'Playfair Display', serif;
@@ -141,9 +142,9 @@
             color: #666;
         }
 
-        /* --- BOTTOM NAV (The filtered links) --- */
+        /* --- BOTTOM NAV & COPYRIGHT --- */
         .bottom-nav-container {
-            padding: 60px 20px 100px 20px;
+            padding: 80px 20px 40px 20px;
             text-align: center;
             background: #fff;
             border-top: 1px solid #eee;
@@ -156,26 +157,36 @@
             justify-content: center;
             gap: 30px;
             max-width: 1000px;
-            margin: 0 auto;
+            margin: 0 auto 30px auto;
         }
 
         .bottom-nav a {
-            font-size: 0.9rem;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
             font-weight: 700;
-            color: #999; /* Light grey by default */
+            color: #bbb; /* Grey default */
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .bottom-nav a:hover, .bottom-nav a.active {
-            color: #000; /* Black on hover/active */
+            color: #000;
+        }
+
+        .copyright {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.7rem;
+            color: #bbb;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 40px;
         }
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 900px) {
             header { grid-template-columns: 1fr; gap: 20px; text-align: center; }
             .nav-left, .nav-right { justify-self: center; }
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2.2rem; }
             .cards-grid { grid-template-columns: 1fr; } /* Stack cards on phone */
         }
     </style>
@@ -188,11 +199,13 @@
             <a href="#" class="nav-item">Publications</a>
             <a href="#" class="nav-item">CV</a>
         </nav>
+        
         <div class="site-title">
-            <a href="index.html">YOUR NAME</a>
+            <a href="index.html">MRUTHYUNJAY KS</a>
         </div>
+        
         <nav class="nav-right">
-            <a href="about_me.html" class="nav-item">About</a>
+            <a href="about.html" class="nav-item">About</a>
             <a href="#" class="nav-item">Contact</a>
         </nav>
     </header>
@@ -216,18 +229,16 @@
             </div>
 
             <div class="card">
-                <div class="icon-box">🔥</div>
-                <h3>Extreme Physiology</h3>
+                <div class="icon-box">🔥</div> <h3>Extreme Physiology</h3>
                 <p>
-                    Using <em>Thermococcus kodakarensis</em> as a model system, I study how life thrives at high temperatures. I am developing models for <strong>adaptive dynamics</strong> to predict how these organisms respond to thermal stress.
+                    Using <em>Thermococcus kodakarensis</em> as a model system, I study the molecular mechanisms that allow life to thrive at boiling temperatures. I combine laboratory experiments with genomic data to identify key adaptations.
                 </p>
             </div>
 
             <div class="card">
-                <div class="icon-box">🏔️</div>
-                <h3>The Alpinist Researcher</h3>
+                <div class="icon-box">📈</div> <h3>Adaptive Dynamics</h3>
                 <p>
-                    Bridging the gap between the lab and the field. I am an alpinist researcher, climbing and hiking to study high-altitude environments firsthand. This informs my work on habitability in sterile substrates.
+                    I am developing mathematical models for <strong>adaptive dynamics</strong> to predict how organisms respond to thermal stress. This work aims to forecast evolutionary trajectories and stability in changing environments.
                 </p>
             </div>
 
@@ -237,13 +248,17 @@
     <section class="bottom-nav-container">
         <div class="bottom-nav">
             <a href="research.html" class="active">All</a>
-            <a href="about_me.html">About Me</a>
+            <a href="about.html">About Me</a>
             <a href="#">Comparative Analysis</a>
             <a href="#">Thermococcus</a>
             <a href="#">Adaptive Dynamics</a>
             <a href="#">Sci Comm</a>
             <a href="#">Outreach</a>
-            <a href="#">Alpinist Researcher</a>
+            <a href="alpinist.html">Alpinist Researcher</a>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 Mruthyunjay Kubendran Sumathi. All Rights Reserved.
         </div>
     </section>
 
