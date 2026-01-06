@@ -15,77 +15,81 @@
         
         body {
             font-family: 'Lato', sans-serif;
+            color: #333;
             margin: 0;
             padding: 0;
-            /* CRITICAL: This creates the single-screen vertical layout */
-            height: 100vh; 
+            /* ALLOW SCROLLING: Removed fixed height/overflow hidden */
+            min-height: 100vh; 
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Prevents scrolling on desktop */
             background: #fff; 
         }
 
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 
-        /* ================= HEADER RIBBON ================= */
+        /* ================= HEADER (Standardized) ================= */
         header {
             position: relative; 
             background: #fff; 
             color: #333; 
             display: grid;
             grid-template-columns: 1fr auto 1fr; 
-            padding: 25px 5%;
-            font-size: 0.8rem;
+            padding: 40px 5%; /* Matches research.html padding */
+            font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             flex-shrink: 0; 
         }
 
         .nav-left { justify-self: start; }
         .nav-right { justify-self: end; }
-        .nav-item { margin: 0 15px; opacity: 0.6; position: relative; }
-        .nav-item:hover { opacity: 1; color: #000; }
+        .nav-item { margin: 0 15px; position: relative; }
+        
+        .nav-item:hover { color: #000; }
         
         .site-title { 
             font-family: 'Lato', sans-serif;
             font-weight: 900; 
-            font-size: 1rem; 
-            letter-spacing: 0.15em;
+            font-size: 1.2rem; /* Matches research.html size */
+            letter-spacing: 0.1em;
             text-align: center;
+            white-space: nowrap;
         }
 
-        /* ================= HERO QUOTE SECTION ================= */
-        .hero-quote {
-            background: #fff;
-            color: #333;
+        /* ================= HERO QUOTE (Standardized) ================= */
+        /* Matches exactly the .hero class from research.html */
+        .hero {
             text-align: center;
-            padding: 80px 20px; 
-            flex-shrink: 0; 
+            padding: 120px 20px 80px 20px; /* Same spacious padding */
+            background: #fff;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .hero-quote h1 {
+        .hero h1 {
             font-family: 'Playfair Display', serif; 
-            font-size: 2.8rem; 
+            font-size: 3.5rem; /* Same font size */
             font-weight: 700;
             margin: 0;
             line-height: 1.2;
             max-width: 900px;
         }
 
-        /* ================= FOUR COLUMN SPLIT LAYOUT ================= */
+        /* ================= SPLIT LAYOUT (The Images) ================= */
         .split-container {
             display: flex;
-            flex: 1; /* Fills remaining space */
+            /* FIXED HEIGHT: This forces the footer off-screen so you scroll */
+            height: 85vh; 
+            min-height: 600px; 
             width: 100%;
-            background: #000; /* The background behind the transparent images */
+            background: #000;
         }
 
         .split-panel {
-            flex: 1; /* Each panel starts at equal width */
+            flex: 1; 
             position: relative;
             display: flex;
             align-items: center;
@@ -99,38 +103,31 @@
 
         .split-panel:last-child { border-right: none; }
 
-        /* Hover Effect: Panel expands */
         .split-panel:hover {
             flex: 2; 
             cursor: pointer;
         }
 
-        /* IMAGE STYLES (UPDATED for transparency) */
+        /* IMAGE STYLES (Faint & Transparent) */
         .panel-bg {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background-size: cover;
             background-position: center;
-            
-            /* Ensure they are B&W */
             filter: grayscale(100%);
-            /* Make them faint/transparent against the black background */
             opacity: 0.3; 
-            
             transition: transform 0.6s ease, opacity 0.5s ease;
         }
 
         .split-panel:hover .panel-bg {
             transform: scale(1.05);
-            /* Becomes slightly more visible on hover */
-            opacity: 0.5;
+            opacity: 0.5; 
         }
 
         .panel-content {
             position: relative;
             z-index: 2;
             padding: 20px;
-            /* Stronger shadow makes text pop over faint images */
             text-shadow: 0 2px 15px rgba(0,0,0,1);
         }
 
@@ -153,39 +150,49 @@
             opacity: 0.9;
         }
 
-        /* ================= FOOTER BAR ================= */
-        footer {
-            background: #fff;
-            color: #333;
-            padding: 25px 5%;
+        /* ================= FOOTER (Standardized) ================= */
+        /* Exact same CSS as research.html footer */
+        .bottom-nav-container {
+            padding: 80px 20px 40px 20px;
             text-align: center;
-            border-top: 1px solid #f0f0f0;
-            flex-shrink: 0; 
-            font-size: 0.75rem;
+            background: #fff;
+            border-top: 1px solid #eee;
         }
 
-        .footer-nav {
+        .bottom-nav {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 25px;
-            margin-bottom: 15px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto 30px auto;
         }
 
-        .footer-nav a { color: #bbb; }
-        .footer-nav a:hover, .footer-nav a.active { color: #000; }
+        .bottom-nav a {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #bbb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-        .copyright { color: #ccc; letter-spacing: 0.1em;}
+        .bottom-nav a:hover, .bottom-nav a.active {
+            color: #000;
+        }
+
+        .copyright {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.7rem;
+            color: #bbb;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 40px;
+        }
 
 
         /* ================= MOBILE RESPONSIVENESS ================= */
         @media (max-width: 768px) {
-            body {
-                height: auto; 
-                overflow: auto;
-            }
             header {
                 grid-template-columns: 1fr;
                 gap: 15px;
@@ -193,10 +200,11 @@
                 padding: 30px 20px;
             }
             .nav-left, .nav-right { justify-self: center; flex-wrap: wrap; display: flex; gap: 15px; justify-content: center;}
-            .hero-quote { padding: 60px 20px; }
-            .hero-quote h1 { font-size: 1.8rem; }
+            
+            /* Adjust Hero padding on mobile */
+            .hero { padding: 60px 20px; }
+            .hero h1 { font-size: 1.8rem; }
 
-            /* Stack panels vertically on phone */
             .split-container {
                 flex-direction: column;
                 height: auto;
@@ -208,8 +216,6 @@
                 border-bottom: 1px solid rgba(255,255,255,0.2);
             }
             .split-panel:hover { flex: 1; }
-            
-            .footer-nav { flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -231,7 +237,7 @@
         </nav>
     </header>
 
-    <section class="hero-quote">
+    <section class="hero">
         <h1>
             I like researching space and talking about space - to scientists and non-scientists.
         </h1>
@@ -278,8 +284,8 @@
             <a href="index.html" class="active">ALL</a>
             <a href="about.html">About me</a>
             <a href="research.html">My work</a>
-            <a href="outreach.html">sci comm</a>
-            <a href="fun.html">fun stuff</a>
+            <a href="outreach.html">Sci comm</a>
+            <a href="fun.html">Fun stuff</a>
         </div>
         
         <div class="copyright">
