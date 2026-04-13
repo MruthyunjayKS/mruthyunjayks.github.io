@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA Careers: Astrobiology</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #030712;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --accent-geo: #f59e0b;
+            /* Amber/Rock */
+            --accent-chem: #06b6d4;
+            /* Cyan/Gas */
+            --accent-bio: #10b981;
+            /* Green/Life */
+            --accent-astro: #8b5cf6;
+            /* Purple/Space */
+            --accent-eng: #ef4444;
+            /* Red/Tech */
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg-color);
+            background-image:
+                radial-gradient(circle at 20% 40%, rgba(6, 182, 212, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 60%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            color: #e2e8f0;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Moving Starfield */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 200vh;
+            pointer-events: none;
+            z-index: -1;
+            background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat top center;
+            animation: drift 120s linear infinite;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-50%);
+            }
+        }
+
+        h1,
+        h2,
+        .tech-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* The Core Anti-Gravity Effect */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: antigravity 6s ease-in-out infinite;
+        }
+
+        .card:nth-child(odd) {
+            animation-delay: 0s;
+        }
+
+        .card:nth-child(even) {
+            animation-delay: -3s;
+        }
+
+        @keyframes antigravity {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            }
+
+            50% {
+                transform: translateY(-12px);
+                box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-20px) scale(1.02) !important;
+            border-color: rgba(255, 255, 255, 0.2);
+            animation-play-state: paused;
+            z-index: 10;
+        }
+
+        /* Glowing Top Borders */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            border-radius: 16px 16px 0 0;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card.geo::before {
+            background: var(--accent-geo);
+        }
+
+        .card.chem::before {
+            background: var(--accent-chem);
+        }
+
+        .card.bio::before {
+            background: var(--accent-bio);
+        }
+
+        .card.astro::before {
+            background: var(--accent-astro);
+        }
+
+        .card.eng::before {
+            background: var(--accent-eng);
+        }
+
+        .card.geo:hover::before {
+            box-shadow: 0 0 20px var(--accent-geo);
+        }
+
+        .card.chem:hover::before {
+            box-shadow: 0 0 20px var(--accent-chem);
+        }
+
+        .card.bio:hover::before {
+            box-shadow: 0 0 20px var(--accent-bio);
+        }
+
+        .card.astro:hover::before {
+            box-shadow: 0 0 20px var(--accent-astro);
+        }
+
+        .card.eng:hover::before {
+            box-shadow: 0 0 20px var(--accent-eng);
+        }
+
+        /* Timeline Design */
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 4rem auto;
+            padding-left: 2rem;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #38bdf8, #8b5cf6, #ec4899);
+            border-radius: 4px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 24px;
+            height: 24px;
+            background: #0f172a;
+            border: 4px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .timeline-item:nth-child(1)::before {
+            border-color: #38bdf8;
+        }
+
+        .timeline-item:nth-child(2)::before {
+            border-color: #6366f1;
+        }
+
+        .timeline-item:nth-child(3)::before {
+            border-color: #a855f7;
+        }
+
+        .timeline-item:nth-child(4)::before {
+            border-color: #d946ef;
+        }
+
+        .timeline-item:nth-child(5)::before {
+            border-color: #f43f5e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars"></div>
+
+    <div class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+
+        <!-- HEADER -->
+        <header class="text-center mb-16">
+            <div
+                class="inline-block px-4 py-1 bg-blue-900/30 border border-blue-500/30 rounded-full text-blue-400 text-sm font-bold tracking-widest uppercase mb-4">
+                Astrobiology Career Directory</div>
+            <h1
+                class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 mb-4 tracking-wider">
+                THE SEARCH FOR LIFE</h1>
+            <p class="text-xl text-slate-400 max-w-3xl mx-auto">Astrobiology is not just one subject. It takes
+                geologists, chemists, astronomers, and engineers working together to answer humanity's biggest question:
+                Are we alone?</p>
+        </header>
+
+        <!-- CAREER CARDS GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+
+            <!-- Geologist -->
+            <div class="card geo">
+                <div class="text-4xl mb-4">🪨</div>
+                <h2 class="text-2xl text-amber-400 mb-1">Planetary Geologist</h2>
+                <h3 class="text-lg text-slate-300 font-semibold mb-4">"The Rock Reader"</h3>
+                <p class="text-slate-400 leading-relaxed mb-4 text-sm md:text-base">
+                    You can't look for life if you don't know where the water was. Exogeologists study satellite imagery
+                    and rover data to read the history of planets. They look for ancient river deltas, dried-up lakes,
+                    and thermal vents on Mars to tell the engineers exactly where to land the next rover.
+                </p>
+                <div class="bg-black/30 p-3 rounded border-l-2 border-amber-500 text-sm">
+                    <strong class="text-amber-200">College Majors:</strong> Geology, Earth Science, Planetary Science.
+                </div>
+            </div>
+
+            <!-- Astrochemist -->
+            <div class="card chem">
+                <div class="text-4xl mb-4">🧪</div>
+                <h2 class="text-2xl text-cyan-400 mb-1">Astrochemist</h2>
+                <h3 class="text-lg text-slate-300 font-semibold mb-4">"The Molecule Hunter"</h3>
+                <p class="text-slate-400 leading-relaxed mb-4 text-sm md:text-base">
+                    Life leaves a chemical fingerprint. Astrochemists use mass spectrometers on space probes to sniff
+                    the atmospheres of other planets or the plumes of ice-moons like Enceladus. They search for
+                    "biosignatures"—complex molecules like methane or amino acids that shouldn't exist unless life
+                    created them.
+                </p>
+                <div class="bg-black/30 p-3 rounded border-l-2 border-cyan-500 text-sm">
+                    <strong class="text-cyan-200">College Majors:</strong> Chemistry, Biochemistry, Physics.
+                </div>
+            </div>
+
+            <!-- Microbiologist -->
+            <div class="card bio">
+                <div class="text-4xl mb-4">🦠</div>
+                <h2 class="text-2xl text-green-400 mb-1">Extremophile Biologist</h2>
+                <h3 class="text-lg text-slate-300 font-semibold mb-4">"The Limit Tester"</h3>
+                <p class="text-slate-400 leading-relaxed mb-4 text-sm md:text-base">
+                    To know what alien life might look like, we study the weirdest life on Earth. These biologists
+                    travel to boiling acid hot-springs in Yellowstone, frozen lakes in Antarctica, or deep-sea trenches
+                    to study microbes that survive in extreme conditions similar to Mars or Europa.
+                </p>
+                <div class="bg-black/30 p-3 rounded border-l-2 border-green-500 text-sm">
+                    <strong class="text-green-200">College Majors:</strong> Microbiology, Astrobiology, Molecular
+                    Biology.
+                </div>
+            </div>
+
+            <!-- Astronomer -->
+            <div class="card astro">
+                <div class="text-4xl mb-4">🔭</div>
+                <h2 class="text-2xl text-purple-400 mb-1">Exoplanet Astronomer</h2>
+                <h3 class="text-lg text-slate-300 font-semibold mb-4">"The Planet Finder"</h3>
+                <p class="text-slate-400 leading-relaxed mb-4 text-sm md:text-base">
+                    Astronomers use massive tools like the James Webb Space Telescope to stare at distant stars. They
+                    look for tiny dips in starlight to discover Exoplanets (planets outside our solar system). Their
+                    goal is to find "Earth 2.0"—a rocky planet sitting in the habitable "Goldilocks Zone" where liquid
+                    water can exist.
+                </p>
+                <div class="bg-black/30 p-3 rounded border-l-2 border-purple-500 text-sm">
+                    <strong class="text-purple-200">College Majors:</strong> Astronomy, Astrophysics, Data Science.
+                </div>
+            </div>
+
+            <!-- Instrument Engineer -->
+            <div class="card eng">
+                <div class="text-4xl mb-4">⚙️</div>
+                <h2 class="text-2xl text-red-400 mb-1">Instrument Engineer</h2>
+                <h3 class="text-lg text-slate-300 font-semibold mb-4">"The Tool Maker"</h3>
+                <p class="text-slate-400 leading-relaxed mb-4 text-sm md:text-base">
+                    Scientists have great ideas, but Engineers make them reality. When an Astrochemist says "I need a
+                    laser to zap Martian rocks and read the smoke," the Instrument Engineer builds a lightweight,
+                    radiation-proof, nuclear-powered laser that can survive a rocket launch and work flawlessly millions
+                    of miles away.
+                </p>
+                <div class="bg-black/30 p-3 rounded border-l-2 border-red-500 text-sm">
+                    <strong class="text-red-200">College Majors:</strong> Aerospace Engineering, Mechanical/Electrical
+                    Engineering.
+                </div>
+            </div>
+
+            <!-- Sci Comm -->
+            <div class="card bg-slate-800 border-slate-600">
+                <div class="text-4xl mb-4">🎙️</div>
+                <h2 class="text-2xl text-slate-100 mb-1">Science Communicator</h2>
+                <h3 class="text-lg text-slate-400 font-semibold mb-4">"The Storyteller"</h3>
+                <p class="text-slate-400 leading-relaxed mb-4 text-sm md:text-base">
+                    NASA’s discoveries belong to the world. Science communicators translate complex astrophysics and
+                    biology into videos, articles, and educational games so the public understands why this mission
+                    matters. They are the bridge between the scientists in the lab and the rest of humanity.
+                </p>
+                <div class="bg-black/30 p-3 rounded border-l-2 border-slate-400 text-sm">
+                    <strong class="text-slate-300">College Majors:</strong> Journalism, English, Science Education,
+                    Graphic Design.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- THE FLIGHT PATH (TIMELINE) -->
+        <div
+            class="bg-slate-900/50 p-8 md:p-12 rounded-2xl border border-slate-700 shadow-2xl backdrop-blur-sm relative overflow-hidden">
+            <h2 class="text-3xl md:text-4xl text-center text-white mb-2 tech-font">THE FLIGHT PATH</h2>
+            <p class="text-center text-slate-400 mb-12 uppercase tracking-widest text-sm">How to get from the classroom
+                to NASA</p>
+
+            <div class="timeline-container">
+
+                <!-- Step 1 -->
+                <div class="timeline-step">
+                    <h3 class="text-2xl font-bold text-sky-400 tech-font">1. Middle & High School</h3>
+                    <p class="text-white font-semibold mt-1 mb-2">Build your foundation of curiosity.</p>
+                    <p class="text-slate-400 text-sm md:text-base">Take as much math and science as you can (Biology,
+                        Chemistry, Physics, Calculus). Join a robotics club, learn basic coding (like Python), or enter
+                        science fairs. You do not need to be a "genius," you just need to love asking questions and
+                        solving puzzles.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-step">
+                    <h3 class="text-2xl font-bold text-indigo-400 tech-font">2. Undergraduate Degree (B.S.)</h3>
+                    <p class="text-white font-semibold mt-1 mb-2">Pick your core science or engineering major.</p>
+                    <p class="text-slate-400 text-sm md:text-base">"Astrobiology" isn't usually an undergrad major.
+                        Instead, you major in a core science (Geology, Chemistry, Biology) or Engineering. While in
+                        college, apply for undergraduate research labs and look for NASA's student internship programs!
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-step">
+                    <h3 class="text-2xl font-bold text-purple-400 tech-font">3. Graduate School (M.S. or Ph.D.)</h3>
+                    <p class="text-white font-semibold mt-1 mb-2">Become an expert in one specific thing.</p>
+                    <p class="text-slate-400 text-sm md:text-base">If you want to lead NASA science missions, you almost
+                        always need a Ph.D. (Doctorate). This takes 4-6 years after college. Instead of taking classes,
+                        you work in a lab doing original research, like studying extremophile bacteria or mapping
+                        craters, and you publish your findings in science journals.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-step">
+                    <h3 class="text-2xl font-bold text-fuchsia-400 tech-font">4. Post-Doctoral Fellowship</h3>
+                    <p class="text-white font-semibold mt-1 mb-2">Prove your skills in the real world.</p>
+                    <p class="text-slate-400 text-sm md:text-base">After getting your Ph.D., you do a "Post-Doc." You
+                        spend 2-3 years working at a university or a NASA center (like JPL or Goddard), focusing
+                        entirely on intense research, writing grants to get funding, and building your reputation in the
+                        scientific community.</p>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="timeline-step">
+                    <h3 class="text-2xl font-bold text-rose-400 tech-font">5. NASA / Research Scientist</h3>
+                    <p class="text-white font-semibold mt-1 mb-2">Launch the mission.</p>
+                    <p class="text-slate-400 text-sm md:text-base">You are hired as a Principal Investigator (Lead
+                        Scientist) or a Systems Engineer. You might spend ten years building a single instrument, send
+                        it to Mars on a rocket, and then spend the rest of your life analyzing the data it sends back to
+                        Earth. You are actively searching for life.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="text-center mt-16">
+            <a href="index.html"
+                class="inline-block px-8 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold rounded shadow-lg transition-all hover:-translate-y-1">
+                &larr; Return to Mission Hub
+            </a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
