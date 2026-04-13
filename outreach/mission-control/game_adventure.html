@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control Terminal V5.5 - Adventure Mode</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+        body {
+            background-color: #050505;
+            color: #00ff41;
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0;
+            padding: 20px;
+            height: 100vh;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #terminal-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-bottom: 20px;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.4);
+        }
+
+        /* CRT Scanline effect */
+        body::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .line {
+            margin: 2px 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .color-blue {
+            color: #3b82f6;
+        }
+
+        .color-cyan {
+            color: #06b6d4;
+        }
+
+        .color-warning {
+            color: #eab308;
+        }
+
+        .color-fail {
+            color: #ef4444;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+        }
+
+        .color-success {
+            color: #22c55e;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+        }
+
+        .color-bold {
+            font-weight: bold;
+        }
+
+        .color-user {
+            color: #ffffff;
+        }
+
+        #input-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #333;
+            z-index: 3;
+        }
+
+        #prompt {
+            margin-right: 10px;
+            color: #eab308;
+        }
+
+        #cmd-input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            flex-grow: 1;
+            outline: none;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .telemetry-line {
+            white-space: pre;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="terminal-container"></div>
+    <div id="input-container" style="display: none;">
+        <span id="prompt">>></span>
+        <input type="text" id="cmd-input" autocomplete="off" autofocus>
+    </div>
+
+    <script>
+        const terminal = document.getElementById('terminal-container');
+        const inputContainer = document.getElementById('input-container');
+        const cmdInput = document.getElementById('cmd-input');
+
+        let resolveInput = null;
+
+        // --- CATALOG ---
+        const CATALOG = {
+            ENGINES: [
+                { name: "Ares (Experimental)", cost: 30 },
+                { name: "Falcon (Reusable)", cost: 40 },
+                { name: "Atlas V (Heavy)", cost: 50 }
+            ],
+            TANKS: [
+                { name: "Small Tank (150M Miles)", cost: 10, size: "Small" },
+                { name: "Medium Tank (200M Miles)", cost: 20, size: "Medium" },
+                { name: "Large Tank (250M Miles)", cost: 30, size: "Large" }
+            ],
+            LIFE_SUPPORT: [
+                { name: "Standard System", cost: 20 },
+                { name: "Advanced System", cost: 30 }
+            ],
+            UPGRADES: [
+                { name: "Auto-Repair Bot", cost: 10, key: "repair_bot" },
+                { name: "Radiation Shielding", cost: 10, key: "shielding" },
+                { name: "Landing Thrusters+", cost: 10, key: "thrusters" }
+            ]
+        };
+
+        // --- CORE TERMINAL FUNCTIONS ---
+        function scrollToBottom() {
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        async function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function typeText(text, cssClass = "", speed = 15) {
+            const div = document.createElement('div');
+            div.className = `line ${cssClass}`;
+            terminal.appendChild(div);
+
+            for (let i = 0; i < text.length; i++) {
+                div.textContent += text.charAt(i);
+                scrollToBottom();
+                await sleep(speed);
+            }
+        }
+
+        async function printLine(text, cssClass = "") {
+            const div = document.createElement('div');
+            div.className = `line ${cssClass}`;
+            div.innerHTML = text.replace(/ /g, '&nbsp;');
+            terminal.appendChild(div);
+            scrollToBottom();
+        }
+
+        async function ask(promptText, cssClass = "color-warning") {
+            await printLine(promptText, cssClass);
+            inputContainer.style.display = 'flex';
+            cmdInput.value = '';
+            cmdInput.focus();
+
+            return new Promise(resolve => {
+                resolveInput = resolve;
+            });
+        }
+
+        cmdInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && resolveInput) {
+                const val = this.value.trim();
+                printLine(`> ${val}`, "color-user");
+                inputContainer.style.display = 'none';
+
+                const tempResolve = resolveInput;
+                resolveInput = null;
+                tempResolve(val);
+            }
+        });
+
+        // --- RANDOM ANOMALY SYSTEM (MIDDLE/HIGH SCHOOL MATH) ---
+        async function triggerRandomAnomaly() {
+            const events = [
+                {
+                    type: "OXYGEN LEAK",
+                    msg: "MICROMETEOROID PUNCTURED LIFE SUPPORT RESERVE.",
+                    p1: "Current Reserve: 400 kg",
+                    p2: "Leak Rate: 15 kg/hour",
+                    p3: "Transit Time Remaining: 12 hours",
+                    calcMsg: ">> CALCULATE REMAINING RESERVE UPON ARRIVAL (kg):",
+                    ans: 220
+                },
+                {
+                    type: "POWER ROUTING",
+                    msg: "MAIN REACTOR FLUCTUATION. BACKUP GENERATOR ONLINE.",
+                    p1: "Backup Generator Output: 1000 kW",
+                    p2: "Life Support Draw: 400 kW",
+                    p3: "Number of Landing Thrusters: 4",
+                    calcMsg: ">> CALCULATE AVAILABLE POWER PER THRUSTER (kW):",
+                    ans: 150
+                },
+                {
+                    type: "VELOCITY CORRECTION",
+                    msg: "GRAVITATIONAL DRIFT DETECTED. APPROACHING TOO FAST.",
+                    p1: "Current Velocity: 24000 km/h",
+                    p2: "Required Reduction: 25%",
+                    p3: "Formula: Target = Velocity * (1 - 0.25)",
+                    calcMsg: ">> CALCULATE NEW TARGET VELOCITY (km/h):",
+                    ans: 18000
+                }
+            ];
+
+            let event = events[Math.floor(Math.random() * events.length)];
+
+            await sleep(1000);
+            await printLine("\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "color-warning");
+            await printLine(`[!] UNSEEN ANOMALY TRIGGERED: ${event.type} [!]`, "color-warning");
+            await printLine(event.msg, "color-fail");
+            await printLine(` > ${event.p1}`, "color-cyan");
+            await printLine(` > ${event.p2}`, "color-cyan");
+            await printLine(` > ${event.p3}`, "color-cyan");
+            await printLine("QUICK HUDDLE REQUIRED. ENTER CORRECT CALCULATION TO AVERT CATASTROPHE.", "color-bold");
+
+            const userInput = await ask(event.calcMsg);
+            await typeText("PROCESSING OVERRIDE...", "", 30);
+            await sleep(800);
+
+            if (parseInt(userInput) === event.ans) {
+                await printLine(">> CALCULATION CORRECT. THREAT AVERTED.", "color-success");
+                await printLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n", "color-warning");
+                return true;
+            } else {
+                await printLine(`>> INCORRECT. REQUIRED VALUE WAS: ${event.ans}`, "color-fail");
+                return false;
+            }
+        }
+
+        // --- SIMULATION LOGIC ---
+        async function systemBoot() {
+            terminal.innerHTML = '';
+            await typeText("BIOS DATE 04/13/26 08:10:00 VER 5.5 (ADVENTURE MODE)", "color-cyan");
+            await sleep(300);
+            await typeText("CPU: QUANTUM CORE, SPEED: 128 GHz");
+            await typeText("MEMORY DIAGNOSTIC ... OK");
+            await sleep(300);
+            await typeText("LOADING FLIGHT DYNAMICS PROTOCOLS ...");
+            await typeText("ESTABLISHING SECURE CONNECTION TO LAUNCHPAD ...", "color-cyan");
+            await sleep(800);
+            await typeText("CONNECTION ESTABLISHED.", "color-success");
+            await sleep(800);
+            terminal.innerHTML = '';
+        }
+
+        async function printLogo() {
+            const logo = `
+ _   _    _    ____    _   
+| \\ | |  / \\  / ___|  / \\  
+|  \\| | / _ \\ \\___ \\ / _ \\ 
+| |\\  |/ ___ \\ ___) / ___ \\
+|_| \\_/_/   \\_\\____/_/   \\_\\
+    `;
+            await printLine(logo, "color-cyan");
+            await printLine("MISSION CONTROL TERMINAL V5.5", "color-bold");
+            await printLine("SECURE LINE: ACTIVE\n", "color-cyan");
+            await printLine("============================================================", "color-blue");
+        }
+
+        async function missionFailed(reason) {
+            await printLine("\n");
+            await printLine("============================================================", "color-fail");
+            await printLine("CRITICAL MISSION FAILURE", "color-fail");
+            await printLine(`CAUSE: ${reason}`, "color-fail");
+            await printLine("============================================================", "color-fail");
+
+            const skull = `
+      _       _  
+     | |     | | 
+  ___| |_ ___| | 
+ / __| __/ __| | 
+ \\__ \\ || (__|_| 
+ |___/\\__\\___(_) 
+    `;
+            await printLine(skull, "color-fail");
+            await printLine("\nMISSION TERMINATED. REFRESH PAGE TO RECALCULATE.", "color-bold");
+            inputContainer.style.display = 'none';
+        }
+
+        async function simulateTelemetry(phaseName, durationSecs, mode) {
+            await printLine(`\n>> INITIATING ${phaseName} SEQUENCE...`, "color-bold");
+            await sleep(500);
+
+            const div = document.createElement('div');
+            div.className = 'line telemetry-line color-cyan';
+            terminal.appendChild(div);
+
+            let altitude = mode === "ascent" ? 0 : (mode === "transit" ? 100000 : 40000);
+            let velocity = mode === "transit" ? 24000 : 0;
+            const end = Date.now() + (durationSecs * 1000);
+
+            while (Date.now() < end) {
+                if (mode === "ascent") {
+                    altitude += Math.floor(Math.random() * 800) + 200;
+                    velocity += Math.floor(Math.random() * 150) + 50;
+                } else if (mode === "transit") {
+                    altitude += Math.floor(Math.random() * 50000);
+                    velocity = 24000 + Math.floor(Math.random() * 500) - 250;
+                } else {
+                    altitude -= Math.floor(Math.random() * 800) + 200;
+                    if (altitude < 0) altitude = 0;
+                    velocity = Math.floor(Math.random() * 300) + 600;
+                }
+
+                let altStr = mode === "transit" ? `${Math.floor(altitude / 1000)}k` : altitude.toString().padStart(5, '0');
+                let velStr = velocity.toString().padStart(5, '0');
+                let colorClass = altitude > 0 ? '' : 'color-warning';
+                let unit = mode === "transit" ? "km" : "m";
+
+                div.innerHTML = `DIST: <span class="${colorClass}">${altStr}</span> ${unit} | VEL: ${velStr} km/h | SYS: NOMINAL`;
+                scrollToBottom();
+                await sleep(150);
+            }
+            await printLine(`\n>> ${phaseName} PHASE COMPLETE.`);
+            await sleep(500);
+        }
+
+        async function runShopping() {
+            let selections = {};
+
+            while (true) {
+                terminal.innerHTML = '';
+                await printLogo();
+                await printLine("--- ENGINEERING PROCUREMENT TERMINAL ---", "color-blue");
+                await printLine("BUDGET CAP: $100,000,000\n", "color-cyan");
+
+                let currentCost = 0;
+
+                // 1. Engine
+                await printLine("[1] SELECT PROPULSION SYSTEM:", "color-cyan");
+                for (let i = 0; i < CATALOG.ENGINES.length; i++) {
+                    await printLine(`  ${i + 1}. ${CATALOG.ENGINES[i].name} - $${CATALOG.ENGINES[i].cost}M`);
+                }
+                let c1 = parseInt(await ask("  >> CHOICE (1-3):")) - 1;
+                if (c1 >= 0 && c1 < CATALOG.ENGINES.length) {
+                    selections.engine = CATALOG.ENGINES[c1];
+                    currentCost += selections.engine.cost;
+                } else { await printLine("INVALID. REBOOTING...", "color-fail"); await sleep(1000); continue; }
+
+                // 2. Tank
+                await printLine("\n[2] SELECT FUEL RESERVOIR:", "color-cyan");
+                for (let i = 0; i < CATALOG.TANKS.length; i++) {
+                    await printLine(`  ${i + 1}. ${CATALOG.TANKS[i].name} - $${CATALOG.TANKS[i].cost}M`);
+                }
+                let c2 = parseInt(await ask("  >> CHOICE (1-3):")) - 1;
+                if (c2 >= 0 && c2 < CATALOG.TANKS.length) {
+                    selections.tank = CATALOG.TANKS[c2];
+                    currentCost += selections.tank.cost;
+                } else { await printLine("INVALID. REBOOTING...", "color-fail"); await sleep(1000); continue; }
+
+                // 3. Life Support
+                await printLine("\n[3] SELECT LIFE SUPPORT:", "color-cyan");
+                for (let i = 0; i < CATALOG.LIFE_SUPPORT.length; i++) {
+                    await printLine(`  ${i + 1}. ${CATALOG.LIFE_SUPPORT[i].name} - $${CATALOG.LIFE_SUPPORT[i].cost}M`);
+                }
+                let c3 = parseInt(await ask("  >> CHOICE (1-2):")) - 1;
+                if (c3 >= 0 && c3 < CATALOG.LIFE_SUPPORT.length) {
+                    selections.lifeSupport = CATALOG.LIFE_SUPPORT[c3];
+                    currentCost += selections.lifeSupport.cost;
+                } else { await printLine("INVALID. REBOOTING...", "color-fail"); await sleep(1000); continue; }
+
+                // 4. Upgrades
+                await printLine("\n[4] SELECT UPGRADES (Comma separated, e.g. 1,3 or Enter for None):", "color-cyan");
+                for (let i = 0; i < CATALOG.UPGRADES.length; i++) {
+                    await printLine(`  ${i + 1}. ${CATALOG.UPGRADES[i].name} - $${CATALOG.UPGRADES[i].cost}M`);
+                }
+                let uInput = await ask("  >> CHOICES:");
+                selections.upgrades = [];
+                if (uInput.trim() !== "") {
+                    let parts = uInput.split(",");
+                    for (let part of parts) {
+                        let idx = parseInt(part.trim()) - 1;
+                        if (idx >= 0 && idx < CATALOG.UPGRADES.length) {
+                            let item = CATALOG.UPGRADES[idx];
+                            if (!selections.upgrades.includes(item)) {
+                                selections.upgrades.push(item);
+                                currentCost += item.cost;
+                            }
+                        }
+                    }
+                }
+
+                // Budget Check
+                await printLine("\n============================================================", "color-blue");
+                await printLine(`TOTAL ESTIMATED COST: $${currentCost}M`);
+
+                if (currentCost > 100) {
+                    await printLine("CRITICAL ERROR: BUDGET EXCEEDED ($100M LIMIT)", "color-fail");
+                    await printLine(">> REWORK PRIORITIES IMMEDIATELY.", "color-warning");
+                    await ask("Press ENTER to reboot procurement system...");
+                } else {
+                    await printLine("BUDGET APPROVED.", "color-success");
+                    let confirm = (await ask("CONFIRM PURCHASE? (Y/N):")).toUpperCase();
+                    if (confirm === 'Y') {
+                        selections.budgetSpent = currentCost;
+                        return selections;
+                    }
+                }
+            }
+        }
+
+        async function startGame() {
+            await systemBoot();
+            await printLogo();
+
+            await typeText("AWAITING FLIGHT CALCULATIONS FROM SPECIALIST TEAMS...", "", 20);
+
+            // NAV MATH
+            await printLine("\n[NAV TEAM DATA]", "color-blue");
+            const navRoute = (await ask(" > Target Route Chosen (A/B):")).toUpperCase();
+            if (!['A', 'B'].includes(navRoute)) return await missionFailed("DATA CORRUPTION. INVALID ROUTE.");
+
+            const baseV = navRoute === 'A' ? 8.0 : 4.0;
+            const sling = navRoute === 'A' ? 1.8 : 1.5;
+            const expectedV = (baseV + sling).toFixed(1);
+
+            await printLine(` > Base Velocity: ${baseV} km/s`, "color-cyan");
+            await printLine(` > Gravitational Slingshot: ${sling} km/s`, "color-cyan");
+            const deltaVInput = parseFloat(await ask(" > Calculate Required Delta-V (Base + Slingshot):"));
+
+            // OPS MATH
+            await printLine("\n[OPS TEAM DATA]", "color-blue");
+            const baseMassPerCrew = navRoute === 'A' ? 330 : 550;
+            const expectedBase = baseMassPerCrew * 4;
+            const expectedTotalMass = expectedBase * 1.1;
+
+            await printLine(" > Crew Size: 4 Astronauts", "color-cyan");
+            await printLine(` > Consumables per Crewmember: ${baseMassPerCrew} kg`, "color-cyan");
+            const opsBase = parseInt(await ask(" > Calculate Base Mass (Crew * Consumables):"));
+            await printLine(" > Safety Protocol: Add 10% Buffer", "color-warning");
+            const opsMath = parseInt(await ask(" > Calculate Total Payload Mass (Base Mass * 1.10):"));
+
+            // SCI MATH
+            await printLine("\n[SCI TEAM DATA]", "color-blue");
+            const landingSite = (await ask(" > Target Landing Site (A/B/C):")).toUpperCase();
+            if (!['A', 'B', 'C'].includes(landingSite)) return await missionFailed("DATA CORRUPTION. INVALID SITE.");
+
+            const lat = landingSite === 'A' ? 5 : (landingSite === 'B' ? 75 : 35);
+            const expectedAngle = lat + 10;
+
+            await printLine(` > Site Latitude: ${lat} Degrees`, "color-cyan");
+            await printLine(" > Atmospheric Offset: +10 Degrees", "color-cyan");
+            const sciMath = parseInt(await ask(" > Calculate Optimal Solar Array Angle:"));
+
+            const engData = await runShopping();
+
+            const engineName = engData.engine.name;
+            const tankSize = engData.tank.size;
+            const upgrades = engData.upgrades.map(u => u.key);
+
+            terminal.innerHTML = '';
+            await printLogo();
+            await printLine("FINAL FLIGHT CONFIGURATION LOCKED.", "color-success");
+            await printLine(`ROUTE: ${navRoute} | DELTA-V: ${deltaVInput} km/s`);
+            await printLine(`PAYLOAD: ${opsMath} kg | SITE: ${landingSite} | ANGLE: ${sciMath} deg`);
+            await printLine(`ENGINE: ${engineName} | TANK: ${engData.tank.name}`);
+            await printLine(`UPGRADES: ${engData.upgrades.length > 0 ? engData.upgrades.map(u => u.name).join(', ') : 'None'}`);
+            await printLine(`BUDGET REMAINING: $${100 - engData.budgetSpent}M`);
+
+            await ask("\nPress ENTER to initiate Auto-Sequence Launch...");
+
+            await printLine("\n============================================================", "color-blue");
+            await typeText("AUTO-SEQUENCE START. TRANSFERRING TO INTERNAL POWER.", "", 30);
+
+            for (let i = 10; i > 0; i--) {
+                await printLine(`T-MINUS ${i}...`, "color-bold");
+                if (i === 6) await printLine("MAIN ENGINE START...", "color-warning");
+                await sleep(1000);
+            }
+
+            const rocketArt = `
+       /\\
+      (  )
+      (  )
+     /|/\\|\\
+    /_||||_\\
+    `;
+            await printLine(rocketArt, "color-warning");
+            await printLine("LIFTOFF DETECTED!", "color-bold");
+            await sleep(1000);
+
+            // ==========================================
+            // PHASE 1: ASCENT & MAX-Q
+            // ==========================================
+            await simulateTelemetry("ASCENT", 4, "ascent");
+            await typeText("APPROACHING MAX-Q (MAXIMUM DYNAMIC PRESSURE)...");
+            await sleep(1000);
+
+            // Strict Engine Check: Only the Atlas V can survive Max-Q with this payload.
+            if (engineName.includes("Ares") || engineName.includes("Falcon")) {
+                await printLine("[!] HULL STRESS CRITICAL [!]", "color-fail");
+                await sleep(1000);
+                await missionFailed(`CATASTROPHIC STRUCTURAL FAILURE. ${engineName.toUpperCase()} CANNOT WITHSTAND MAX-Q AERODYNAMIC STRESS WITH HEAVY PAYLOAD.`);
+                return;
+            }
+            await printLine("MAX-Q CLEARED. ATLAS V HEAVY BOOSTER PERFORMING NOMINALLY.", "color-success");
+            await sleep(1000);
+
+            // ==========================================
+            // PHASE 2: TRANSIT & TRAJECTORY
+            // ==========================================
+            await printLine("\n============================================================", "color-blue");
+            await simulateTelemetry("TRANSIT", 4, "transit");
+
+            await typeText("EXECUTING TRANS-MARS INJECTION BURN...");
+            await sleep(1000);
+
+            // Nav Math Check
+            if (deltaVInput !== parseFloat(expectedV)) {
+                await printLine(`[!] BURN CALCULATED AT ${deltaVInput} km/s [!]`, "color-warning");
+                await sleep(1000);
+                await missionFailed(`TRAJECTORY DEVIATION. EXPECTED ${expectedV} km/s FOR ROUTE ${navRoute}. SHIP HAS MISSED MARS ORBIT.`);
+                return;
+            }
+            await printLine(`BURN COMPLETE. TRAJECTORY PERFECT MATCH FOR ROUTE ${navRoute}.`, "color-success");
+            await sleep(1000);
+
+            // Route Hazard & Fuel Check
+            if (navRoute === "A") {
+                await typeText("ENTERING ASTEROID BELT (HIGH DENSITY)...");
+                await sleep(1000);
+                if (upgrades.includes("repair_bot")) {
+                    await printLine(">> MULTIPLE MICRO-IMPACTS DETECTED. AUTO-REPAIR BOT DEPLOYED. HULL INTEGRITY MAINTAINED.", "color-success");
+                } else {
+                    await missionFailed("ASTEROID COLLISION. MASSIVE HULL BREACH DETECTED. NO REPAIR DRONE AVAILABLE.");
+                    return;
+                }
+            } else if (navRoute === "B") {
+                await typeText("EXECUTING GRAVITY ASSIST...");
+                await sleep(1000);
+                if (tankSize === "Small") {
+                    await missionFailed("MAIN ENGINE FLAMEOUT. FUEL DEPLETED. SMALL TANK INSUFFICIENT FOR 200M MILE ROUTE B.");
+                    return;
+                }
+                await printLine(">> GRAVITY ASSIST SUCCESSFUL. FUEL LEVELS NOMINAL.", "color-success");
+            }
+            await sleep(1000);
+
+            // >> TRIGGER RANDOM SURPRISE ANOMALY (Math Required)
+            let anomalySurvived = await triggerRandomAnomaly();
+            if (!anomalySurvived) {
+                await missionFailed("FAILED TO RESOLVE MID-FLIGHT ANOMALY. CATASTROPHIC DAMAGE SUSTAINED.");
+                return;
+            }
+
+            // ==========================================
+            // PHASE 3: ORBITAL INSERTION
+            // ==========================================
+            await printLine("\n============================================================", "color-blue");
+            await typeText("APPROACHING MARS ORBITAL INSERTION WINDOW...");
+            await sleep(1000);
+
+            // Ops Math Check
+            await typeText("VERIFYING LIFE SUPPORT MASS CONSUMPTION...");
+            await sleep(1000);
+            if (opsBase !== expectedBase || opsMath !== expectedTotalMass) {
+                await printLine(`[!] PAYLOAD MASS LOGGED AS ${opsMath} kg [!]`, "color-warning");
+                await sleep(1000);
+                await missionFailed(`LIFE SUPPORT CRITICAL. REQUIRED MASS FOR THIS ROUTE WAS ${expectedTotalMass} kg. CREW RAN OUT OF SUPPLIES MID-FLIGHT.`);
+                return;
+            }
+            await printLine("LIFE SUPPORT CONSUMPTION EXACT. CREW IS HEALTHY.", "color-success");
+            await sleep(1000);
+
+            // Solar Flare Hazard Check (For Site C trajectory)
+            if (landingSite === "C") {
+                await typeText("ORBITAL PATH PASSES THROUGH SEVERE SOLAR STORM...");
+                await sleep(1000);
+                if (upgrades.includes("shielding")) {
+                    await printLine(">> RADIATION SHIELDS HOLDING. AVIONICS AND ELECTRONICS SECURE.", "color-success");
+                } else {
+                    await missionFailed("SOLAR FLARE INDUCED EMP. NAVIGATION SYSTEMS FRIED. ORBITAL INSERTION FAILED.");
+                    return;
+                }
+            }
+            await sleep(1000);
+
+            // ==========================================
+            // PHASE 4: DESCENT & TOUCHDOWN
+            // ==========================================
+            await printLine("\n============================================================", "color-blue");
+            await simulateTelemetry("DESCENT", 5, "descent");
+
+            await typeText("DEPLOYING PARACHUTES AND INITIALIZING SOLAR ARRAYS...");
+            await sleep(1000);
+
+            // Sci Math Check
+            if (sciMath !== expectedAngle) {
+                await printLine(`[!] SOLAR ARRAYS LOCKED AT ${sciMath} DEGREES [!]`, "color-warning");
+                await sleep(1000);
+                await missionFailed(`POWER GRID FAILURE. OPTIMAL ANGLE FOR SITE ${landingSite} IS ${expectedAngle} DEG. BATTERIES DRAINED DURING FINAL DESCENT.`);
+                return;
+            }
+            await printLine(`SOLAR ARRAYS OPTIMIZED. POWER GRID STABLE.`, "color-success");
+            await sleep(1000);
+
+            // Final Landing Check
+            if (landingSite === "B") {
+                await typeText("APPROACHING POLAR ICE CAP. TERRAIN EXTREMELY UNEVEN...");
+                await sleep(1000);
+                if (upgrades.includes("thrusters")) {
+                    await printLine(">> LANDING THRUSTERS+ ENGAGED. GYROSCOPIC STABILIZATION ACTIVE.", "color-success");
+                    await sleep(500);
+                } else {
+                    await missionFailed("TOUCHDOWN VELOCITY STABLE, BUT LANDER TIPPED OVER ON ICE SPIRE. COMMUNICATION ANTENNA BROKEN.");
+                    return;
+                }
+            } else if (landingSite === "C") {
+                await typeText("APPROACHING UTOPIA PLAINS. HIGH WINDS DETECTED, BUT SHIELDS HOLDING...");
+                await sleep(1000);
+            } else if (landingSite === "A") {
+                await typeText("APPROACHING GALE CRATER. TERRAIN FLAT...");
+                await sleep(1000);
+            }
+
+            // WIN CONDITION ACHIEVED
+            await printLine("TOUCHDOWN CONFIRMED.", "color-bold");
+            await sleep(1000);
+
+            await printLine("\n============================================================", "color-blue");
+            await printLine("           *** FULL MISSION SUCCESS ***", "color-success");
+            await printLine("============================================================", "color-blue");
+            await printLine("CREW IS SAFE. BASE HABITAT IS DEPLOYED.", "color-cyan");
+            await printLine("EXCELLENT WORK, MISSION CONTROL.", "color-cyan");
+            inputContainer.style.display = 'none';
+        }
+
+        // Start
+        setTimeout(startGame, 500);
+
+    </script>
+</body>
+
+</html>

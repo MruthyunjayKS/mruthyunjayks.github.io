@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Director Manual | Mission Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #e2e8f0;
+        }
+
+        h1,
+        h2,
+        h3,
+        .tech-font {
+            font-family: 'Chakra Petch', sans-serif;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(234, 179, 8, 0.2);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-glow {
+            border-bottom: 2px solid rgba(234, 179, 8, 0.5);
+            box-shadow: 0 4px 20px -2px rgba(234, 179, 8, 0.15);
+        }
+
+        /* Styling for the collapsible sections */
+        details>summary {
+            list-style: none;
+            cursor: pointer;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .math-box {
+            font-family: 'Courier New', Courier, monospace;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-left: 4px solid #38bdf8;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+        }
+
+        .danger-box {
+            border-left: 4px solid #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .success-box {
+            border-left: 4px solid #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 10px 24px;
+            background: rgba(234, 179, 8, 0.1);
+            color: #facc15;
+            text-decoration: none;
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 5px;
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: rgba(234, 179, 8, 0.2);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body class="bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] min-h-screen flex flex-col">
+
+    <!-- HEADER -->
+    <header class="header-glow bg-slate-900/80 sticky top-0 z-50 p-4 md:p-6 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold text-yellow-500 tracking-wider tech-font">FLIGHT DIRECTOR'S
+                    MANUAL</h1>
+                <p class="text-slate-400 text-sm tracking-widest uppercase">Classified Solutions & Facilitation Guide
+                </p>
+            </div>
+            <div class="flex gap-4">
+                <a href="index.html" class="back-btn !mt-0 !py-2">Exit to Hub</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow max-w-5xl mx-auto w-full p-4 md:p-8 space-y-6">
+
+        <!-- INTRO -->
+        <section class="glass-panel rounded-xl p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <span class="text-3xl">👨‍🏫</span> How to Run the Room (Facilitation)
+            </h2>
+            <p class="text-slate-300 mb-4 leading-relaxed">
+                As the teacher, you are the <strong>Flight Director</strong>. You act as the interface between the
+                students and the computer simulation. To create a true NASA Headquarters atmosphere, enforce the
+                <strong>Silence Protocol</strong>.
+            </p>
+            <ul class="space-y-4 text-sm md:text-base text-slate-300">
+                <li class="flex gap-3"><span class="text-yellow-500 font-bold">1.</span> <strong>Distribute
+                        Packets:</strong> Give each student a specific role (NAV, OPS, SCI, ENG) and their printed
+                    Dossier.</li>
+                <li class="flex gap-3"><span class="text-yellow-500 font-bold">2.</span> <strong>Enforce
+                        Silence:</strong> Tell them the communication satellites are down. They must solve their math
+                    individually on paper.</li>
+                <li class="flex gap-3"><span class="text-yellow-500 font-bold">3.</span> <strong>Pass the
+                        Notes:</strong> Students must physically write their answers on "Data Packets" (scratch paper)
+                    and hand them to the Chief Engineer.</li>
+                <li class="flex gap-3"><span class="text-yellow-500 font-bold">4.</span> <strong>The Launch:</strong>
+                    The Engineer brings the final numbers to your desk. You type them into the Simulation on the
+                    projector for everyone to watch.</li>
+            </ul>
+        </section>
+
+        <!-- MATH KEYS -->
+        <section class="glass-panel rounded-xl p-6 md:p-8 border-t-4 border-t-cyan-500">
+            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <span class="text-3xl">🧮</span> Master Math Keys
+            </h2>
+            <p class="text-slate-400 text-sm mb-6">These are the exact answers your students must calculate to prevent
+                the rocket from crashing.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- SAFE MODE MATH -->
+                <div class="bg-slate-800/50 p-5 rounded-lg border border-slate-700">
+                    <h3 class="text-xl font-bold text-cyan-400 mb-3">Safe Mode Answers</h3>
+
+                    <div class="space-y-3 text-sm">
+                        <details class="bg-black/30 rounded p-3 group">
+                            <summary class="font-bold text-slate-200 outline-none">NAV (Distance)</summary>
+                            <div class="mt-2 text-slate-400">
+                                <strong>Route A (Fast):</strong> 140 + 10 = <span
+                                    class="text-white font-mono bg-cyan-900/50 px-1 rounded">150 M</span><br>
+                                <strong>Route B (Safe):</strong> 140 + 60 = <span
+                                    class="text-white font-mono bg-cyan-900/50 px-1 rounded">200 M</span>
+                            </div>
+                        </details>
+                        <details class="bg-black/30 rounded p-3 group">
+                            <summary class="font-bold text-slate-200 outline-none">OPS (Payload Mass)</summary>
+                            <div class="mt-2 text-slate-400">
+                                4 Astronauts x 500kg = <span
+                                    class="text-white font-mono bg-cyan-900/50 px-1 rounded">2000 kg</span>
+                            </div>
+                        </details>
+                        <details class="bg-black/30 rounded p-3 group">
+                            <summary class="font-bold text-slate-200 outline-none">SCI (Landing Speed)</summary>
+                            <div class="mt-2 text-slate-400">
+                                300 mph / 3 = <span class="text-white font-mono bg-cyan-900/50 px-1 rounded">100
+                                    mph</span>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- ADVENTURE MODE MATH -->
+                <div class="bg-slate-800/50 p-5 rounded-lg border border-slate-700">
+                    <h3 class="text-xl font-bold text-rose-400 mb-3">Adventure Mode Answers</h3>
+
+                    <div class="space-y-3 text-sm">
+                        <details class="bg-black/30 rounded p-3 group">
+                            <summary class="font-bold text-slate-200 outline-none">NAV (Delta-V km/s)</summary>
+                            <div class="mt-2 text-slate-400">
+                                <strong>Route A:</strong> Base 8.0 + Sling 1.8 = <span
+                                    class="text-white font-mono bg-rose-900/50 px-1 rounded">9.8</span><br>
+                                <strong>Route B:</strong> Base 4.0 + Sling 1.5 = <span
+                                    class="text-white font-mono bg-rose-900/50 px-1 rounded">5.5</span>
+                            </div>
+                        </details>
+                        <details class="bg-black/30 rounded p-3 group">
+                            <summary class="font-bold text-slate-200 outline-none">OPS (Mass w/ 10% Buffer)</summary>
+                            <div class="mt-2 text-slate-400">
+                                <strong>Route A:</strong> (330*4) * 1.10 = <span
+                                    class="text-white font-mono bg-rose-900/50 px-1 rounded">1452</span><br>
+                                <strong>Route B:</strong> (550*4) * 1.10 = <span
+                                    class="text-white font-mono bg-rose-900/50 px-1 rounded">2420</span>
+                            </div>
+                        </details>
+                        <details class="bg-black/30 rounded p-3 group">
+                            <summary class="font-bold text-slate-200 outline-none">SCI (Solar Arrays)</summary>
+                            <div class="mt-2 text-slate-400">
+                                <strong>Site A (Lat 5):</strong> 5 + 10 = <span
+                                    class="text-white font-mono bg-rose-900/50 px-1 rounded">15 deg</span><br>
+                                <strong>Site B (Lat 75):</strong> 75 + 10 = <span
+                                    class="text-white font-mono bg-rose-900/50 px-1 rounded">85 deg</span><br>
+                                <strong>Site C (Lat 35):</strong> 35 + 10 = <span
+                                    class="text-white font-mono bg-rose-900/50 px-1 rounded">45 deg</span>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENGINEERING GOLDEN PATHS -->
+        <section class="glass-panel rounded-xl p-6 md:p-8 border-t-4 border-t-green-500">
+            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <span class="text-3xl">🛒</span> The "Golden Paths" (Procurement)
+            </h2>
+            <p class="text-slate-300 text-sm mb-4">
+                The Engineer has $100M. The Ares and Falcon engines are "traps" (they have failure percentages). To
+                guarantee a 100% win, the Engineer MUST figure out how to afford the $50M <strong>Atlas V
+                    Engine</strong> while still buying the exact upgrades needed for the SCI and NAV team's choices.
+            </p>
+
+            <div class="space-y-4">
+                <!-- Path 1 -->
+                <details class="bg-slate-800/80 rounded-lg border border-slate-600">
+                    <summary class="p-4 font-bold text-white outline-none hover:bg-slate-700/50 flex justify-between">
+                        <span>🚀 Path 1: The Safe Route (Simplest)</span>
+                        <span class="text-green-400 font-mono">$90M</span>
+                    </summary>
+                    <div class="p-4 pt-0 border-t border-slate-700 mt-2 text-sm text-slate-300">
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><strong>Route B</strong> (Safe) + <strong>Site A</strong> (Flat)</li>
+                            <li><strong>Engine:</strong> Atlas V ($50M)</li>
+                            <li><strong>Tank:</strong> Medium ($20M) - <em>Required for Route B distance!</em></li>
+                            <li><strong>Life Support:</strong> Standard ($20M)</li>
+                            <li><strong>Upgrades:</strong> None needed.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Path 2 -->
+                <details class="bg-slate-800/80 rounded-lg border border-slate-600">
+                    <summary class="p-4 font-bold text-white outline-none hover:bg-slate-700/50 flex justify-between">
+                        <span>🚀 Path 2: The Direct Express (Fastest)</span>
+                        <span class="text-green-400 font-mono">$90M</span>
+                    </summary>
+                    <div class="p-4 pt-0 border-t border-slate-700 mt-2 text-sm text-slate-300">
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><strong>Route A</strong> (Asteroids) + <strong>Site A</strong> (Flat)</li>
+                            <li><strong>Engine:</strong> Atlas V ($50M)</li>
+                            <li><strong>Tank:</strong> Small ($10M)</li>
+                            <li><strong>Life Support:</strong> Standard ($20M)</li>
+                            <li><strong>Upgrades:</strong> Auto-Repair Bot ($10M) - <em>Required to survive
+                                    Asteroids!</em></li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Path 3 -->
+                <details class="bg-slate-800/80 rounded-lg border border-slate-600">
+                    <summary class="p-4 font-bold text-white outline-none hover:bg-slate-700/50 flex justify-between">
+                        <span>🚀 Path 3: The Ice Hunter (Max Science)</span>
+                        <span class="text-green-400 font-mono">$100M</span>
+                    </summary>
+                    <div class="p-4 pt-0 border-t border-slate-700 mt-2 text-sm text-slate-300">
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><strong>Route A</strong> (Asteroids) + <strong>Site B</strong> (Ice/Uneven)</li>
+                            <li><strong>Engine:</strong> Atlas V ($50M)</li>
+                            <li><strong>Tank:</strong> Small ($10M)</li>
+                            <li><strong>Life Support:</strong> Standard ($20M)</li>
+                            <li><strong>Upgrades:</strong> Repair Bot ($10M) + Landing Thrusters ($10M)</li>
+                            <li class="text-yellow-400 italic mt-2">Note: This is the ONLY way to safely land on the ice
+                                and get water. If they take Route B, they can't afford the Thrusters.</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- HANDLING SURPRISE ANOMALIES -->
+        <section class="glass-panel rounded-xl p-6 md:p-8 border-t-4 border-t-yellow-500">
+            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <span class="text-3xl">⚠️</span> Navigating "Unseen Anomalies"
+            </h2>
+            <p class="text-slate-300 mb-4 text-sm leading-relaxed">
+                Mid-way through the simulation, the screen will suddenly flash RED and trigger an "Unseen Anomaly". The
+                computer will pause and wait for an input.
+            </p>
+            <div class="danger-box p-4 text-sm text-slate-300 mb-6">
+                <strong>FACILITATION TIP:</strong> When the alarm sounds, shout <strong>"QUICK HUDDLE!"</strong> Break
+                the silence rule. Tell the teams they have exactly <strong>60 seconds</strong> to work together, solve
+                the math problem on the screen, and yell the answer to you. If you type in the wrong number, the
+                simulation instantly fails.
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-slate-800/40 p-4 border border-slate-700 rounded">
+                    <h4 class="font-bold text-yellow-500 mb-2">Safe Mode Anomalies (Basic Math)</h4>
+                    <ul class="text-sm text-slate-400 space-y-2">
+                        <li><strong>Panel Debris:</strong> Subtraction (100 - 25 = <span class="text-white">75</span>)
+                        </li>
+                        <li><strong>Course Drift:</strong> Multiplication (50 x 2 = <span class="text-white">100</span>)
+                        </li>
+                        <li><strong>Cabin Heating:</strong> Addition (70 + 35 = <span class="text-white">105</span>)
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-slate-800/40 p-4 border border-slate-700 rounded">
+                    <h4 class="font-bold text-rose-500 mb-2">Adventure Anomalies (Algebra)</h4>
+                    <p class="text-xs text-slate-400 mb-2 italic">Variables are randomized every game, but the formulas
+                        remain the same:</p>
+                    <ul class="text-sm text-slate-400 space-y-2">
+                        <li><strong>O2 Leak:</strong> Reserve - (Rate x Hours)</li>
+                        <li><strong>Power Rerouting:</strong> (Total Output - LS Draw) / 4</li>
+                        <li><strong>Velocity:</strong> Current Vel x 0.75</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEBRIEF -->
+        <section class="glass-panel rounded-xl p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-white mb-4">💬 The Debriefing</h2>
+            <p class="text-slate-300 text-sm mb-4">Once the rocket lands (or crashes), bring the class back together to
+                discuss the Systems Engineering aspect of the game.</p>
+            <ul class="space-y-3 text-slate-400 text-sm">
+                <li><strong class="text-white">The Domino Effect:</strong> Ask the Engineer how the Navigator's choice
+                    (Route B) affected their budget (forced to buy a $20M tank, leaving less money for a safe engine).
+                </li>
+                <li><strong class="text-white">Communication Breakdown:</strong> Did the Scientist realize they needed
+                    Thrusters for the Ice Cap, but fail to tell the Engineer to buy them?</li>
+                <li><strong class="text-white">The Cost of Safety:</strong> Ask the class if they think real NASA
+                    engineers struggle with "Budget vs. Safety" when building rockets like Artemis or Apollo.</li>
+            </ul>
+        </section>
+
+    </main>
+
+</body>
+
+</html>
