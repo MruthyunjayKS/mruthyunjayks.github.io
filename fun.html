@@ -119,17 +119,18 @@
             background: #fff;
             border-radius: 6px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-            /* Soft shadow gives the 'card/box' feel */
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            flex: 1 1 auto;
-            /* Allows boxes to grow and shrink */
+            /* Change the flex line to this: */
+            flex: 0 0 auto;
         }
 
         /* Varying Box Widths for the "Irregular" Look */
         .box-poem {
-            min-width: 350px;
-            max-width: 550px;
+            /* Add these two lines to make the box end where the text ends: */
+            width: max-content;
+            max-width: 100%;
+
             padding: 40px 30px;
             border-top: 4px solid #1E6091;
         }
@@ -173,11 +174,14 @@
 
         .poem-body {
             font-family: 'Lato', sans-serif;
+            /* Keeps your nice font */
             font-size: 0.95rem;
             line-height: 1.8;
             color: #444;
             white-space: pre-wrap;
-            /* Preserves your beautiful indentations and line breaks */
+            /* Keeps text wrapping nicely */
+            margin: 0;
+            /* Removes weird spacing */
         }
 
         /* ================= FOOTER ================= */
