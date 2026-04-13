@@ -102,28 +102,49 @@
             color: #222;
         }
 
-        /* --- SCRAPBOOK MASONRY LAYOUT --- */
+        /* --- SCRAPBOOK FLEX LAYOUT --- */
         .masonry-grid {
-            column-count: 3;
-            /* Creates 3 columns that elements flow into */
-            column-gap: 30px;
-            max-width: 1300px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 40px 80px 40px;
         }
 
         /* Individual Boxes */
         .box {
-            break-inside: avoid;
-            /* Prevents a box from being cut in half across columns */
-            margin-bottom: 30px;
-            /* Space below each box */
             background: #fff;
             border-radius: 6px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
             /* Soft shadow gives the 'card/box' feel */
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1 1 auto;
+            /* Allows boxes to grow and shrink */
+        }
+
+        /* Varying Box Widths for the "Irregular" Look */
+        .box-poem {
+            min-width: 350px;
+            max-width: 550px;
+            padding: 40px 30px;
+            border-top: 4px solid #1E6091;
+        }
+
+        .box-image {
+            min-width: 280px;
+            max-width: 450px;
+        }
+
+        .box-poem.wide {
+            max-width: 700px;
+        }
+
+        .box-image.large {
+            max-width: 600px;
         }
 
         .box:hover {
@@ -134,18 +155,13 @@
         /* Image Boxes */
         .box-image img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
             background: #eee;
         }
 
-        /* Poem Boxes */
-        .box-poem {
-            padding: 40px 30px;
-            border-top: 4px solid #1E6091;
-            /* Accent color across the top of text boxes */
-        }
-
+        /* Poem Typography */
         .box-poem h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
@@ -265,11 +281,11 @@
         </h1>
     </section>
 
-    <!-- SCRAPBOOK MASONRY LAYOUT -->
+    <!-- SCRAPBOOK FLEX LAYOUT -->
     <div class="masonry-grid">
 
         <!-- Poem 1 -->
-        <div class="box box-poem">
+        <div class="box box-poem wide">
             <h3>Listen</h3>
             <div class="poem-body">High above the oceans, so distant and steep,
                 where the Himalayan skies are heavy and deep.
@@ -288,7 +304,12 @@
 
         <!-- Image 1 -->
         <div class="box box-image">
-            <img src="images/hiking.jpg" alt="In snow you make your trail" style="min-height: 250px;">
+            <img src="images/hiking.jpg" alt="In Snow you make your way" style="min-height: 250px;">
+        </div>
+
+        <!-- Image 2 -->
+        <div class="box box-image large">
+            <img src="images/climbing.jpg" alt="On the rocks please" style="min-height: 400px;">
         </div>
 
         <!-- Poem 2 -->
@@ -311,13 +332,8 @@
                 and the spring has begun.</div>
         </div>
 
-        <!-- Image 2 -->
-        <div class="box box-image">
-            <img src="images/climbing.jpg" alt="On the rocks please!" style="min-height: 400px;">
-        </div>
-
         <!-- Poem 3 -->
-        <div class="box box-poem">
+        <div class="box box-poem wide">
             <h3>Hope</h3>
             <div class="poem-body">Every day,
                 I see doctors hoping a patient pulls through,
@@ -346,7 +362,12 @@
 
         <!-- Image 3 -->
         <div class="box box-image">
-            <img src="images/Scuba_me.webp" alt="Had ot get certified to find nemo" style="min-height: 300px;">
+            <img src="images/Scuba_me.webp" alt="Getting certified to find nemo" style="min-height: 300px;">
+        </div>
+
+        <!-- Image 4 -->
+        <div class="box box-image large">
+            <img src="images/rapell.jpg" alt="Swing me to the moon" style="min-height: 350px;">
         </div>
 
         <!-- Poem 4 -->
@@ -366,11 +387,6 @@
                 The humor is bleak,
                 the irony is heavy.
                 We became the architects of the very things we claim to hate.</div>
-        </div>
-
-        <!-- Image 4 -->
-        <div class="box box-image">
-            <img src="images/rapell.jpg" alt="First time rapelling" style="min-height: 350px;">
         </div>
 
     </div>
