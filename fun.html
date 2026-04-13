@@ -1,185 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Life Outdoors | Mruthyunjay KS</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
 
     <style>
-    /* --- GLOBAL RESET --- */
-    * { box-sizing: border-box; }
-    
-    body {
-        font-family: 'Lato', sans-serif;
-        color: #333;
-        margin: 0;
-        padding: 0;
-        min-height: 100vh; 
-        display: flex;
-        flex-direction: column;
-        background: #fff; 
-    }
+        /* --- GLOBAL RESET --- */
+        * {
+            box-sizing: border-box;
+        }
 
-    a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #f9f9f9;
+            /* Slightly off-white background makes the boxes pop */
+        }
 
-    /* ================= HEADER (Standardized) ================= */
-    header {
-        position: relative; 
-        background: #fff; 
-        color: #333; 
-        display: grid;
-        grid-template-columns: 1fr auto 1fr; 
-        padding: 40px 5%; 
-        font-size: 0.85rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        flex-shrink: 0; 
-    }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
 
-    .nav-left { justify-self: start; }
-    .nav-right { justify-self: end; }
-    .nav-item { margin: 0 15px; position: relative; opacity: 0.6; }
-    
-    .nav-item:hover, .nav-item.active { opacity: 1; color: #000; }
-    
-    .site-title { 
-        font-family: 'Lato', sans-serif;
-        font-weight: 900; 
-        font-size: 1.2rem; 
-        letter-spacing: 0.1em;
-        text-align: center;
-        white-space: nowrap;
-    }
+        /* ================= HEADER ================= */
+        header {
+            position: relative;
+            background: #fff;
+            color: #333;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            padding: 40px 5%;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+            /* Soft separation from body */
+        }
 
-    /* ================= HERO QUOTE (Standardized) ================= */
-    .hero {
-        text-align: center;
-        padding: 120px 20px 80px 20px; 
-        background: #fff;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+        .nav-left {
+            justify-self: start;
+        }
 
-    .hero h1 {
-        font-family: 'Playfair Display', serif; 
-        font-size: 3.5rem; 
-        font-weight: 700;
-        margin: 0;
-        line-height: 1.2;
-        max-width: 1000px;
-    }
+        .nav-right {
+            justify-self: end;
+        }
 
-    /* --- SCRAPBOOK GRID LAYOUT --- */
-    .grid-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr; /* 3 Equal Columns */
-        gap: 40px;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px 80px 20px; 
-    }
+        .nav-item {
+            margin: 0 15px;
+            position: relative;
+            opacity: 0.6;
+        }
 
-    /* Grid Items */
-    .tile {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-    }
+        .nav-item:hover,
+        .nav-item.active {
+            opacity: 1;
+            color: #000;
+        }
 
-    .tile img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 4px;
-        background: #f4f4f4; /* Placeholder color before images load */
-    }
+        .site-title {
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            text-align: center;
+            white-space: nowrap;
+        }
 
-    /* This pushes the center column down for the "Uneven" look */
-    .tile.center-tile {
-        margin-top: 60px; 
-    }
+        /* ================= HERO QUOTE ================= */
+        .hero {
+            text-align: center;
+            padding: 100px 20px 80px 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    /* --- POETRY STYLING --- */
-    .poem {
-        background: #fcfcfc;
-        padding: 30px;
-        border-left: 3px solid #1E6091; /* Accent color matching your sci comm page */
-        border-radius: 0 4px 4px 0;
-    }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.3;
+            max-width: 1000px;
+            color: #222;
+        }
 
-    .poem h3 {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.8rem;
-        margin-top: 0;
-        margin-bottom: 20px;
-        color: #222;
-    }
+        /* --- SCRAPBOOK MASONRY LAYOUT --- */
+        .masonry-grid {
+            column-count: 3;
+            /* Creates 3 columns that elements flow into */
+            column-gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 40px 80px 40px;
+        }
 
-    .poem-body {
-        font-family: 'Lato', sans-serif;
-        font-size: 0.95rem;
-        line-height: 1.8;
-        color: #444;
-        white-space: pre-wrap; /* This preserves your exact spaces and line breaks! */
-    }
+        /* Individual Boxes */
+        .box {
+            break-inside: avoid;
+            /* Prevents a box from being cut in half across columns */
+            margin-bottom: 30px;
+            /* Space below each box */
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            /* Soft shadow gives the 'card/box' feel */
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    /* ================= FOOTER (Standardized) ================= */
-    .bottom-nav-container {
-        padding: 80px 20px 40px 20px;
-        text-align: center;
-        background: #fff;
-        border-top: 1px solid #eee;
-        margin-top: auto; 
-    }
+        .box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
 
-    .bottom-nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 30px;
-        max-width: 1000px;
-        margin: 0 auto 30px auto;
-    }
+        /* Image Boxes */
+        .box-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #eee;
+        }
 
-    .bottom-nav a {
-        font-family: 'Lato', sans-serif;
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: #bbb; 
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
+        /* Poem Boxes */
+        .box-poem {
+            padding: 40px 30px;
+            border-top: 4px solid #1E6091;
+            /* Accent color across the top of text boxes */
+        }
 
-    .bottom-nav a:hover, .bottom-nav a.active {
-        color: #000; 
-    }
+        .box-poem h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #111;
+            text-align: center;
+        }
 
-    .copyright {
-        font-family: 'Lato', sans-serif;
-        font-size: 0.7rem;
-        color: #bbb;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-top: 40px;
-    }
+        .poem-body {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #444;
+            white-space: pre-wrap;
+            /* Preserves your beautiful indentations and line breaks */
+        }
 
-    /* --- MOBILE RESPONSIVENESS --- */
-    @media (max-width: 900px) {
-        header { grid-template-columns: 1fr; gap: 20px; text-align: center; }
-        .nav-left, .nav-right { justify-self: center; }
-        .hero h1 { font-size: 2.2rem; }
-        .grid-container { grid-template-columns: 1fr; } /* Stack to 1 column on phones */
-        .tile.center-tile { margin-top: 0; }
-    }
+        /* ================= FOOTER ================= */
+        .bottom-nav-container {
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+            background: #fff;
+            border-top: 1px solid #eee;
+            margin-top: auto;
+        }
+
+        .bottom-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto 30px auto;
+        }
+
+        .bottom-nav a {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #bbb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .bottom-nav a:hover,
+        .bottom-nav a.active {
+            color: #000;
+        }
+
+        .copyright {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.7rem;
+            color: #bbb;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 40px;
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 1000px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+
+            /* 2 columns on tablets */
+        }
+
+        @media (max-width: 768px) {
+            header {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .nav-left,
+            .nav-right {
+                justify-self: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .masonry-grid {
+                column-count: 1;
+                padding: 0 20px 80px 20px;
+            }
+
+            /* 1 column on phones */
+        }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -200,119 +260,122 @@
 
     <section class="hero">
         <h1>
-            A messy but neat collection of my outdoor journeys, the mountains I've climbed, the trails I've run, and the observations they inspire.
+            A collection of my outdoor journeys, the mountains I've climbed, the trails I've run, and the observations
+            they inspire.
         </h1>
     </section>
 
-    <div class="grid-container">
-        
-        <div class="tile">
-            <img src="images/outdoor-photo-1.jpg" alt="Outdoor Adventure" style="min-height: 300px;">
-            
-            <div class="poem">
-                <h3>Listen</h3>
-                <div class="poem-body">High above the oceans,
-fifteen thousand feet up into the Himalayan sky,
-there is a place.
-This place.
+    <!-- SCRAPBOOK MASONRY LAYOUT -->
+    <div class="masonry-grid">
 
-Here,
-the towering mountains speak,
-and the heavy clouds listen.
-The wind bites through your layers out here,
-and the thin alpine air feels remarkably crisp in your lungs.
-There is nothing to conquer, nothing to prove.
+        <!-- Poem 1 -->
+        <div class="box box-poem">
+            <h3>Listen</h3>
+            <div class="poem-body">High above the oceans, so distant and steep,
+                where the Himalayan skies are heavy and deep.
+                Fifteen thousand feet up, in a world of its own,
+                there is a place made of silence and stone.
+                Here, the mountains will speak,
+                and the clouds will obey.
 
-All you have to do is
-stand still,
-take a deep, slow breath,
-and listen to the profound silence as nature speaks.</div>
-            </div>
-
-            <img src="images/outdoor-photo-4.jpg" alt="Hiking Trail" style="min-height: 250px;">
+                As the cold wind washes the echoes away,
+                there is nothing to conquer and no race to be won.
+                Just the crisp, thinning air and the setting sun.
+                All you have to do is let your racing thoughts fade,
+                take a deep breath in the freezing cascade,
+                and listen to the world that nature has made.</div>
         </div>
 
-        <div class="tile center-tile">
-            
-            <div class="poem">
-                <h3>Spring</h3>
-                <div class="poem-body">I see him sit there, in that corner every day,
-hoping to speak to her, thinking of what to say.
-I see the young kids playing on the street,
-I see the old couple teasing each other, it's sweet.
-I see men in suits, rushing and co-working,
-I see young lovers softly talking.
- 
-Through the cafe window, watching the morning crowd,
-I see a bird weaving a nest in the branches.
-I see the busy bees searching for early honey,
-I see the wind playing with the bright new leaves.
- 
-With the warm smell of coffee brewing so near,
-the winter is gone,
-	 and the spring has begun.</div>
-            </div>
-
-            <img src="images/outdoor-photo-2.jpg" alt="Climbing Trip" style="min-height: 450px;">
-
-            <div class="poem">
-                <h3>The World, Humour, and Irony</h3>
-                <div class="poem-body">In a world where the truth is punished,
-we trained our souls to lie.
-In a world where emotions are disregarded,
-we trained our souls to swallow them whole.
-In a world with enough resources for everyone,
-we trained our souls to clench their fists in greed.
-In a world where peace is essential to survive,
-we trained our souls to carry the weight of guns.
-In a world where the orphaned are steadily increasing,
-we trained our laws to force the birth.
-
-The humor is bleak,
-the irony is heavy.
-We became the architects of the very things we claim to hate.</div>
-            </div>
-            
+        <!-- Image 1 -->
+        <div class="box box-image">
+            <img src="images/hiking.jpg" alt="In snow you make your trail" style="min-height: 250px;">
         </div>
 
-        <div class="tile">
-            <img src="images/outdoor-photo-3.jpg" alt="Summit View" style="min-height: 350px;">
-            
-            <div class="poem">
-                <h3>Hope</h3>
-                <div class="poem-body">Every day,
-I see doctors hoping a patient pulls through,
-I see students hoping the heavy hours of study will be
-enough,
-I see immigrants hoping the new soil will be kind,
-I see mothers in war-torn streets hoping, for their
-children,
-	 a quiet sky.
- 
-Every day,
-I see lovers hoping to reunite at the arrival gate.
-I see hopeless romantics still daring to fall in love,
-I see artists creating something just to make the world
-pause,
-I see patients hiding an ocean behind a smile,
-I see a generation,
-       trying with heavy hands,
-	            to make the planet safer.
- 
-Every day,
-I see her hoping for an adventurous life,
-I see him hoping for her wishes to come true.
-Because everywhere I look,
-no matter the struggle, come what may,
-hope is the only thing we have, 
-                 and
-                            it will always find a way.</div>
-            </div>
+        <!-- Poem 2 -->
+        <div class="box box-poem">
+            <h3>Spring</h3>
+            <div class="poem-body">I see him sit there, in that corner every day,
+                hoping to speak to her, thinking of what to say.
+                I see the young kids playing on the street,
+                I see the old couple teasing each other, it’s sweet.
+                I see men in suits, rushing and co-working,
+                I see young lovers softly talking.
+
+                Through the cafe window, past the morning rush,
+                I see a bird weaving a nest in the branches.
+                I see the busy bees searching for early honey.
+                I see the wind playing with the bright new leaves.
+
+                With the warm smell of coffee brewing so near,
+                the winter is gone,
+                and the spring has begun.</div>
+        </div>
+
+        <!-- Image 2 -->
+        <div class="box box-image">
+            <img src="images/climbing.jpg" alt="On the rocks please!" style="min-height: 400px;">
+        </div>
+
+        <!-- Poem 3 -->
+        <div class="box box-poem">
+            <h3>Hope</h3>
+            <div class="poem-body">Every day,
+                I see doctors hoping a patient pulls through,
+                I see students hoping the heavy hours of study will be enough,
+                I see immigrants hoping the new soil will be kind,
+                I see mothers in war-torn streets hoping,
+                for their children,
+                a quiet sky.
+
+                Every day,
+                I see lovers hoping to reunite at the arrival gate.
+                I see hopeless romantics still daring to fall in love,
+                I see artists creating something just to make the world pause,
+                I see patients hiding an ocean behind a smile,
+                I see a generation,
+                trying with heavy hands,
+                to make the planet safer.
+
+                Every day,
+                I see her hoping for an adventurous life,
+                I see him hoping for her wishes to come true.
+                Because everywhere I look,
+                no matter the struggle, come what may,
+                hope is the only thing we have, and it will always find a way.</div>
+        </div>
+
+        <!-- Image 3 -->
+        <div class="box box-image">
+            <img src="images/Scuba_me.webp" alt="Had ot get certified to find nemo" style="min-height: 300px;">
+        </div>
+
+        <!-- Poem 4 -->
+        <div class="box box-poem">
+            <h3>The World, Humour, and Irony</h3>
+            <div class="poem-body">In a world where the truth is punished,
+                we trained our souls to lie.
+                In a world where emotions are disregarded,
+                we trained our souls to swallow them whole.
+                In a world with enough resources for everyone,
+                we trained our souls to clench their fists in greed.
+                In a world where peace is essential to survive,
+                we trained our souls to carry the weight of guns.
+                In a world where the orphaned are steadily increasing,
+                we trained our laws to force the birth.
+
+                The humor is bleak,
+                the irony is heavy.
+                We became the architects of the very things we claim to hate.</div>
+        </div>
+
+        <!-- Image 4 -->
+        <div class="box box-image">
+            <img src="images/rapell.jpg" alt="First time rapelling" style="min-height: 350px;">
         </div>
 
     </div>
 
-     <section class="bottom-nav-container">
+    <section class="bottom-nav-container">
         <div class="bottom-nav">
             <a href="index.html">ALL</a>
             <a href="about.html">About me</a>
@@ -320,11 +383,12 @@ hope is the only thing we have,
             <a href="outreach.html">Sci comm</a>
             <a href="fun.html" class="active">Fun stuff</a>
         </div>
-        
+
         <div class="copyright">
             &copy; 2026 Mruthyunjay Kubendran Sumathi. All Rights Reserved.
         </div>
     </section>
 
 </body>
+
 </html>
