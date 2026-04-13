@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Standards Alignment | Mission Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px 50px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-top: 8px solid #0284c7;
+            /* Science Blue */
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #0f172a;
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: #0284c7;
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .standard-box {
+            background: #f1f5f9;
+            border-left: 4px solid #0ea5e9;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .math-box {
+            border-left-color: #10b981;
+        }
+
+        /* Math Green */
+        .az-box {
+            border-left-color: #d97706;
+        }
+
+        /* Arizona Copper */
+        .standard-code {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #0f172a;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .standard-text {
+            font-style: italic;
+            color: #475569;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .game-application {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+                margin: 0;
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="text-center mb-10">
+            <span
+                class="bg-sky-100 text-sky-800 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider">Teacher
+                Resource</span>
+            <h1 class="mt-4">Educational Standards Alignment</h1>
+            <p class="text-lg text-slate-600">Astrobiology Mission Control Simulation</p>
+        </div>
+
+        <p class="text-slate-700 mb-6">
+            The <em>Astrobiology Mission Control</em> game is a cross-curricular STEM simulation. It directly fulfills
+            national standards (NGSS & CCSS) as well as the <strong>Arizona State Academic Standards</strong> in Science
+            and Mathematics. The "Safe Mode" aligns with Middle School (Grades 6-8), while the "Adventure Mode" scales
+            up to High School (Grades 9-12).
+        </p>
+
+        <!-- NGSS SCIENCE STANDARDS -->
+        <h2>🔬 Next Generation Science Standards (NGSS)</h2>
+        <p class="text-sm text-slate-500 mb-4">Focus Area: Engineering Design & Space Systems</p>
+
+        <div class="standard-box">
+            <span class="standard-code">MS-ETS1-1 / HS-ETS1-1 (Engineering Design)</span>
+            <span class="standard-text">"Define the criteria and constraints of a design problem with sufficient
+                precision to ensure a successful solution, taking into account relevant scientific principles and
+                potential impacts..."</span>
+            <div class="game-application">
+                <strong>Game Application:</strong> The Engineering (ENG) team is given a strict constraint: a $100
+                Million budget. They must evaluate competing rocket engines and life support systems, balancing the
+                constraints of cost against the criteria of safety, payload capacity, and distance required by the other
+                teams.
+            </div>
+        </div>
+
+        <div class="standard-box">
+            <span class="standard-code">MS-ETS1-2 / HS-ETS1-2 (Engineering Design)</span>
+            <span class="standard-text">"Evaluate competing design solutions using a systematic process to determine how
+                well they meet the criteria and constraints of the problem."</span>
+            <div class="game-application">
+                <strong>Game Application:</strong> The complex problem (getting to Mars safely) is broken down into
+                distributed tasks (Navigation, Operations, Science). The teams must evaluate competing routes (Route A
+                vs. Route B) and landing sites (Site A vs. B vs. C) by systematically weighing scientific rewards
+                against hazards (radiation, asteroids, fuel depletion).
+            </div>
+        </div>
+
+        <!-- ARIZONA STATE STANDARDS -->
+        <h2 class="mt-12" style="color: #b45309; border-bottom-color: #fef3c7;">🌵 Arizona State Academic Standards</h2>
+        <p class="text-sm text-slate-500 mb-4">Focus Area: Arizona Mathematics Standards & Science and Engineering
+            Practices (AzSS 2018)</p>
+
+        <div class="standard-box az-box">
+            <span class="standard-code">AzSS SEP 5: Using Mathematics and Computational Thinking</span>
+            <span class="standard-text">"Use mathematical representations to describe and/or support scientific
+                conclusions and design solutions."</span>
+            <div class="game-application">
+                <strong>Game Application:</strong> Arizona's 2018 Science Standards mandate the use of SEPs. In this
+                simulation, students cannot progress without using math to support their design. The NAV team must
+                calculate Delta-V/Distance, and the SCI team calculates atmospheric refraction angles to design the
+                solar array deployment.
+            </div>
+        </div>
+
+        <div class="standard-box az-box">
+            <span class="standard-code">AzSS SEP 6: Constructing Explanations and Designing Solutions</span>
+            <span class="standard-text">"Design, evaluate, and/or refine a solution to a complex real-world problem,
+                based on scientific knowledge, student-generated sources of evidence, prioritized criteria, and tradeoff
+                considerations."</span>
+            <div class="game-application">
+                <strong>Game Application:</strong> The core of the game is tradeoff considerations. Students must refine
+                their spacecraft design based on prioritized criteria (e.g., sacrificing a safe engine to afford
+                radiation shielding to land at a site with a higher chance of finding water).
+            </div>
+        </div>
+
+        <div class="standard-box az-box">
+            <span class="standard-code">Arizona Math Standard: 6.RP.A.3 (Middle School)</span>
+            <span class="standard-text">"Use ratio and rate reasoning to solve real-world and mathematical
+                problems."</span>
+            <div class="game-application">
+                <strong>Game Application (Safe Mode):</strong> The Operations (OPS) team uses rate reasoning to
+                calculate total food mass based on a rate of 500kg per astronaut. During anomalies, students calculate
+                rate problems (e.g., losing 2 gallons of fuel per mile of course drift).
+            </div>
+        </div>
+
+        <div class="standard-box az-box">
+            <span class="standard-code">Arizona Math Standard: HS.N-Q.A.1 (High School)</span>
+            <span class="standard-text">"Use units as a way to understand problems and to guide the solution of
+                multi-step problems; choose and interpret units consistently in formulas."</span>
+            <div class="game-application">
+                <strong>Game Application (Adventure Mode):</strong> High school students calculate Delta-V (Δv) in
+                kilometers per second (km/s) rather than miles. They must interpret the units of base velocity and
+                gravitational slingshot boosts to find the exact injection velocity required to reach Mars.
+            </div>
+        </div>
+
+
+        <!-- COMMON CORE MATH STANDARDS -->
+        <h2 class="mt-12" style="color: #059669; border-bottom-color: #d1fae5;">📐 Common Core Mathematics Standards
+            (CCSS-M)</h2>
+        <p class="text-sm text-slate-500 mb-4">Focus Area: Ratios, Proportional Relationships, and Quantities</p>
+
+        <div class="standard-box math-box">
+            <span class="standard-code">CCSS.MATH.CONTENT.7.EE.B.3 (Middle School / Early High School)</span>
+            <span class="standard-text">"Solve multi-step real-life and mathematical problems posed with positive and
+                negative rational numbers in any form; apply properties of operations to calculate with numbers in any
+                form."</span>
+            <div class="game-application">
+                <strong>Game Application (Safe & Adv Mode):</strong> The Operations team must calculate base mass, and
+                then calculate and add a 10% safety buffer (multiplying by 1.10). The Science (SCI) team must offset
+                Martian atmospheric scattering by adding precise degree values to geographic latitudes.
+            </div>
+        </div>
+
+        <!-- 21st CENTURY SKILLS -->
+        <h2 class="mt-12" style="color: #7c3aed; border-bottom-color: #ede9fe;">🤝 21st Century Skills & Crosscutting
+            Concepts</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div class="bg-purple-50 p-4 rounded border border-purple-200">
+                <h3 class="font-bold text-purple-900 mb-2">Systems Thinking</h3>
+                <p class="text-sm text-purple-800">Students experience how changes in one part of a system (e.g., the
+                    Navigator choosing a longer route) directly affect other parts of the system (the Engineer running
+                    out of budget for a reliable rocket engine).</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded border border-purple-200">
+                <h3 class="font-bold text-purple-900 mb-2">Collaboration & Communication</h3>
+                <p class="text-sm text-purple-800">The "Silence Protocol" forces students to practice precise, written
+                    technical communication. They learn that in STEM fields, sloppy handwriting or unclear instructions
+                    can result in catastrophic mission failure.</p>
+            </div>
+        </div>
+
+        <div class="text-center mt-12 pt-6 border-t border-slate-200 no-print">
+            <button onclick="window.print()"
+                class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 px-6 rounded shadow">
+                🖨️ Print Alignment Guide
+            </button>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

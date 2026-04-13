@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presenter Planning Worksheet | Mission Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px 50px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-top: 8px solid #8b5cf6;
+            /* Purple accent */
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #0f172a;
+            font-weight: 800;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: #5b21b6;
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .prompt-text {
+            font-style: italic;
+            color: #475569;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .filled-answer {
+            background: #f5f3ff;
+            border-left: 4px solid #8b5cf6;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            color: #2e1065;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .checkbox-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 0.5rem;
+            color: #334155;
+        }
+
+        .checkbox-list li::before {
+            content: '☑';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+                margin: 0;
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Navigation Header (Hidden in Print) -->
+        <div class="no-print flex justify-between items-center mb-6 pb-4 border-b border-slate-200">
+            <a href="solutions.html"
+                class="text-purple-700 hover:text-purple-900 font-bold flex items-center gap-2 transition-colors">
+                <span>&larr;</span> Back to Teacher Dashboard
+            </a>
+            <button onclick="window.print()"
+                class="bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded shadow text-sm">
+                🖨️ Print
+            </button>
+        </div>
+
+        <div class="text-center mb-8">
+            <span
+                class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider">Facilitation
+                Guide</span>
+            <h1 class="mt-4">Crafting a Meaningful Science Activity</h1>
+            <p class="text-lg text-slate-600">Introduction Worksheet: <em>Astrobiology Mission Control</em></p>
+            <p class="text-sm text-slate-500 mt-2">(Estimated Time: 5–8 Minutes)</p>
+        </div>
+
+        <!-- 1. START WITH CURIOSITY -->
+        <h2>1. Start with Curiosity (The Hook)</h2>
+        <p class="prompt-text">What is one big question at the heart of your lesson?</p>
+        <div class="filled-answer">
+            "How do you keep a crew of 4 alive on a 140-million-mile road trip to Mars when everything goes wrong?"
+        </div>
+        <p class="prompt-text">Now simplify it so it’s accessible to middle/high school youth:</p>
+        <div class="filled-answer">
+            "How do you fly a spaceship to Mars if you can't use a computer to talk to each other?"
+        </div>
+
+        <!-- 2. LIVED EXPERIENCE -->
+        <h2>2. Connect to Lived Experience (People)</h2>
+        <p class="prompt-text">What everyday experience connects to your topic?</p>
+        <div class="filled-answer">
+            Trying to plan a group trip with friends on a strict budget, OR playing a co-op video game where one
+            person's mistake hurts the whole team.
+        </div>
+        <p class="prompt-text">Opening prompt I will ask students:</p>
+        <div class="filled-answer">
+            "Have you ever worked on a group project where one person didn't do their part, and it messed up the whole
+            thing? Imagine that, but instead of a bad grade, you run out of oxygen. How do you make sure your team
+            doesn't fail?"
+        </div>
+
+        <!-- 3. RELEVANCE -->
+        <h2>3. Establish Relevance (Why This Matters)</h2>
+        <p class="prompt-text">Why should a 10–18-year-old care about this topic?</p>
+        <div class="filled-answer">
+            It's about survival, communication, and extreme high-stakes teamwork. It shows them that space isn't just
+            about knowing facts; it's about solving puzzles under pressure.
+        </div>
+        <p class="prompt-text">Now turn that into one sentence you can say aloud:</p>
+        <div class="filled-answer">
+            "Because exploring space isn't just about building the biggest rockets—it's about teamwork, communication,
+            and making life-or-death decisions when you have limited resources."
+        </div>
+
+        <!-- 4. BIG IDEA -->
+        <h2>4. Introduce the Big Idea (Place + Practice)</h2>
+        <p class="prompt-text">In one clear sentence: "Today we are going to explore how ________."</p>
+        <div class="filled-answer">
+            "Today we are going to explore how NASA Mission Control teams use math, engineering, and budgeting to safely
+            guide astronauts to Mars."
+        </div>
+        <p class="prompt-text">What tools or methods will students engage with?</p>
+        <div class="filled-answer">
+            "You will use a hard $100 Million budget, exact payload math, and a silent 'Paper LAN' communication system
+            to launch a live rocket simulation."
+        </div>
+
+        <!-- 5. HUMANIZE -->
+        <h2>5. Humanize the Science (Personnel)</h2>
+        <p class="prompt-text">What story or human element will I include?</p>
+        <div class="filled-answer">
+            "When the Apollo 13 oxygen tank exploded in space, it wasn't the astronauts who figured out how to get home.
+            It was thousands of engineers on the ground in Mission Control, locked in a room, using pencils, paper, and
+            math to save their friends' lives."
+        </div>
+
+        <!-- 6. WONDER / UNCERTAINTY -->
+        <h2>6. Introduce Wonder or Uncertainty</h2>
+        <p class="prompt-text">Include one statement like: "We don't know the answer yet."</p>
+        <div class="filled-answer">
+            "Space is incredibly unpredictable. Even if you do all the math perfectly today and buy the best rocket, we
+            don't know what solar flares, asteroid fields, or anomalies the universe is going to throw at you during the
+            flight."
+        </div>
+
+        <!-- 7. INVITATION -->
+        <h2>7. End the Introduction with an Invitation</h2>
+        <p class="prompt-text">Complete this sentence: "By the end of today, you will be able to..." OR "Today, you're
+            going to think like a ______."</p>
+        <div class="filled-answer">
+            "Today, you are going to think like a NASA Flight Director. You're not the astronauts; you're the geniuses
+            on the ground keeping them alive."
+        </div>
+
+        <!-- 8. SELF CHECK & IDENTITY -->
+        <h2>Quick Self-Check (5Ps Integration)</h2>
+        <ul class="checkbox-list">
+            <li>Did I connect to students’ lived experience? (People - <em>Group projects/budgeting</em>)</li>
+            <li>Did I reference environment or context? (Place - <em>The bunker/Mission Control</em>)</li>
+            <li>Did I mention how science is practiced? (Practice - <em>Math, limits, paper comms</em>)</li>
+            <li>Did I humanize scientists or teams? (Personnel - <em>Apollo 13 ground crew</em>)</li>
+            <li>Did I hint at future pathways or roles? (Profession - <em>Flight Directors</em>)</li>
+        </ul>
+
+        <p class="prompt-text">My identity-building sentence (End with something that builds belonging):</p>
+        <div class="filled-answer border-l-green-500 bg-green-50 text-green-900">
+            "You don't have to be an astronaut to explore space. Science is for the people who stay curious and work
+            together to solve the impossible."
+        </div>
+
+        <div class="text-center mt-12 pt-6 border-t border-slate-200 no-print">
+            <a href="solutions.html"
+                class="inline-block bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-2 px-6 rounded shadow mr-4 transition-colors">
+                &larr; Back to Dashboard
+            </a>
+            <button onclick="window.print()"
+                class="bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-6 rounded shadow transition-colors">
+                🖨️ Print Presenter Notes
+            </button>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
