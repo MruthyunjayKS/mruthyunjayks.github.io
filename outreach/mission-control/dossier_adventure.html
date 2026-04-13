@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA Dossier: Adventure Mode (Extended)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background-color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+        }
+
+        .page {
+            background-color: white;
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 50px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-top: 10px solid #9f1239;
+            min-height: 1050px;
+            /* Standardize height for printing */
+        }
+
+        .header-font {
+            font-family: 'Courier Prime', monospace;
+        }
+
+        .stamp {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            border: 3px solid #9f1239;
+            color: #9f1239;
+            padding: 8px 16px;
+            font-family: 'Courier Prime', monospace;
+            font-weight: bold;
+            font-size: 1.25rem;
+            transform: rotate(-3deg);
+            opacity: 0.8;
+            letter-spacing: 2px;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-family: 'Courier Prime', monospace;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .data-box {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-left: 4px solid #e11d48;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .math-input {
+            border-bottom: 2px dashed #0f172a;
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            font-weight: bold;
+            color: #e11d48;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #94a3b8;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            font-family: 'Courier Prime', monospace;
+        }
+
+        /* Timeline Styles for Career Path */
+        .timeline {
+            position: relative;
+            border-left: 2px solid #e2e8f0;
+            margin-left: 10px;
+            padding-left: 20px;
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #e11d48;
+            border: 2px solid white;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+            }
+
+            .page {
+                margin: 0;
+                padding: 40px;
+                box-shadow: none;
+                border: none;
+                page-break-after: always;
+                min-height: 100%;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="no-print text-center py-6 bg-slate-900 text-white">
+        <h1 class="text-2xl font-bold mb-2">Teacher Instructions: Adventure Mode Dossiers</h1>
+        <p class="mb-4">Print this document <strong>double-sided</strong>. It contains 8 pages (4 front-and-back
+            packets) for each team role.</p>
+        <button onclick="window.print()"
+            class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 px-6 rounded border-2 border-rose-400">
+            🖨️ Print Hardcore Dossiers (Double-Sided)
+        </button>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- NAV TEAM - PAGE 1 (FRONT)                                 -->
+    <!-- ========================================================= -->
+    <div class="page">
+        <div class="stamp">CLASSIFIED // NAV</div>
+        <div class="page-number">PAGE 1 OF 2</div>
+
+        <div class="border-b-2 border-slate-800 pb-4 mb-6">
+            <h1 class="text-4xl font-bold header-font tracking-tight">TEAM: NAVIGATION (NAV)</h1>
+            <p class="text-lg text-slate-500 font-bold uppercase tracking-widest mt-1">Role: Orbital Mechanics</p>
+        </div>
+
+        <p class="text-lg leading-relaxed mb-6">
+            <strong>Your Mission:</strong> You are responsible for plotting the rocket's trajectory. You must calculate
+            the exact Delta-V (change in velocity) required for trans-Mars injection. If your math is wrong, the rocket
+            will miss Mars entirely.
+        </p>
+
+        <h2 class="text-2xl font-bold header-font mb-3">1. Route Selection & Dynamics</h2>
+        <p class="mb-2">Discuss with your team and circle one route. You must tell the OPS team which route you pick!
+        </p>
+        <table>
+            <tr>
+                <th>Route Option</th>
+                <th>Base Velocity</th>
+                <th>Gravitational Slingshot</th>
+                <th>Hazard</th>
+            </tr>
+            <tr>
+                <td><strong>ROUTE A (Direct Fast)</strong></td>
+                <td>8.0 km/s</td>
+                <td>+ 1.8 km/s</td>
+                <td><span class="text-red-600 font-bold">Asteroid Field</span> (Tell ENG to buy a Repair Bot)</td>
+            </tr>
+            <tr>
+                <td><strong>ROUTE B (Long Arc)</strong></td>
+                <td>4.0 km/s</td>
+                <td>+ 1.5 km/s</td>
+                <td><span class="text-green-600 font-bold">Safe</span> (Tell ENG to buy a Large Fuel Tank)</td>
+            </tr>
+        </table>
+
+        <div class="data-box">
+            <h3 class="font-bold text-lg mb-2">2. Official NASA Math Calculation</h3>
+            <p class="mb-2">Calculate your required <strong>Delta-V (Δv)</strong> by adding your Base Velocity and your
+                Slingshot boost.</p>
+            <p class="text-xl font-mono mt-4">
+                <span class="math-input"></span> (Base) + <span class="math-input"></span> (Sling) = <span
+                    class="math-input"></span> Total Delta-V (km/s)
+            </p>
+        </div>
+
+        <div class="bg-rose-50 border border-rose-200 p-4 rounded mt-8">
+            <h3 class="font-bold text-rose-800 mb-1">⚠️ ALERT: MID-FLIGHT ANOMALIES</h3>
+            <p class="text-rose-700 text-sm">Be prepared. During the flight, an anomaly may knock the ship off course.
+                As the Navigator, you will need to quickly calculate velocity corrections (percentages) on the fly
+                during a "Quick Huddle". Keep your pencil ready.</p>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- NAV TEAM - PAGE 2 (BACK)                                  -->
+    <!-- ========================================================= -->
+    <div class="page">
+        <div class="stamp" style="opacity: 0.3;">NAV // INTEL</div>
+        <div class="page-number">PAGE 2 OF 2</div>
+
+        <h2 class="text-3xl font-bold header-font mb-6 border-b-2 border-slate-800 pb-2">NASA Career Profile:
+            Astrodynamicist</h2>
+
+        <div class="grid grid-cols-2 gap-8 mb-8">
+            <div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">A Day in the Life</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    As a Flight Dynamics Officer (FIDO) or Astrodynamicist, your job is to drive the spaceship. However,
+                    in space, there is no steering wheel. Everything is constantly moving. Planets orbit the sun, moons
+                    orbit planets, and gravity bends everything. You use advanced calculus and computer models to figure
+                    out exactly when to fire the engines, and for exactly how long, to thread a needle millions of miles
+                    away.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">Expanded Glossary</h3>
+                <ul class="text-sm text-slate-600 space-y-2">
+                    <li><strong>Delta-V (Δv):</strong> "Change in Velocity." Space has no friction, so we don't measure
+                        "gallons of gas." We measure how much "push" (Delta-V) a rocket has to change its speed or
+                        direction.</li>
+                    <li><strong>Gravity Assist:</strong> Stealing momentum from a planet. By flying close to a planet, a
+                        spacecraft is pulled by its gravity, slingshotting it forward at incredible speeds.</li>
+                    <li><strong>Orbital Mechanics:</strong> The physics field dedicated entirely to how objects move
+                        under the influence of gravity in space.</li>
+                    <li><strong>Telemetry:</strong> The stream of data (speed, location, temperature) transmitted via
+                        radio waves from the spacecraft back to Earth.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-slate-50 p-6 rounded border border-slate-200">
+            <h3 class="text-xl font-bold text-rose-700 mb-4 flex items-center gap-2">
+                <span>🚀</span> The Flight Path: How to Get This Job
+            </h3>
+            <div class="timeline text-sm text-slate-700">
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">Middle School & High School</strong>
+                    <p>Focus heavily on Mathematics (Algebra, Calculus) and Physics. Join coding clubs or learn basic
+                        Python—astrodynamicists write a lot of code to run their math models!</p>
+                </div>
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">Undergraduate Degree (College)</strong>
+                    <p>Earn a Bachelor of Science (B.S.) in Aerospace Engineering, Applied Mathematics, or Physics. Look
+                        for universities that participate in cube-sat (mini satellite) launches.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">Graduate School & Internships</strong>
+                    <p>Many dynamicists hold Master's degrees. Apply for the NASA Pathways Internship program, which
+                        places college students directly into Mission Control for hands-on training.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">The Career: Jet Propulsion Lab (JPL)</strong>
+                    <p>Work at NASA's JPL in California or Johnson Space Center in Texas. You could be the person
+                        calculating the descent path for the next Mars Rover!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- OPS TEAM - PAGE 1 (FRONT)                                 -->
+    <!-- ========================================================= -->
+    <div class="page">
+        <div class="stamp">CLASSIFIED // OPS</div>
+        <div class="page-number">PAGE 1 OF 2</div>
+
+        <div class="border-b-2 border-slate-800 pb-4 mb-6">
+            <h1 class="text-4xl font-bold header-font tracking-tight">TEAM: OPERATIONS (OPS)</h1>
+            <p class="text-lg text-slate-500 font-bold uppercase tracking-widest mt-1">Role: Life Support & Logistics
+            </p>
+        </div>
+
+        <p class="text-lg leading-relaxed mb-6">
+            <strong>Your Mission:</strong> You must calculate the exact "Payload Mass" (weight) of the food, water, and
+            oxygen. Space is unpredictable, so NASA requires a strict <strong>10% Safety Buffer</strong> on all
+            life-support math.
+        </p>
+
+        <h2 class="text-2xl font-bold header-font mb-3">1. Mission Parameters</h2>
+        <p class="text-red-600 font-bold mb-2">WAIT: Ask the NAV team which route they chose before starting!</p>
+        <ul class="list-disc list-inside space-y-2 text-lg mb-6">
+            <li><strong>Crew Size:</strong> 4 Astronauts</li>
+            <li>If NAV chose <strong>Route A (Fast)</strong>: Base consumables = 330 kg per crew member.</li>
+            <li>If NAV chose <strong>Route B (Long)</strong>: Base consumables = 550 kg per crew member.</li>
+        </ul>
+
+        <div class="data-box">
+            <h3 class="font-bold text-lg mb-2">2. Official NASA Math Calculation</h3>
+            <p class="mb-2"><strong>Step 1:</strong> Multiply Crew Size by the Consumables per crew member.
+                <br><strong>Step 2:</strong> Multiply that total by 1.10 (to add the 10% safety buffer).</p>
+            <p class="text-lg font-mono mt-4">
+                ( 4 x <span class="math-input"></span> kg ) * 1.10 = <span class="math-input"></span> Total Mass
+            </p>
+        </div>
+
+        <p class="text-red-600 font-bold mt-4">⚠️ TELL THE ENGINEER:</p>
+        <p class="mb-6">Give the Engineer your <strong>Total Mass</strong>. They must buy a Life Support system that can
+            handle that weight, or the rocket will not launch.</p>
+
+        <div class="bg-rose-50 border border-rose-200 p-4 rounded mt-8">
+            <h3 class="font-bold text-rose-800 mb-1">⚠️ ALERT: MID-FLIGHT ANOMALIES</h3>
+            <p class="text-rose-700 text-sm">During transit, life support emergencies (like oxygen leaks or power
+                failures) can occur. You will need to calculate leak rates or power divisions (division/subtraction) in
+                seconds to keep the crew breathing. Stay sharp.</p>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- OPS TEAM - PAGE 2 (BACK)                                  -->
+    <!-- ========================================================= -->
+    <div class="page">
+        <div class="stamp" style="opacity: 0.3;">OPS // INTEL</div>
+        <div class="page-number">PAGE 2 OF 2</div>
+
+        <h2 class="text-3xl font-bold header-font mb-6 border-b-2 border-slate-800 pb-2">NASA Career Profile: ECLSS
+            Engineer</h2>
+
+        <div class="grid grid-cols-2 gap-8 mb-8">
+            <div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">A Day in the Life</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    An ECLSS (Environmental Control and Life Support Systems) Engineer keeps humans alive in
+                    environments trying to kill them. You design machines that scrub poisonous carbon dioxide out of the
+                    air, regulate extreme temperatures, and—most famously—turn astronaut sweat and urine back into
+                    perfectly clean drinking water. Every gram of water sent to space costs thousands of dollars, so
+                    nothing is wasted.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">Expanded Glossary</h3>
+                <ul class="text-sm text-slate-600 space-y-2">
+                    <li><strong>Payload Mass:</strong> The total weight of the cargo, including food, scientific
+                        instruments, and the astronauts themselves.</li>
+                    <li><strong>Redundancy (Safety Buffer):</strong> Engineering systems so that if one thing breaks, a
+                        backup is already in place. In space, a single point of failure means death.</li>
+                    <li><strong>Scrubbers:</strong> Chemical filters (often using Lithium Hydroxide) that absorb CO2
+                        from the air so astronauts don't suffocate on their own breath.</li>
+                    <li><strong>Closed-Loop System:</strong> A habitat where almost nothing leaves or enters. 98% of all
+                        water on the ISS is continuously recycled in a closed loop.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-slate-50 p-6 rounded border border-slate-200">
+            <h3 class="text-xl font-bold text-rose-700 mb-4 flex items-center gap-2">
+                <span>🚀</span> The Flight Path: How to Get This Job
+            </h3>
+            <div class="timeline text-sm text-slate-700">
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">Middle School & High School</strong>
+                    <p>Focus on Chemistry and Biology to understand how human bodies work and interact with gases. Join
+                        a FIRST Robotics team or a 3D printing club to learn how to build functional hardware.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">Undergraduate Degree (College)</strong>
+                    <p>Earn a B.S. in Mechanical Engineering, Chemical Engineering, or Biomedical Engineering. You need
+                        to know how fluids and gases move through pipes and pumps.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">Graduate School (Optional but helpful)</strong>
+                    <p>Specialize in Bioastronautics—the study of how to support human life in space. Universities like
+                        CU Boulder have dedicated labs for this.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">The Career: Commercial Space & NASA</strong>
+                    <p>You might work for NASA, or private companies like SpaceX or Sierra Space, designing the air-flow
+                        systems for the next generation of space stations and lunar habitats.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SCI TEAM - PAGE 1 (FRONT)                                 -->
+    <!-- ========================================================= -->
+    <div class="page">
+        <div class="stamp">EYES ONLY // SCI</div>
+        <div class="page-number">PAGE 1 OF 2</div>
+
+        <div class="border-b-2 border-slate-800 pb-4 mb-6">
+            <h1 class="text-4xl font-bold header-font tracking-tight">TEAM: SCIENCE (SCI)</h1>
+            <p class="text-lg text-slate-500 font-bold uppercase tracking-widest mt-1">Role: Planetary Astrophysics</p>
+        </div>
+
+        <p class="text-lg leading-relaxed mb-6">
+            <strong>Your Mission:</strong> Pick a landing site on Mars. Then, you must calculate the exact angle to
+            deploy the Solar Arrays based on the site's latitude and the Martian atmosphere. If the angle is wrong, the
+            batteries will die during descent.
+        </p>
+
+        <h2 class="text-2xl font-bold header-font mb-3">1. Landing Site Selection</h2>
+        <p class="mb-2">Discuss with your team and circle one landing site:</p>
+        <table>
+            <tr>
+                <th>Target Site</th>
+                <th>Latitude</th>
+                <th>Hazards & Dangers</th>
+            </tr>
+            <tr>
+                <td><strong>SITE A: Gale Crater</strong></td>
+                <td><strong>5 Degrees</strong></td>
+                <td><strong>Safe.</strong> (Flat terrain, low scientific yield).</td>
+            </tr>
+            <tr>
+                <td><strong>SITE B: Polar Ice Cap</strong></td>
+                <td><strong>75 Degrees</strong></td>
+                <td><strong class="text-red-600">Ice Spikes!</strong> (Tell ENG to buy Landing Thrusters).</td>
+            </tr>
+            <tr>
+                <td><strong>SITE C: Utopia Plains</strong></td>
+                <td><strong>35 Degrees</strong></td>
+                <td><strong class="text-red-600">Solar Storms!</strong> (Tell ENG to buy Radiation Shields).</td>
+            </tr>
+        </table>
+
+        <div class="data-box">
+            <h3 class="font-bold text-lg mb-2">2. Official NASA Math Calculation</h3>
+            <p class="mb-2">To get maximum power, solar arrays must point at the sun. Add the <strong>Site
+                    Latitude</strong> to the <strong>Atmospheric Offset (+10 degrees)</strong> caused by Martian dust
+                scattering.</p>
+            <p class="text-xl font-mono mt-4">
+                <span class="math-input"></span> (Latitude) + 10 (Offset) = <span class="math-input"></span> Array Angle
+            </p>
+        </div>
+
+        <div class="bg-rose-50 border border-rose-200 p-4 rounded mt-8">
+            <h3 class="font-bold text-rose-800 mb-1">⚠️ ALERT: MID-FLIGHT ANOMALIES</h3>
+            <p class="text-rose-700 text-sm">Space weather is violent. If a solar flare hits the ship, it may cause
+                immediate cabin heating or radiation spikes. You will be relied upon to quickly calculate temperature
+                changes to prevent the crew from overheating.</p>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SCI TEAM - PAGE 2 (BACK)                                  -->
+    <!-- ========================================================= -->
+    <div class="page">
+        <div class="stamp" style="opacity: 0.3;">SCI // INTEL</div>
+        <div class="page-number">PAGE 2 OF 2</div>
+
+        <h2 class="text-3xl font-bold header-font mb-6 border-b-2 border-slate-800 pb-2">NASA Career Profile:
+            Astrobiologist</h2>
+
+        <div class="grid grid-cols-2 gap-8 mb-8">
+            <div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">A Day in the Life</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Planetary scientists and astrobiologists are space detectives. You use data sent back from rovers
+                    and satellites to study the geology and chemistry of alien worlds. Your ultimate goal is finding the
+                    answer to humanity's biggest question: Are we alone? You might spend a month hiking in the freezing
+                    Antarctic or deep inside caves on Earth to understand how microscopic life survives, so you know
+                    exactly where to look on Mars.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">Expanded Glossary</h3>
+                <ul class="text-sm text-slate-600 space-y-2">
+                    <li><strong>Atmospheric Scattering:</strong> Dust particles in the Martian atmosphere bend and
+                        absorb sunlight. Engineers must offset solar panels to catch the maximum amount of remaining
+                        light.</li>
+                    <li><strong>Extremophiles:</strong> Organisms on Earth (like tardigrades or certain bacteria) that
+                        thrive in extreme radiation, acid, or heat. They are the blueprint for alien life.</li>
+                    <li><strong>Biosignatures:</strong> Chemical footprints left behind by life (like certain methane
+                        gases or fossilized microbes in rock).</li>
+                    <li><strong>Latitude:</strong> The geographic coordinate measuring distance north or south of the
+                        equator, dictating sunlight angles.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-slate-50 p-6 rounded border border-slate-200">
+            <h3 class="text-xl font-bold text-rose-700 mb-4 flex items-center gap-2">
+                <span>🚀</span> The Flight Path: How to Get This Job
+            </h3>
+            <div class="timeline text-sm text-slate-700">
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">Middle School & High School</strong>
+                    <p>Enter science fairs. Take Earth Science, Biology, and Chemistry. Go outside and look at rocks,
+                        bugs, and the stars. Curiosity is your most important tool.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">Undergraduate Degree (College)</strong>
+                    <p>Earn a B.S. in Geology, Biology, Chemistry, or Astronomy. Astrobiology is highly
+                        interdisciplinary, meaning you need to understand a little bit of everything.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">Doctoral Degree (Ph.D.)</strong>
+                    <p>Most lead scientists at NASA hold a Ph.D. This involves spending 4-6 years after college doing
+                        original, hands-on research in a specific field, like planetary geology.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">The Career: Principal Investigator</strong>
+                    <p>Work at universities, research institutes, or NASA Goddard. You could be the scientist writing
+                        the code that tells the Perseverance Rover which rock to drill into today.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ENG TEAM - PAGE 1 (FRONT)                                 -->
+    <!-- ========================================================= -->
+    <div class="page">
+        <div class="stamp">TOP SECRET // ENG</div>
+        <div class="page-number">PAGE 1 OF 2</div>
+
+        <div class="border-b-2 border-slate-800 pb-4 mb-6">
+            <h1 class="text-4xl font-bold header-font tracking-tight">TEAM: ENGINEERING (ENG)</h1>
+            <p class="text-lg text-slate-500 font-bold uppercase tracking-widest mt-1">Role: Systems Integration /
+                Flight Director</p>
+        </div>
+
+        <p class="text-lg leading-relaxed mb-6">
+            <strong>Your Mission:</strong> You hold the <strong>$100 Million Budget</strong>. You must purchase the
+            parts that fulfill the NAV, OPS, and SCI team requirements. <strong>Warning:</strong> Under heavy payload
+            strain, cheap engines will fail "Max-Q" aerodynamic stress.
+        </p>
+
+        <h2 class="text-2xl font-bold header-font mb-3">1. The Procurement Catalog</h2>
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="border border-slate-400 p-4 bg-slate-50 rounded">
+                <h3 class="font-bold text-lg mb-2 border-b border-slate-300 pb-1">🚀 ENGINES</h3>
+                <ul class="space-y-1 text-sm">
+                    <li>◯ <strong>Ares (Exp.):</strong> $30M <span class="text-red-500 text-xs">(Fails Max-Q
+                            easily)</span></li>
+                    <li>◯ <strong>Falcon:</strong> $40M <span class="text-orange-500 text-xs">(Moderate strength)</span>
+                    </li>
+                    <li>◯ <strong>Atlas V:</strong> $50M <span class="text-green-600 text-xs font-bold">(100%
+                            Reliable)</span></li>
+                </ul>
+            </div>
+
+            <div class="border border-slate-400 p-4 bg-slate-50 rounded">
+                <h3 class="font-bold text-lg mb-2 border-b border-slate-300 pb-1">🛢️ FUEL TANKS</h3>
+                <ul class="space-y-1 text-sm">
+                    <li>◯ <strong>Small:</strong> $10M <span class="text-slate-500 text-xs">(Range: 150M Miles)</span>
+                    </li>
+                    <li>◯ <strong>Medium:</strong> $20M <span class="text-slate-500 text-xs">(Range: 200M Miles)</span>
+                    </li>
+                    <li>◯ <strong>Large:</strong> $30M <span class="text-slate-500 text-xs">(Range: 250M+ Miles)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="border border-slate-400 p-4 bg-slate-50 rounded">
+                <h3 class="font-bold text-lg mb-2 border-b border-slate-300 pb-1">♻️ LIFE SUPPORT</h3>
+                <ul class="space-y-1 text-sm">
+                    <li>◯ <strong>Standard:</strong> $20M <span class="text-slate-500 text-xs">(Max Mass: 2,500
+                            kg)</span></li>
+                    <li>◯ <strong>Advanced:</strong> $30M <span class="text-slate-500 text-xs">(Max Mass: 5,000
+                            kg)</span></li>
+                </ul>
+            </div>
+
+            <div class="border border-slate-400 p-4 bg-slate-50 rounded">
+                <h3 class="font-bold text-lg mb-2 border-b border-slate-300 pb-1">🛡️ UPGRADES</h3>
+                <ul class="space-y-1 text-sm">
+                    <li>◯ <strong>Repair Bot:</strong> $10M <span class="text-slate-500 text-xs">(Fixes Asteroid
+                            hits)</span></li>
+                    <li>◯ <strong>Rad Shield:</strong> $10M <span class="text-slate-500 text-xs">(Blocks Solar
+                            Storms)</span></li>
+                    <li>◯ <strong>Thrusters:</strong> $10M <span class="text-slate-500 text-xs">(Safe landing on
+                            Ice)</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="data-box">
+            <h3 class="font-bold text-lg mb-2">2. Budget Calculation</h3>
+            <p class="text-xl font-mono mt-4">
+                Total Cost: $<span class="math-input"></span> Million (Max: 100)
+            </p>
+        </div>
+
+        <div class="bg-rose-50 border border-rose-200 p-4 rounded mt-8">
+            <h3 class="font-bold text-rose-800 mb-1">⚠️ ALERT: THE FLIGHT DIRECTOR</h3>
+            <p class="text-rose-700 text-sm">You are the only person who can type into the Terminal. If an anomaly
+                happens mid-flight, you must coordinate the "Quick Huddle", get the math answer from your teams, and
+                type it in before the timer expires.</p>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ENG TEAM - PAGE 2 (BACK)                                  -->
+    <!-- ========================================================= -->
+    <div class="page">
+        <div class="stamp" style="opacity: 0.3;">ENG // INTEL</div>
+        <div class="page-number">PAGE 2 OF 2</div>
+
+        <h2 class="text-3xl font-bold header-font mb-6 border-b-2 border-slate-800 pb-2">NASA Career Profile: Systems /
+            Flight Director</h2>
+
+        <div class="grid grid-cols-2 gap-8 mb-8">
+            <div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">A Day in the Life</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    A rocket has millions of moving parts built by thousands of different people. A Systems Engineer
+                    ensures that the engine built in Alabama perfectly connects to the computer built in California. The
+                    Flight Director sits at the center of Mission Control. They don't need to know every equation, but
+                    they must understand how all the systems interact. When a crisis happens, the Flight Director
+                    listens to all the specialists and makes the final, high-pressure "Go/No-Go" decision.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">Expanded Glossary</h3>
+                <ul class="text-sm text-slate-600 space-y-2">
+                    <li><strong>Max-Q:</strong> Maximum Dynamic Pressure. The exact moment during launch where
+                        aerodynamic stress (wind resistance) on the spaceship is the highest. If the rocket is too heavy
+                        or weak, it shatters here.</li>
+                    <li><strong>Systems Integration:</strong> The incredibly complex process of bringing together all
+                        the software, hardware, life support, and propulsion into one functioning vehicle.</li>
+                    <li><strong>Avionics:</strong> The electronic systems used on spacecraft, including navigation,
+                        communications, and multiple computers.</li>
+                    <li><strong>Go/No-Go:</strong> The famous roll-call where the Flight Director asks every single team
+                        (NAV, OPS, SCI) if their system is ready. One "No-Go" stops the launch.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-slate-50 p-6 rounded border border-slate-200">
+            <h3 class="text-xl font-bold text-rose-700 mb-4 flex items-center gap-2">
+                <span>🚀</span> The Flight Path: How to Get This Job
+            </h3>
+            <div class="timeline text-sm text-slate-700">
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">Middle School & High School</strong>
+                    <p>Focus on Math, Physics, and leadership. Join a robotics team, debate team, or student council.
+                        Learning how to manage people and communicate clearly is just as important as the math.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">Undergraduate Degree (College)</strong>
+                    <p>Earn a B.S. in Systems Engineering, Aerospace Engineering, or Computer Science. Look for
+                        leadership roles in university engineering projects.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">Early Career: Flight Controller</strong>
+                    <p>You don't start as the Director. You start as a Flight Controller at a specific console (like OPS
+                        or NAV), proving you can handle intense pressure and make correct calls during simulations.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong class="text-slate-900 block">The Peak: Flight Director</strong>
+                    <p>After years of flawless performance, you are selected to lead the room. Flight Directors at NASA
+                        get to choose their own "Call Sign" color (e.g., "Flight is Go. Kranz is White Flight").</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

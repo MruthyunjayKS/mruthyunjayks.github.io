@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA Dossier: Safe Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background-color: #e2e8f0;
+            /* Light gray background for web viewing */
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+        }
+
+        /* The physical "Paper" look */
+        .page {
+            background-color: white;
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 50px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-top: 10px solid #1e293b;
+        }
+
+        .header-font {
+            font-family: 'Courier Prime', monospace;
+        }
+
+        .stamp {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            border: 3px solid #dc2626;
+            color: #dc2626;
+            padding: 8px 16px;
+            font-family: 'Courier Prime', monospace;
+            font-weight: bold;
+            font-size: 1.25rem;
+            transform: rotate(-3deg);
+            opacity: 0.8;
+            letter-spacing: 2px;
+        }
+
+        .data-box {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .career-box {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid #22c55e;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .math-input {
+            border-bottom: 2px dashed #0f172a;
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #94a3b8;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            font-family: 'Courier Prime', monospace;
+        }
+
+        /* Print formatting */
+        @media print {
+            body {
+                background-color: white;
+                margin: 0;
+                padding: 0;
+            }
+
+            .page {
+                margin: 0;
+                padding: 30px;
+                box-shadow: none;
+                border: none;
+                page-break-after: always;
+                /* Forces each role onto a new page */
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="no-print text-center py-6 bg-slate-900 text-white">
+        <h1 class="text-2xl font-bold mb-2">Teacher Instructions</h1>
+        <p class="mb-4">Print this page. It will automatically separate into 4 distinct student packets.</p>
+        <button onclick="window.print()"
+            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded border-2 border-blue-400">
+            🖨️ Print Dossiers
+        </button>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PAGE 1: NAVIGATION TEAM (NAV)              -->
+    <!-- ========================================== -->
+    <div class="page">
+        <div class="stamp">CONFIDENTIAL</div>
+
+        <div class="border-b-2 border-slate-800 pb-4 mb-6">
+            <h1 class="text-4xl font-bold header-font tracking-tight">TEAM: NAVIGATION (NAV)</h1>
+            <p class="text-lg text-slate-500 font-bold uppercase tracking-widest mt-1">Role: Flight Dynamics Officer</p>
+        </div>
+
+        <p class="text-lg leading-relaxed mb-6">
+            <strong>Your Mission:</strong> You are responsible for plotting the rocket's course to Mars. You must choose
+            a route and calculate the total travel distance so the Engineering team knows how much fuel to buy.
+        </p>
+
+        <h2 class="text-2xl font-bold header-font mb-3">1. Route Selection</h2>
+        <p class="mb-2">Discuss with your team and circle one route:</p>
+        <table>
+            <tr>
+                <th>Route Option</th>
+                <th>Distance to Mars</th>
+                <th>Maneuvers Needed</th>
+                <th>Hazard</th>
+            </tr>
+            <tr>
+                <td><strong>ROUTE A (Fast)</strong></td>
+                <td>140 Million Miles</td>
+                <td>+ 10 Million Miles</td>
+                <td><span class="text-red-600 font-bold">Asteroid Field!</span> (Tell ENG to buy a Repair Bot)</td>
+            </tr>
+            <tr>
+                <td><strong>ROUTE B (Safe)</strong></td>
+                <td>140 Million Miles</td>
+                <td>+ 60 Million Miles</td>
+                <td><span class="text-green-600 font-bold">None.</span> (Safe travel, but uses more fuel)</td>
+            </tr>
+        </table>
+
+        <div class="data-box">
+            <h3 class="font-bold text-lg mb-2">2. Official NASA Math Calculation</h3>
+            <p class="mb-2">Rockets don't fly in straight lines; they have to maneuver around planets. Calculate your
+                total travel miles.</p>
+            <p class="text-xl font-mono mt-4">
+                140 (Distance) + <span class="math-input"></span> (Maneuvers) = <span class="math-input"></span> Total
+                Miles
+            </p>
+        </div>
+
+        <h2 class="text-2xl font-bold header-font mt-8 mb-3">📖 Space Glossary</h2>
+        <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li><strong>Trajectory:</strong> The curved path a rocket takes through space. It relies on gravity to help
+                "slingshot" the ship forward.</li>
+            <li><strong>Asteroid Field:</strong> A region of space filled with floating rocks. Hitting one at high speed
+                can puncture the hull.</li>
+        </ul>
+
+        <div class="career-box mt-8">
+            <h3 class="text-xl font-bold text-green-800 mb-2">🚀 Career Pathway: Flight Dynamics Officer (FDO)</h3>
+            <p class="text-sm text-green-900 mb-4">"FIDO" controllers sit in Mission Control and use math to make sure
+                the rocket ends up exactly where it needs to be. It's like throwing a dart at a moving target while you
+                are also moving!</p>
+            <div class="flex flex-col gap-2 text-sm text-green-800">
+                <div class="flex"><span class="font-bold w-32">Middle School:</span> Focus on Algebra, Geometry, and
+                    Physics.</div>
+                <div class="flex"><span class="font-bold w-32">College:</span> Get a B.S. (Bachelor of Science) in
+                    Aerospace Engineering or Applied Mathematics.</div>
+                <div class="flex"><span class="font-bold w-32">NASA:</span> Apply for the Pathways Internship program to
+                    train directly in Mission Control!</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- PAGE 2: OPERATIONS TEAM (OPS)              -->
+    <!-- ========================================== -->
+    <div class="page">
+        <div class="stamp">RESTRICTED</div>
+
+        <div class="border-b-2 border-slate-800 pb-4 mb-6">
+            <h1 class="text-4xl font-bold header-font tracking-tight">TEAM: OPERATIONS (OPS)</h1>
+            <p class="text-lg text-slate-500 font-bold uppercase tracking-widest mt-1">Role: Life Support Engineer</p>
+        </div>
+
+        <p class="text-lg leading-relaxed mb-6">
+            <strong>Your Mission:</strong> You must calculate the exact "Payload Mass" (weight) of the food, water, and
+            oxygen needed to keep the astronauts alive. If you mess up the math, they run out of air!
+        </p>
+
+        <h2 class="text-2xl font-bold header-font mb-3">1. Mission Parameters</h2>
+        <ul class="list-disc list-inside space-y-2 text-lg mb-6">
+            <li><strong>Crew Size:</strong> 4 Astronauts</li>
+            <li><strong>Base Food per Astronaut:</strong> 500 kg (Kilograms)</li>
+        </ul>
+
+        <div class="data-box">
+            <h3 class="font-bold text-lg mb-2">2. Official NASA Math Calculation</h3>
+            <p class="mb-2">Calculate the total mass of the life support payload.</p>
+            <p class="text-xl font-mono mt-4">
+                4 (Astronauts) x 500 (kg of food) = <span class="math-input"></span> Total Mass (kg)
+            </p>
+        </div>
+
+        <p class="text-red-600 font-bold mt-4">⚠️ TELL THE ENGINEER:</p>
+        <p class="mb-6">If your total mass is over 2,500 kg, tell them to buy "Advanced Life Support." If it's 2,500 kg
+            or less, tell them to buy "Standard Life Support."</p>
+
+        <h2 class="text-2xl font-bold header-font mt-8 mb-3">📖 Space Glossary</h2>
+        <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li><strong>Payload:</strong> Anything a rocket carries that isn't fuel. This includes satellites, rovers,
+                food, and the astronauts themselves!</li>
+            <li><strong>ECLSS:</strong> Stands for <em>Environmental Control and Life Support Systems</em>. These are
+                the machines that recycle astronaut sweat back into drinking water!</li>
+        </ul>
+
+        <div class="career-box mt-8">
+            <h3 class="text-xl font-bold text-green-800 mb-2">🚀 Career Pathway: ECLSS Systems Engineer</h3>
+            <p class="text-sm text-green-900 mb-4">These engineers design the brilliant machines that scrub poisonous
+                Carbon Dioxide from the air and keep the spaceship at a comfortable temperature. They literally keep
+                humans alive in the deadly vacuum of space.</p>
+            <div class="flex flex-col gap-2 text-sm text-green-800">
+                <div class="flex"><span class="font-bold w-32">Middle School:</span> Focus on Chemistry, Biology, and
+                    Earth Science.</div>
+                <div class="flex"><span class="font-bold w-32">College:</span> Get a B.S. in Mechanical Engineering,
+                    Chemical Engineering, or Bioastronautics.</div>
+                <div class="flex"><span class="font-bold w-32">Grad School:</span> Get a Master's Degree focusing on
+                    fluid dynamics or environmental control.</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- PAGE 3: SCIENCE TEAM (SCI)                 -->
+    <!-- ========================================== -->
+    <div class="page">
+        <div class="stamp">EYES ONLY</div>
+
+        <div class="border-b-2 border-slate-800 pb-4 mb-6">
+            <h1 class="text-4xl font-bold header-font tracking-tight">TEAM: SCIENCE (SCI)</h1>
+            <p class="text-lg text-slate-500 font-bold uppercase tracking-widest mt-1">Role: Planetary Astrobiologist
+            </p>
+        </div>
+
+        <p class="text-lg leading-relaxed mb-6">
+            <strong>Your Mission:</strong> Pick the best place to land on Mars to search for alien life! You must
+            balance the scientific reward (finding water) against the physical dangers of the landing site.
+        </p>
+
+        <h2 class="text-2xl font-bold header-font mb-3">1. Landing Site Selection</h2>
+        <p class="mb-2">Discuss with your team and circle one landing site:</p>
+        <table>
+            <tr>
+                <th>Target Site</th>
+                <th>Water Chance</th>
+                <th>Hazards & Dangers</th>
+            </tr>
+            <tr>
+                <td><strong>SITE A: Gale Crater</strong></td>
+                <td><strong>Low</strong></td>
+                <td><strong>Flat & Safe.</strong> (Boring science, but very safe).</td>
+            </tr>
+            <tr>
+                <td><strong>SITE B: Polar Ice Cap</strong></td>
+                <td><strong class="text-blue-600">High!</strong></td>
+                <td><strong class="text-red-600">Uneven Terrain!</strong> (Tell ENG to buy Landing Thrusters to prevent
+                    tipping over).</td>
+            </tr>
+            <tr>
+                <td><strong>SITE C: Utopia Plains</strong></td>
+                <td>Medium</td>
+                <td><strong class="text-red-600">Solar Storms!</strong> (Tell ENG to buy Radiation Shields).</td>
+            </tr>
+        </table>
+
+        <div class="data-box">
+            <h3 class="font-bold text-lg mb-2">2. Official NASA Math Calculation</h3>
+            <p class="mb-2">Because Mars has less gravity and a thinner atmosphere than Earth, we land slower. If an
+                Earth parachute lands at 300 mph, divide that by Mars's gravity factor (3) to find your Target Speed.
+            </p>
+            <p class="text-xl font-mono mt-4">
+                300 (Earth Speed) ÷ 3 (Gravity Factor) = <span class="math-input"></span> Target Speed (mph)
+            </p>
+        </div>
+
+        <h2 class="text-2xl font-bold header-font mt-8 mb-3">📖 Space Glossary</h2>
+        <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li><strong>Landing Thrusters:</strong> Small rocket engines on the bottom of a spaceship that fire right
+                before touching the ground to slow the ship down and keep it balanced.</li>
+            <li><strong>Solar Arrays:</strong> Giant "wings" made of glass and silicon that fold out of the spaceship to
+                absorb sunlight and turn it into electricity to power the computers.</li>
+        </ul>
+
+        <div class="career-box mt-8">
+            <h3 class="text-xl font-bold text-green-800 mb-2">🚀 Career Pathway: Planetary Astrobiologist</h3>
+            <p class="text-sm text-green-900 mb-4">Astrobiologists study extreme environments on Earth (like boiling hot
+                springs or deep ocean vents) to figure out how alien life might survive on Mars or the icy moons of
+                Jupiter!</p>
+            <div class="flex flex-col gap-2 text-sm text-green-800">
+                <div class="flex"><span class="font-bold w-32">Middle School:</span> Join science fairs, study Biology,
+                    and look at the stars!</div>
+                <div class="flex"><span class="font-bold w-32">College:</span> Get a B.S. in Biology, Geology, or
+                    Astronomy.</div>
+                <div class="flex"><span class="font-bold w-32">Grad School:</span> Earn a Ph.D. in Planetary Science or
+                    Astrobiology, conducting real research in a lab!</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- PAGE 4: ENGINEERING TEAM (ENG)             -->
+    <!-- ========================================== -->
+    <div class="page">
+        <div class="stamp">TOP SECRET</div>
+
+        <div class="border-b-2 border-slate-800 pb-4 mb-6">
+            <h1 class="text-4xl font-bold header-font tracking-tight">TEAM: ENGINEERING (ENG)</h1>
+            <p class="text-lg text-slate-500 font-bold uppercase tracking-widest mt-1">Role: Chief Flight Director</p>
+        </div>
+
+        <p class="text-lg leading-relaxed mb-6">
+            <strong>Your Mission:</strong> You are the team leader. You must collect the notes from NAV, OPS, and SCI.
+            Then, you use your <strong>$100 Million Budget</strong> to buy the rocket parts to get them there safely. Do
+            not go over budget!
+        </p>
+
+        <h2 class="text-2xl font-bold header-font mb-3">1. The NASA Procurement Catalog</h2>
+        <p class="italic text-slate-600 mb-4">Circle the items you want to buy. Add up the costs at the bottom.</p>
+
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <!-- Engines -->
+            <div class="border border-slate-400 p-4 bg-slate-50 rounded">
+                <h3 class="font-bold text-lg mb-2 border-b border-slate-300 pb-1">🚀 ENGINES</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>◯ <strong>Ares (Experimental):</strong> $30M <br><span class="text-red-500 text-xs">High Risk of
+                            Explosion!</span></li>
+                    <li>◯ <strong>Falcon (Reusable):</strong> $40M <br><span class="text-orange-500 text-xs">Medium Risk
+                            of Vibration</span></li>
+                    <li>◯ <strong>Atlas V (Heavy):</strong> $50M <br><span class="text-green-600 text-xs font-bold">100%
+                            Reliable & Safe</span></li>
+                </ul>
+            </div>
+
+            <!-- Tanks -->
+            <div class="border border-slate-400 p-4 bg-slate-50 rounded">
+                <h3 class="font-bold text-lg mb-2 border-b border-slate-300 pb-1">🛢️ FUEL TANKS</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>◯ <strong>Small Tank:</strong> $10M <br><span class="text-slate-500 text-xs">Range: 150M
+                            Miles</span></li>
+                    <li>◯ <strong>Medium Tank:</strong> $20M <br><span class="text-slate-500 text-xs">Range: 200M
+                            Miles</span></li>
+                    <li>◯ <strong>Large Tank:</strong> $30M <br><span class="text-slate-500 text-xs">Range: 250M+
+                            Miles</span></li>
+                </ul>
+            </div>
+
+            <!-- Life Support -->
+            <div class="border border-slate-400 p-4 bg-slate-50 rounded">
+                <h3 class="font-bold text-lg mb-2 border-b border-slate-300 pb-1">♻️ LIFE SUPPORT</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>◯ <strong>Standard System:</strong> $20M <br><span class="text-slate-500 text-xs">Max Mass:
+                            2,500 kg</span></li>
+                    <li>◯ <strong>Advanced System:</strong> $30M <br><span class="text-slate-500 text-xs">Max Mass:
+                            5,000 kg</span></li>
+                </ul>
+            </div>
+
+            <!-- Upgrades -->
+            <div class="border border-slate-400 p-4 bg-slate-50 rounded">
+                <h3 class="font-bold text-lg mb-2 border-b border-slate-300 pb-1">🛡️ UPGRADES</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>◯ <strong>Auto-Repair Bot:</strong> $10M <br><span class="text-slate-500 text-xs">Protects from
+                            Asteroids</span></li>
+                    <li>◯ <strong>Radiation Shield:</strong> $10M <br><span class="text-slate-500 text-xs">Protects from
+                            Solar Storms</span></li>
+                    <li>◯ <strong>Landing Thrusters:</strong> $10M <br><span class="text-slate-500 text-xs">Stops
+                            tipping on Ice/Rocks</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="data-box">
+            <h3 class="font-bold text-lg mb-2">2. Budget Calculation</h3>
+            <p class="mb-2">Add up everything you circled above. If it is over 100, you must erase and pick cheaper
+                parts!</p>
+            <p class="text-xl font-mono mt-4">
+                Total Cost: $<span class="math-input"></span> Million
+            </p>
+        </div>
+
+        <div class="career-box mt-8">
+            <h3 class="text-xl font-bold text-green-800 mb-2">🚀 Career Pathway: Systems Engineer & Flight Director</h3>
+            <p class="text-sm text-green-900 mb-4">The Flight Director sits at the center of the room. They don't need
+                to know every piece of math, but they need to understand how all the systems connect. They listen to the
+                NAV, OPS, and SCI teams and make the final "Go for Launch" decision!</p>
+            <div class="flex flex-col gap-2 text-sm text-green-800">
+                <div class="flex"><span class="font-bold w-32">Middle School:</span> Focus on Math, Robotics, and Team
+                    Leadership!</div>
+                <div class="flex"><span class="font-bold w-32">College:</span> Get a B.S. in Systems Engineering or
+                    Aerospace Management.</div>
+                <div class="flex"><span class="font-bold w-32">NASA:</span> Work as a "Flight Controller" for years,
+                    proving you can handle intense pressure, before being promoted to Director.</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
