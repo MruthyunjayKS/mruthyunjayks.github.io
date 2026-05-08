@@ -28,7 +28,7 @@
 
     a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 
-    /* ================= HEADER (Standardized) ================= */
+    /* ================= HEADER ================= */
     header {
         position: relative; 
         background: #fff; 
@@ -47,7 +47,7 @@
     .nav-right { justify-self: end; }
     .nav-item { margin: 0 15px; position: relative; opacity: 0.6; }
     
-    .nav-item:hover { opacity: 1; color: #000; }
+    .nav-item:hover, .nav-item.active { opacity: 1; color: #000; }
     
     .site-title { 
         font-family: 'Lato', sans-serif;
@@ -58,7 +58,7 @@
         white-space: nowrap;
     }
 
-    /* ================= HERO QUOTE (Standardized) ================= */
+    /* ================= HERO QUOTE (Outreach Style) ================= */
     .hero {
         text-align: center;
         padding: 120px 20px 80px 20px; 
@@ -67,95 +67,120 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
     }
 
     .hero h1 {
         font-family: 'Playfair Display', serif; 
         font-size: 3.5rem; 
         font-weight: 700;
-        margin: 0;
+        margin: 0 0 30px 0;
         line-height: 1.2;
-        max-width: 900px;
+        max-width: 1000px;
     }
 
-    /* --- ABOUT PAGE GRID LAYOUT (The Uneven Tiles) --- */
-    .grid-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr; /* 3 Equal Columns */
-        gap: 40px;
-        max-width: 1200px;
+    .hero p {
+        font-size: 1.1rem;
+        color: #666;
+        max-width: 700px;
         margin: 0 auto;
-        padding: 0 20px 40px 20px; 
-    }
-
-    /* Grid Items */
-    .tile {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .tile img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    .tile-text {
-        font-size: 0.95rem;
-        line-height: 1.8;
-        color: #555;
+        line-height: 1.6;
         font-weight: 300;
     }
-    
-    .news-headline {
-        font-family: 'Georgia', serif;
-        font-style: italic;
-        font-size: 1.1rem;
-        margin-bottom: 10px;
-        display: block;
-    }
 
-    /* This pushes the center column down for the "Uneven" look */
-    .tile.center-tile {
-        margin-top: 40px; 
-    }
-
-    /* --- SOCIAL ICONS (New CSS) --- */
-    .social-links {
+    /* --- SOCIAL ICONS (Moved to Hero) --- */
+    .social-links-hero {
         display: flex;
-        gap: 20px;
-        margin-top: 30px;
+        gap: 25px;
+        margin-top: 40px;
         align-items: center;
+        justify-content: center;
     }
     
-    .social-links a {
-        font-size: 1.5rem;
+    .social-links-hero a {
+        font-size: 1.8rem;
         color: #888;
     }
     
-    .social-links a:hover {
+    .social-links-hero a:hover {
         color: #000;
-        transform: translateY(-2px); /* Gives a tiny "jump" effect when hovered */
+        transform: translateY(-3px);
     }
 
-    /* --- VIDEO CONTAINER --- */
-    .video-container {
-        position: relative;
-        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-        height: 0;
-        overflow: hidden;
-        background: #000;
-        margin-top: 20px;
-    }
-    .video-container iframe {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        border: 0;
+    /* --- TWO-COLUMN ABOUT SECTION --- */
+    .about-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2 Equal Columns */
+        gap: 60px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 20px 100px 20px; 
+        align-items: center;
     }
 
-    /* ================= FOOTER (Standardized) ================= */
+    .about-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        display: block;
+    }
+
+    .about-story {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .section-label {
+        color: #1E6091; /* Keeps the subtle blue accent from outreach */
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        margin-top: 0;
+        margin-bottom: 30px;
+        color: #333;
+    }
+
+    /* Larger Story Text */
+    .large-text {
+        font-size: 1.15rem; 
+        line-height: 1.8;
+        color: #555;
+        font-weight: 300;
+        margin-bottom: 25px;
+    }
+
+    /* --- STYLISH BUTTON --- */
+    .cv-btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 12px 28px;
+        background-color: #333;
+        color: #fff;
+        font-family: 'Lato', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 4px;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .cv-btn:hover {
+        background-color: #000;
+        transform: translateY(-2px);
+        color: #fff;
+    }
+
+    /* ================= FOOTER ================= */
     .bottom-nav-container {
         padding: 80px 20px 40px 20px;
         text-align: center;
@@ -177,12 +202,11 @@
         font-family: 'Lato', sans-serif;
         font-size: 0.85rem;
         font-weight: 700;
-        color: #bbb; /* Grey by default */
+        color: #bbb;
         text-transform: uppercase;
         letter-spacing: 1px;
     }
 
-    /* Active link turns black */
     .bottom-nav a:hover, .bottom-nav a.active {
         color: #000; 
     }
@@ -201,9 +225,14 @@
         header { grid-template-columns: 1fr; gap: 20px; text-align: center; }
         .nav-left, .nav-right { justify-self: center; }
         .hero h1 { font-size: 2.2rem; }
-        .grid-container { grid-template-columns: 1fr; } /* Stack to 1 column */
-        .tile.center-tile { margin-top: 0; }
-        .social-links { justify-content: center; } /* Center icons on mobile */
+        
+        .about-container { 
+            grid-template-columns: 1fr; /* Stacks image and story on mobile */
+            gap: 40px; 
+        }
+        
+        /* Centers content when stacked on mobile */
+        .about-story { align-items: center; text-align: center; }
     }
     </style>
 </head>
@@ -212,7 +241,7 @@
     <header>
         <nav class="nav-left">
             <a href="research.html" class="nav-item">RESEARCH</a>
-            <a href="#" class="nav-item">CV</a>
+            <a href="CV.pdf" class="nav-item" target="_blank">CV</a>
         </nav>
 
         <div class="site-title">
@@ -220,67 +249,56 @@
         </div>
 
         <nav class="nav-right">
-            <a href="about.html" class="nav-item" style="color:#000; opacity:1;">About</a>
-            <a href="#" class="nav-item">Contact</a>
+            <a href="about.html" class="nav-item active">ABOUT ME</a>
+            <a href="contact.html" class="nav-item">CONTACT</a>
         </nav>
     </header>
 
     <section class="hero">
         <h1>
-        I am a theoretical biologist with an alpinist’s heart. I model life's limits in the lab and explore them in the outdoors. One day, I will unite these worlds while ensuring the science I create remains open and accessible to everyone.
+            I am a theoretical biologist with an alpinist’s heart. I model life's limits in the lab and explore them in the outdoors.
         </h1>
+        <p>
+            One day, I will unite these worlds, ensuring the science I create remains open and accessible to everyone.
+        </p>
+
+        <div class="social-links-hero">
+            <a href="https://www.linkedin.com/in/mruthyunjay-kubendran-sumathi-39687bba/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.researchgate.net/profile/Mruthyunjay-Sumathi-2?ev=hdr_xprf" target="_blank" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+            <a href="https://github.com/MruthyunjayKS" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/lifeinextremes/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:mruthyunjay@arizona.edu" title="Email Me"><i class="far fa-envelope"></i></a>
+        </div>
     </section>
 
-    <div class="grid-container">
+    <div class="about-container">
         
-        <div class="tile">
+        <div class="about-image">
             <img src="images/about_me.jpg" alt="My Profile Photo">
-            <div class="tile-text" style="font-size: 0.8rem; color: #888;">
-            </div>
         </div>
 
-        <div class="tile center-tile">
-            <div class="tile-text">
-                
-                <p>
-                    My path hasn't been a straight line. It started in the classrooms of <strong>India</strong>, sharpened in the historic halls of the <strong>École Normale Supérieure in Paris</strong>, and eventually led me here, to the <strong>University of Arizona</strong>.
-                </p>
-                
-                <p>
-                    Along the way, I made a choice to chase the bigger picture. I <strong>traded pipettes for Python</strong>, moving from the wet lab to the theoretical realm to answer a single question: <em>How does life evolve, and what limits it?</em>
-                </p>
+        <div class="about-story">
+            <div class="section-label">My Story</div>
+            <h2 class="section-title">The Journey So Far</h2>
+            
+            <p class="large-text">
+                My path hasn't been a straight line. It started in the classrooms of <strong>India</strong>, sharpened in the historic halls of the <strong>École Normale Supérieure in Paris</strong>, and eventually led me here, to the <strong>University of Arizona</strong>.
+            </p>
+            
+            <p class="large-text">
+                Along the way, I made a choice to chase the bigger picture. I <strong>traded pipettes for Python</strong>, moving from the wet lab to the theoretical realm to answer a single question: <em>How does life evolve, and what limits it?</em>
+            </p>
 
-                <p>
-                    I am a theoretical biologist with an alpinist’s heart. I believe the physical limits I face on a mountain are deeply connected to the thermodynamic limits a microbe faces in a hot spring.
-                </p>
+            <p class="large-text">
+                I believe the physical limits I face on a mountain are deeply connected to the thermodynamic limits a microbe faces in a hot spring.
+            </p>
 
-                <div style="background: #f4f4f4; padding: 20px; border-left: 4px solid #333; margin-top: 30px; border-radius: 4px;">
-                    <p style="margin-top:0; font-weight: 700; font-size: 1rem;">Open Science &amp; Open Code</p>
-                    <p style="font-size: 0.9rem; margin-bottom: 15px;">
-                        I believe science should be as open as the landscapes I explore. I share my models, scripts, and even the code for this website openly.
-                    </p>
-                    
-                    <a href="https://github.com/MruthyunjayKS" target="_blank" style="display: inline-block; background: #333; color: #fff; padding: 10px 20px; font-size: 0.8rem; font-weight: 700; border-radius: 4px; text-transform: uppercase;">
-                        Check my GitHub Repo &rarr;
-                    </a>
-                </div>
-
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/mruthyunjay-kubendran-sumathi-39687bba/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://www.researchgate.net/profile/Mruthyunjay-Sumathi-2?ev=hdr_xprf" target="_blank" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
-                    <a href="https://www.instagram.com/lifeinextremes/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="mailto:mruthyunjay@arizona.edu" title="Email Me"><i class="far fa-envelope"></i></a>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="tile">
+            <a href="CV.pdf" target="_blank" class="cv-btn">Get My CV &rarr;</a>
         </div>
 
     </div>
 
-     <section class="bottom-nav-container">
+    <section class="bottom-nav-container">
         <div class="bottom-nav">
             <a href="index.html">ALL</a>
             <a href="about.html" class="active">About me</a>
