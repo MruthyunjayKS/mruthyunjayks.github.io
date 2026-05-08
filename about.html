@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
     /* --- GLOBAL RESET --- */
@@ -119,6 +121,24 @@
         margin-top: 40px; 
     }
 
+    /* --- SOCIAL ICONS (New CSS) --- */
+    .social-links {
+        display: flex;
+        gap: 20px;
+        margin-top: 30px;
+        align-items: center;
+    }
+    
+    .social-links a {
+        font-size: 1.5rem;
+        color: #888;
+    }
+    
+    .social-links a:hover {
+        color: #000;
+        transform: translateY(-2px); /* Gives a tiny "jump" effect when hovered */
+    }
+
     /* --- VIDEO CONTAINER --- */
     .video-container {
         position: relative;
@@ -183,6 +203,7 @@
         .hero h1 { font-size: 2.2rem; }
         .grid-container { grid-template-columns: 1fr; } /* Stack to 1 column */
         .tile.center-tile { margin-top: 0; }
+        .social-links { justify-content: center; } /* Center icons on mobile */
     }
     </style>
 </head>
@@ -195,7 +216,7 @@
         </nav>
 
         <div class="site-title">
-            <a href="index.html">Mruthyunjay KUBRNDRAN SUMATHI</a>
+            <a href="index.html">MRUTHYUNJAY KUBENDRAN SUMATHI</a>
         </div>
 
         <nav class="nav-right">
@@ -206,21 +227,19 @@
 
     <section class="hero">
         <h1>
-            I am a theoretical biologist with an alpinist’s heart. I model life's limits in silico and explore them in the outdoors. My goal is to unite these worlds by testing my theories in the high alpine while ensuring the science I create remains open and accessible to everyone.
+        I am a theoretical biologist with an alpinist’s heart. I model life's limits in the lab and explore them in the outdoors. One day, I will unite these worlds while ensuring the science I create remains open and accessible to everyone.
         </h1>
     </section>
 
     <div class="grid-container">
         
         <div class="tile">
-            <img src="https://placehold.co/600x800/eeeeee/333333?text=Your+Photo" alt="My Profile Photo">
+            <img src="images/about_me.jpg" alt="My Profile Photo">
             <div class="tile-text" style="font-size: 0.8rem; color: #888;">
-                /* Photo credit: [Photographer Name] */
             </div>
         </div>
 
         <div class="tile center-tile">
-            <div class="tile center-tile">
             <div class="tile-text">
                 
                 <p>
@@ -246,34 +265,18 @@
                     </a>
                 </div>
 
-            </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/mruthyunjay-kubendran-sumathi-39687bba/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.researchgate.net/profile/Mruthyunjay-Sumathi-2?ev=hdr_xprf" target="_blank" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                    <a href="https://www.instagram.com/lifeinextremes/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:mruthyunjay@arizona.edu" title="Email Me"><i class="far fa-envelope"></i></a>
+                </div>
 
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="My Video"></iframe>
             </div>
         </div>
 
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="My Video"></iframe>
-            </div>
+        <div class="tile">
         </div>
-
-        /* <div class="tile">
-            
-            <div class="tile-text">
-                <span class="news-headline">Scientific American</span>
-                <img src="https://placehold.co/600x400/dddddd/333333?text=News+Image" alt="News">
-                <p><strong>When We Finally Find Aliens, They Might Smell Terrible.</strong><br>
-                A better understanding of what gases to search for in exoplanet atmospheres is key.</p>
-                <a href="#">Read article &rarr;</a>
-            </div>
-
-            <div class="tile-text" style="margin-top: 40px;">
-                <span class="news-headline">Wired Magazine</span>
-                <p>A wonderful article about how the "Phosphine on Venus?" story came to be.</p>
-                <a href="#">Read article &rarr;</a>
-            </div>
-        </div> */
 
     </div>
 
