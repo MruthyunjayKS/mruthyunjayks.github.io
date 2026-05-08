@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Mruthyunjay KS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+    /* --- GLOBAL RESET --- */
+    * { box-sizing: border-box; }
+    
+    body {
+        font-family: 'Lato', sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh; 
+        display: flex;
+        flex-direction: column;
+        background: #f9f9f9; /* Slight off-white to make the contact card pop */
+    }
+
+    a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+
+    /* ================= HEADER ================= */
+    header {
+        position: relative; 
+        background: #fff; 
+        color: #333; 
+        display: grid;
+        grid-template-columns: 1fr auto 1fr; 
+        padding: 40px 5%; 
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        flex-shrink: 0; 
+        box-shadow: 0 1px 5px rgba(0,0,0,0.02);
+    }
+
+    .nav-left { justify-self: start; }
+    .nav-right { justify-self: end; }
+    .nav-item { margin: 0 15px; position: relative; opacity: 0.6; }
+    
+    .nav-item:hover, .nav-item.active { opacity: 1; color: #000; }
+    
+    .site-title { 
+        font-family: 'Lato', sans-serif;
+        font-weight: 900; 
+        font-size: 1.2rem; 
+        letter-spacing: 0.1em;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    /* ================= HERO QUOTE ================= */
+    .hero {
+        text-align: center;
+        padding: 80px 20px 60px 20px; 
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .hero h1 {
+        font-family: 'Playfair Display', serif; 
+        font-size: 3rem; 
+        font-weight: 700;
+        margin: 0 0 20px 0;
+        line-height: 1.2;
+        max-width: 800px;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-weight: 300;
+    }
+
+    /* --- CONTACT CARD --- */
+    .contact-container {
+        max-width: 1000px;
+        margin: 0 auto 100px auto;
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    .contact-card {
+        display: flex;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+        overflow: hidden;
+    }
+
+    /* Left Side: The Form */
+    .contact-form-side {
+        flex: 1.5;
+        padding: 50px;
+    }
+
+    .contact-form-side h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        color: #555;
+    }
+
+    .form-group input, .form-group textarea {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: 'Lato', sans-serif;
+        font-size: 1rem;
+        color: #333;
+        background: #fafafa;
+        transition: border 0.3s ease;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+        outline: none;
+        border-color: #333;
+        background: #fff;
+    }
+
+    .submit-btn {
+        display: inline-block;
+        width: 100%;
+        padding: 15px;
+        background-color: #333;
+        color: #fff;
+        font-family: 'Lato', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        background-color: #000;
+        transform: translateY(-2px);
+    }
+
+    /* Right Side: Contact Info Panel */
+    .contact-info-side {
+        flex: 1;
+        background: #222;
+        color: #fff;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info-block {
+        margin-bottom: 40px;
+    }
+
+    .info-block h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .info-block p, .info-block a {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #bbb;
+        margin: 0;
+    }
+
+    .info-block a:hover {
+        color: #fff;
+    }
+
+    .info-icon {
+        color: #fff;
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+    }
+
+    /* Social Icons in Contact Panel */
+    .contact-socials {
+        margin-top: auto;
+        display: flex;
+        gap: 20px;
+    }
+
+    .contact-socials a {
+        font-size: 1.5rem;
+        color: #bbb;
+    }
+
+    .contact-socials a:hover {
+        color: #fff;
+        transform: translateY(-2px);
+    }
+
+    /* ================= FOOTER ================= */
+    .bottom-nav-container {
+        padding: 80px 20px 40px 20px;
+        text-align: center;
+        background: #fff;
+        border-top: 1px solid #eee;
+        margin-top: auto; 
+    }
+
+    .bottom-nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 auto 30px auto;
+    }
+
+    .bottom-nav a {
+        font-family: 'Lato', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #bbb;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .bottom-nav a:hover, .bottom-nav a.active {
+        color: #000; 
+    }
+
+    .copyright {
+        font-family: 'Lato', sans-serif;
+        font-size: 0.7rem;
+        color: #bbb;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-top: 40px;
+    }
+
+    /* --- MOBILE RESPONSIVENESS --- */
+    @media (max-width: 900px) {
+        header { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+        .nav-left, .nav-right { justify-self: center; }
+        .hero h1 { font-size: 2.2rem; }
+        
+        .contact-card {
+            flex-direction: column; /* Stacks form on top of info */
+        }
+        
+        .contact-form-side, .contact-info-side {
+            padding: 30px;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="nav-left">
+            <a href="research.html" class="nav-item">RESEARCH</a>
+            <a href="CV.pdf" class="nav-item" target="_blank">CV</a>
+        </nav>
+
+        <div class="site-title">
+            <a href="index.html">MRUTHYUNJAY KUBENDRAN SUMATHI</a>
+        </div>
+
+        <nav class="nav-right">
+            <a href="about.html" class="nav-item">ABOUT ME</a>
+            <a href="contact.html" class="nav-item active">CONTACT</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Let's Connect</h1>
+        <p>Whether you want to discuss research, collaborate on a project, or just talk about the mountains, my inbox is always open.</p>
+    </section>
+
+    <div class="contact-container">
+        <div class="contact-card">
+            
+            <div class="contact-form-side">
+                <h2>Send a Message</h2>
+                
+                <form action="mailto:mruthyunjay@arizona.edu" method="POST" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Jane Doe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required placeholder="jane@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="How can we collaborate?"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+
+            <div class="contact-info-side">
+                
+                <div class="info-block">
+                    <h3>Contact Info</h3>
+                    <p><i class="far fa-envelope info-icon"></i> <a href="mailto:mruthyunjay@arizona.edu">mruthyunjay@arizona.edu</a></p>
+                </div>
+
+                <div class="info-block">
+                    <h3>Mailing Address</h3>
+                    <p>
+                        <i class="fas fa-map-marker-alt info-icon"></i> 1041 E. Lowell St.<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Biosciences West Room 419<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Department of Ecology &amp; Evolutionary Biology<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;University of Arizona<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tucson, AZ 85721
+                    </p>
+                </div>
+
+                <div class="contact-socials">
+                    <a href="https://www.linkedin.com/in/mruthyunjay-kubendran-sumathi-39687bba/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.researchgate.net/profile/Mruthyunjay-Sumathi-2?ev=hdr_xprf" target="_blank" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                    <a href="https://github.com/MruthyunjayKS" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/lifeinextremes/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <section class="bottom-nav-container">
+        <div class="bottom-nav">
+            <a href="index.html">ALL</a>
+            <a href="about.html">About me</a>
+            <a href="research.html">My work</a>
+            <a href="outreach.html">Sci comm</a>
+            <a href="fun.html">Fun stuff</a>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2026 Mruthyunjay Kubendran Sumathi. All Rights Reserved.
+        </div>
+    </section>
+
+</body>
+</html>
