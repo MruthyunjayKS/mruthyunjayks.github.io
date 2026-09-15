@@ -6,3 +6,7 @@
 }
 .hero h1 { font-size: 4em; margin: 0; }
 .hero p { font-size: 1.5em; }
+#watermark {
+    opacity: 0.05; /* This will make it 5% visible */
+    pointer-events: none; /* Add this if you want to make sure users can click links through the watermark! */
+}
