@@ -188,22 +188,22 @@
     <a href="#correlation">2 · Correlation Check</a>
     <a href="#result">3 · Headline Result</a>
     <a href="#history">4 · Ancestor</a>
-    <a href="#explore">5 · Hands-On</a>
+    <a href="#explore">5 · Evolutionary Trajecotries</a>
     <a href="#sowhat">What's Next</a>
   </div>
 </nav>
 
 <section id="intro" style="padding-bottom: 28px;">
   <div class="wrap">
-    <p class="lede" style="font-size:17px; max-width: 900px; margin-bottom:0;">The full methodology behind the poster, step by step — from raw data quality checks through to the evolutionary model, across <b style="color:var(--text);">5,023 archaeal genomes</b> spanning <b style="color:var(--text);">20 phyla</b>. Follow along, or jump to any step above.</p>
+    <p class="lede" style="font-size:17px; max-width: 900px; margin-bottom:0;">This companion provides full methodology behind the poster — from raw data quality checks through to the evolutionary model, across <b style="color:var(--text);">3500+ archaeal genomes</b> spanning <b style="color:var(--text);">20 phyla</b>. Follow along, or jump to any step above.</p>
   </div>
 </section>
 
 <section id="qc">
   <div class="wrap">
-    <div class="eyebrow">Step 1 of 5 · Data QC & Correction</div>
+    <div class="eyebrow">BOX A · Data QC & Correction</div>
     <h2 class="sectitle">Checking our work</h2>
-    <p class="lede">Two questions I asked of my own data before believing the result — this is the methodology walk-through in detail.</p>
+    <p class="lede">Two questions I asked of my own data before believing the result.</p>
 
     <div class="qc-card">
       <span class="qc-num">1</span><span class="qc-title">Who actually gets cultured — and does it bias the tree?</span>
@@ -216,7 +216,7 @@
           <div class="findimg" onclick="openLightbox('images/tree_bias.png')"><img src="images/tree_bias.png" alt="Full tree, cultured vs uncultured branches"></div>
           <div class="findimg" onclick="openLightbox('images/bar_bias.png')"><img src="images/bar_bias.png" alt="Taxonomic composition, cultured vs uncultured"></div>
         </div>
-        <p class="lede" style="margin:0;">Red branches (left) are every genome with a real temperature measurement — they cluster in specific pockets of the tree, not spread evenly. The bar chart confirms why: the measured subset is dominated by Halobacteriota, while the unmeasured majority spans far more phyla. Any claim has to survive this imbalance, not ignore it.</p>
+        <p class="lede" style="margin:0;">Red branches (left) are every genome with a real temperature measurement — they cluster in specific phyla. The bar chart confirms why: the measured subset is dominated by Halobacteriota and Thermoproteota, while the unmeasured majority spans far more phyla. Any claim has to survive this imbalance, not ignore it.</p>
       </div>
     </div>
 
@@ -227,17 +227,17 @@
           <div><div class="stat-big" style="color:var(--steel);">R = 0.976–0.999</div><div class="stat-lbl">across 6 traits, comparing ancestral node estimates from the 357-tip measured tree vs. the full 3,500-tip predicted tree</div></div>
         </div>
         <div class="findimg" onclick="openLightbox('images/validation_multitrait.png')"><img src="images/validation_multitrait.png" alt="Multi-trait internal node validation"></div>
-        <p class="lede" style="margin:0;">Ancestral state reconstructions from the smaller, high-confidence tree land almost exactly on the same values as the full domain-wide tree, for every trait tested. A focused, well-measured dataset isn't a compromise here — it reconstructs the same deep history as the much larger one.</p>
+        <p class="lede" style="margin:0;">Ancestral state reconstructions from the smaller, high-confidence tree land almost exactly on the same values as the full domain-wide tree, for every trait tested. So in fact a smaller tree with 357 speceis can give us the similar evolutionary story as the 3500 species tree.</p>
       </div>
     </div>
 
-    <div class="pullquote" style="border-color:var(--purple); color:var(--purple);">And every one of these relationships is tested with phylogenetic correction (Pagel's λ ≈ 0.93–0.99) — without it, closely related genomes would be counted as independent data points they aren't.</div>
+    <div class="pullquote" style="border-color:var(--purple); color:var(--purple);">And every one of these relationships is tested with phylogenetic correction (Pagel's λ ≈ 0.93–0.99) — without it, closely related genomes would be counted as independent data points.</div>
   </div>
 </section>
 
 <section id="correlation">
   <div class="wrap">
-    <div class="eyebrow">Step 2 of 5 · Dimensionality &amp; Correlation Check</div>
+    <div class="eyebrow">BOX B · Dimensionality &amp; Correlation Check</div>
     <h2 class="sectitle">Which temperature variable actually moves the genome?</h2>
     <p class="lede">The correlation panel on the poster shows raw trait correlations before any correction — almost everything looks related. That's the problem: closely related genomes aren't independent data points, so shared ancestry alone can manufacture correlations that have nothing to do with adaptation. Run the same relationships through Phylogenetic Generalized Least Squares instead, and the picture changes:</p>
 
@@ -246,12 +246,12 @@
       <div class="findimg" onclick="openLightbox('images/pgls_tmax.png')"><img src="images/pgls_tmax.png" alt="PGLS significance: trait vs Tmax"></div>
       <div class="findimg" onclick="openLightbox('images/pgls_topt.png')"><img src="images/pgls_topt.png" alt="PGLS significance: trait vs Topt"></div>
     </div>
-    <p class="lede" style="margin:0;">Most of that "everything correlates with everything" pattern collapses. What survives: Tmin and Tmax turn out to be far stronger architectural constraints than Topt itself, which shows almost no significant structural relationships once phylogeny is properly accounted for.</p>
+    <p class="lede" style="margin:0;"> Tmin and Tmax turn out to be far stronger architectural constraints than Topt itself, which shows almost no significant structural relationships once phylogeny is properly accounted for.</p>
   </div>
 </section>
 
 <section id="result">
-  <div class="eyebrow wrap" style="margin-bottom:-8px;">Step 3 of 5 · Multivariate Path Analysis — The Headline Result</div>
+  <div class="eyebrow wrap" style="margin-bottom:-8px;">BOX C & BOX D· Multivariate Path Analysis — The Headline Result</div>
   <div class="wrap">
     <h2 class="sectitle">Coding density — not genome size — is the universal driver, in every archaeal lineage</h2>
     <p class="lede">No single story fits all of Archaea by assumption — so this was run separately, phylum by phylum, rather than pooling everything into one global average. What came back was the same answer, independently, in each one:</p>
@@ -261,7 +261,7 @@
     <div class="findimg" onclick="openLightbox('images/rvi_heatmap.png')"><img src="images/rvi_heatmap.png" alt="Multivariate PGLS RVI heatmap"></div>
     <div class="findimg" onclick="openLightbox('images/path_diagrams.png')"><img src="images/path_diagrams.png" alt="Phylogenetic path diagrams"></div>
     <p class="lede" style="margin:0;">Genome size → coding density edges of −0.4 to −0.66 recur in every clade's best-fit causal model. A smaller genome is a downstream consequence of tighter packing — not the trait selection targets directly.</p>
-    <div class="pullquote">The environment doesn't shrink the genome. A lineage must already carry an efficient, tightly packed architecture to survive a thermal extreme — the small genome is the receipt, not the cause.</div>
+    <div class="pullquote">The environment doesn't shrink the genome. A lineage must already carry an efficient, tightly packed architecture to survive a thermal extreme.</div>
   </div>
 </section>
 
@@ -277,7 +277,7 @@
 
 <section id="history">
   <div class="wrap">
-    <div class="eyebrow">Step 4 of 5 · Ancestral Reconstruction</div>
+    <div class="eyebrow">BOX D+· Ancestral Reconstruction</div>
     <h2 class="sectitle">The ancestor of Archaea was hot and small — and that's the whole issue</h2>
     <div class="findimg" onclick="openLightbox('images/trait_map.png')"><img src="images/trait_map.png" alt="Circular phylogeny with Topt and genome size rings"></div>
     <p class="lede" style="max-width:900px;">Trace the rings inward: the deepest branches sit at high Topt (bright band) with small genomes (dark band) — a genome under permanent thermodynamic pressure. Every lineage that later moved toward cooler, less extreme temperatures shows the same pattern in reverse: genome size expands, coding density relaxes, complexity accumulates.</p>
@@ -291,9 +291,9 @@
 
 <section id="explore">
   <div class="wrap">
-    <div class="eyebrow">Step 5 of 5 · Hands-On Exploration</div>
-    <h2 class="sectitle">Now trace it yourself</h2>
-    <p class="lede">One live, zoomable, rotatable explorer — the actual ancestral-state reconstructions behind the image above. Toggle between optimal, max, and min temperature, search for a species by name, or trace a lineage from root to tip and watch genome size and temperature move together (or not).</p>
+    <div class="eyebrow">BOX D++ · Hands-On Exploration</div>
+    <h2 class="sectitle">Curious about how a specific archea adapted and evolved its genome and growth temperature since the last archeal ancestor?</h2>
+    <p class="lede">Use this interactive page to toggle between optimal, max, and min temperature, search for a species by name, or trace a lineage from root to tip and watch genome size and temperature move together (or not).</p>
     <div class="explore-grid" style="grid-template-columns: 1fr;">
       <a class="explore-card" href="evolutionary-trajectories.html" target="_blank" rel="noopener">
         <div class="ic">🌡️🔥❄️</div>
@@ -309,7 +309,6 @@
   <div class="wrap">
     <h2 class="sectitle">A genome-first rule for finding thermal limits — on Earth or elsewhere</h2>
     <ul class="future-list">
-      <li>Recalibrate genomic thermometers per-domain before trusting sequence-only habitability calls</li>
       <li>Extend the coding-density framework to Bacteria to test whether the rule is truly universal</li>
       <li>Reconstruct ancestral coding density, not just genome size, to date when preadaptation first appears</li>
     </ul>
@@ -320,7 +319,7 @@
 <footer>
   <div class="wrap foot-grid">
     <div>
-      <h4>Questions? Come find me at the poster, or:</h4>
+      <h4>Questions? Catch me in the conference, or email me at:</h4>
       <p>mruthyunjay@arizona.edu</p>
       <p>Acknowledgments: Régis Ferrière · Solange Duhamel · Francois Guyot · Scott Saleska · Ferrière Lab & Duhamel Lab</p>
       <p>Data: GTDB r226 · Tempura · ThermoBase</p>
@@ -331,7 +330,7 @@
     </div>
   </div>
   <div class="wrap">
-    <div class="expiry-note">This companion page is temporary and will be taken offline shortly after AbGradCon 2026.</div>
+    <div class="expiry-note">This companion page is for the poster at AbGradCon 2026.</div>
   </div>
 </footer>
 </div>
@@ -372,8 +371,9 @@
 
   // ---- Visible watermark: tiled across the page, present in any screenshot ----
   (function () {
-    const stamp = "AbGradCon 2026 · Preliminary — unpublished, do not circulate · " + now.toLocaleString('en-US', { timeZone: 'America/Phoenix' }) + " AZ";
+    const stamp = "AbGradCon 2026 · Unpublished, do not circulate · " + now.toLocaleString('en-US', { timeZone: 'America/Phoenix' }) + " AZ";
     const wm = document.getElementById('watermark');
+    wm.style.opacity = "0.15";
     for (let i = 0; i < 70; i++) {
       const s = document.createElement('span');
       s.textContent = stamp;
