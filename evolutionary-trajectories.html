@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evolutionary Trajectories | Mruthyunjay KS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Lato', sans-serif; color: #333; margin: 0; padding: 0;
+    min-height: 100vh; display: flex; flex-direction: column; background: #fff;
+  }
+  a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+
+  header {
+    position: relative; background: #fff; color: #333;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    padding: 32px 5%; font-size: 0.85rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em; flex-shrink: 0;
+    border-bottom: 1px solid #eee;
+  }
+  .nav-left { justify-self: start; }
+  .nav-right { justify-self: end; }
+  .nav-item { margin: 0 15px; opacity: 0.6; }
+  .nav-item:hover { opacity: 1; color: #000; }
+  .site-title { font-weight: 900; font-size: 1.1rem; letter-spacing: 0.1em; text-align: center; white-space: nowrap; }
+
+  .intro { text-align: center; padding: 56px 20px 24px; max-width: 780px; margin: 0 auto; }
+  .section-label {
+    color: #d9534f; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .intro h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 16px; }
+  .intro p { font-size: 1.05rem; color: #666; font-weight: 300; line-height: 1.65; margin: 0; }
+
+  .toggle-row {
+    display: flex; justify-content: center; gap: 10px; padding: 12px 20px 20px; flex-wrap: wrap;
+  }
+  .toggle-btn {
+    font-family: 'Lato', sans-serif; font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 12px 26px; border-radius: 30px; border: 2px solid #ddd;
+    background: #fff; color: #666; cursor: pointer; transition: all 0.2s ease;
+  }
+  .toggle-btn:hover { border-color: #d9534f; color: #d9534f; }
+  .toggle-btn.active { background: #d9534f; border-color: #d9534f; color: #fff; }
+
+  .search-panel {
+    max-width: 640px; margin: 0 auto; padding: 0 20px 28px; text-align: center;
+  }
+  .search-row {
+    display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap;
+  }
+  #speciesSearch {
+    flex: 1; min-width: 220px; max-width: 340px;
+    font-family: 'Lato', sans-serif; font-size: 0.95rem;
+    padding: 11px 16px; border: 2px solid #ddd; border-radius: 24px;
+    outline: none; transition: border-color 0.2s ease;
+  }
+  #speciesSearch:focus { border-color: #d9534f; }
+  .search-btn, .clear-btn {
+    font-family: 'Lato', sans-serif; font-size: 0.85rem; font-weight: 700;
+    padding: 11px 20px; border-radius: 24px; cursor: pointer; border: none;
+    text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .search-btn { background: #d9534f; color: #fff; }
+  .search-btn:hover { background: #b8433f; }
+  .clear-btn { background: #f2f2f2; color: #888; }
+  .clear-btn:hover { background: #e5e5e5; }
+  .advanced-row {
+    margin-top: 12px; font-size: 0.85rem; color: #777;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .search-status { margin-top: 10px; font-size: 0.85rem; color: #999; min-height: 1.2em; }
+  .search-status.found { color: #2a7a2a; }
+  .search-status.notfound { color: #b8433f; }
+
+  .frame-wrap {
+    flex: 1; max-width: 1100px; width: 100%; margin: 0 auto; padding: 0 20px 40px;
+  }
+  .frame-box {
+    border: 1px solid #eee; border-radius: 6px; overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    height: 74vh; min-height: 460px; position: relative;
+  }
+  iframe { width: 100%; height: 100%; border: none; display: block; }
+
+  .loading {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: #aaa; font-size: 0.9rem; background: #fff;
+  }
+
+  .scope-note {
+    max-width: 700px; margin: 0 auto; padding: 0 20px 50px; text-align: center;
+    font-size: 0.85rem; color: #999; font-style: italic; line-height: 1.6;
+  }
+
+  .bottom-nav-container {
+    padding: 40px 20px 40px; text-align: center; background: #fff;
+    border-top: 1px solid #eee; margin-top: auto;
+  }
+  .bottom-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 0 auto 24px; }
+  .bottom-nav a { font-size: 0.85rem; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: 1px; }
+  .bottom-nav a:hover { color: #000; }
+  .copyright { font-size: 0.7rem; color: #bbb; text-transform: uppercase; letter-spacing: 2px; }
+
+  @media (max-width: 700px) {
+    header { grid-template-columns: 1fr; gap: 14px; text-align: center; }
+    .nav-left, .nav-right { justify-self: center; }
+    .frame-box { height: 60vh; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav-left">
+    <a href="research.html" class="nav-item">RESEARCH</a>
+    <a href="#" class="nav-item">CV</a>
+  </nav>
+  <div class="site-title"><a href="index.html">MRUTHYUNJAY KUBENDRAN SUMATHI</a></div>
+  <nav class="nav-right">
+    <a href="about.html" class="nav-item">ABOUT ME</a>
+    <a href="#" class="nav-item">Contact</a>
+  </nav>
+</header>
+
+<section class="intro">
+  <div class="section-label">Genomic Evolution · Interactive</div>
+  <h1>Evolutionary Trajectories</h1>
+  <p>Every point is one archaeal genome, positioned by size and by its species' thermal biology — plotted against the tree's own internal nodes, so you can trace how each trait moved through evolutionary time. Switch between optimal, minimum, and maximum growth temperature below. Click any tip to trace its full path back through its ancestors, or search for a species by name.</p>
+</section>
+
+<div class="toggle-row">
+  <button class="toggle-btn active" data-src="Archaea_Topt_vs_Genome.html" onclick="switchPlot(this)">Optimal Temp (Topt)</button>
+  <button class="toggle-btn" data-src="Archaea_Tmax_vs_Genome.html" onclick="switchPlot(this)">Max Temp (Tmax)</button>
+  <button class="toggle-btn" data-src="Archaea_Tmin_vs_Genome.html" onclick="switchPlot(this)">Min Temp (Tmin)</button>
+</div>
+
+<div class="search-panel">
+  <div class="search-row">
+    <input type="text" id="speciesSearch" placeholder="Search species name, e.g. 'kodakarensis'" onkeydown="if(event.key==='Enter') runSearch();">
+    <button class="search-btn" onclick="runSearch()">Search</button>
+    <button class="clear-btn" onclick="clearSearchUI()">Clear</button>
+  </div>
+  <div class="advanced-row">
+    <label><input type="checkbox" id="genusMode"> Advanced: highlight every species in this genus</label>
+  </div>
+  <div class="search-status" id="searchStatus"></div>
+</div>
+
+<div class="frame-wrap">
+  <div class="frame-box">
+    <div class="loading" id="loadingMsg">Loading plot…</div>
+    <iframe id="plotFrame" src="Archaea_Topt_vs_Genome.html" onload="onFrameLoad();"></iframe>
+  </div>
+</div>
+
+<div class="scope-note">
+  This explorer currently covers the 357 species with directly measured growth temperatures. The full 3,500-species dataset with predicted thermal traits and genome information is coming soon.
+</div>
+
+<section class="bottom-nav-container">
+  <div class="bottom-nav">
+    <a href="index.html">ALL</a>
+    <a href="about.html">About me</a>
+    <a href="research.html">My work</a>
+    <a href="outreach.html">sci comm</a>
+    <a href="fun.html">fun stuff</a>
+  </div>
+  <div class="copyright">&copy; 2026 Mruthyunjay Kubendran Sumathi. All Rights Reserved.</div>
+</section>
+
+<script>
+  var PHYLUM_TRACE_INDICES = [1, 2, 3, 4, 5]; // trace 0 is the background branch-line trace
+  var DEFAULT_SIZE = 8, DEFAULT_OPACITY = 0.9, DEFAULT_LINE_COLOR = 'white', DEFAULT_LINE_WIDTH = 0.5;
+  var MATCH_SIZE = 16, MATCH_OPACITY = 1, MATCH_LINE_COLOR = '#F2C75C', MATCH_LINE_WIDTH = 2.5;
+  var DIM_OPACITY = 0.12;
+
+  function switchPlot(btn) {
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('loadingMsg').style.display = 'flex';
+    clearSearchUI();
+    document.getElementById('plotFrame').src = btn.dataset.src;
+  }
+
+  function onFrameLoad() {
+    document.getElementById('loadingMsg').style.display = 'none';
+  }
+
+  function getFrameWindow() {
+    var f = document.getElementById('plotFrame');
+    try { return f.contentWindow; } catch (e) { return null; }
+  }
+
+  function getGd(cb, triesLeft) {
+    if (triesLeft === undefined) triesLeft = 20;
+    var w = getFrameWindow();
+    var gd = w ? w.document.querySelector('.js-plotly-plot') : null;
+    if (gd && gd.data) { cb(gd); return; }
+    if (triesLeft <= 0) { cb(null); return; }
+    setTimeout(function () { getGd(cb, triesLeft - 1); }, 150);
+  }
+
+  function extractName(text) {
+    var m = /<b>(.*?)<\/b>/.exec(text || '');
+    return m ? m[1] : '';
+  }
+
+  function runSearch() {
+    var query = document.getElementById('speciesSearch').value.trim();
+    var status = document.getElementById('searchStatus');
+    if (!query) { status.textContent = ''; status.className = 'search-status'; return; }
+    var genusMode = document.getElementById('genusMode').checked;
+    status.textContent = 'Searching…';
+    status.className = 'search-status';
+
+    getGd(function (gd) {
+      if (!gd || !gd._fullData) {
+        status.textContent = 'Plot still loading — try again in a moment.';
+        status.className = 'search-status notfound';
+        return;
+      }
+      var w = getFrameWindow();
+      var Plotly = w.Plotly;
+      var totalMatches = 0;
+      var queryLower = query.toLowerCase();
+
+      PHYLUM_TRACE_INDICES.forEach(function (idx) {
+        var trace = gd.data[idx];
+        if (!trace || !trace.text) return;
+        var names = trace.text.map(extractName);
+        var matches = names.map(function (name) {
+          var nameLower = name.toLowerCase();
+          if (genusMode) {
+            var genus = nameLower.split(' ')[0];
+            var qGenus = queryLower.split(' ')[0];
+            return genus === qGenus || genus.indexOf(qGenus) === 0;
+          }
+          return nameLower.indexOf(queryLower) !== -1;
+        });
+        var n = matches.length;
+        var sizeArr = new Array(n), opArr = new Array(n), lineColorArr = new Array(n), lineWidthArr = new Array(n);
+        for (var i = 0; i < n; i++) {
+          if (matches[i]) {
+            totalMatches++;
+            sizeArr[i] = MATCH_SIZE; opArr[i] = MATCH_OPACITY;
+            lineColorArr[i] = MATCH_LINE_COLOR; lineWidthArr[i] = MATCH_LINE_WIDTH;
+          } else {
+            sizeArr[i] = DEFAULT_SIZE; opArr[i] = DIM_OPACITY;
+            lineColorArr[i] = DEFAULT_LINE_COLOR; lineWidthArr[i] = DEFAULT_LINE_WIDTH;
+          }
+        }
+        Plotly.restyle(gd, {
+          'marker.size': [sizeArr],
+          'marker.opacity': [opArr],
+          'marker.line.color': [lineColorArr],
+          'marker.line.width': [lineWidthArr]
+        }, [idx]);
+      });
+
+      if (totalMatches === 0) {
+        status.textContent = 'No species found matching "' + query + '".';
+        status.className = 'search-status notfound';
+      } else {
+        status.textContent = totalMatches + ' species highlighted' + (genusMode ? ' in this genus.' : '.');
+        status.className = 'search-status found';
+      }
+    });
+  }
+
+  function clearSearchUI() {
+    document.getElementById('speciesSearch').value = '';
+    document.getElementById('searchStatus').textContent = '';
+    document.getElementById('searchStatus').className = 'search-status';
+    getGd(function (gd) {
+      if (!gd) return;
+      var w = getFrameWindow();
+      var Plotly = w.Plotly;
+      PHYLUM_TRACE_INDICES.forEach(function (idx) {
+        var trace = gd.data[idx];
+        if (!trace) return;
+        var n = (trace.text || []).length;
+        Plotly.restyle(gd, {
+          'marker.size': [new Array(n).fill(DEFAULT_SIZE)],
+          'marker.opacity': [new Array(n).fill(DEFAULT_OPACITY)],
+          'marker.line.color': [new Array(n).fill(DEFAULT_LINE_COLOR)],
+          'marker.line.width': [new Array(n).fill(DEFAULT_LINE_WIDTH)]
+        }, [idx]);
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
