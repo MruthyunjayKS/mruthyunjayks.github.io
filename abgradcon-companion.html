@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thermal Adaptation in Prokaryotes — Poster Companion</title>
+<style>
+  :root {
+    --navy: #0C234B;
+    --navy-2: #16305e;
+    --red: #AB0520;
+    --gold: #F2C75C;
+    --teal: #1B7F79;
+    --steel: #3B6EA5;
+    --purple: #5B3A8E;
+    --amber: #B5651D;
+    --bg: #ffffff;
+    --panel-bg: #ffffff;
+    --text: #22262b;
+    --muted: #5a6472;
+    --border: #e3e6ea;
+    --chip-bg: #f4f6f9;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  html, body {
+    margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+  }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  header.hero {
+    background: linear-gradient(155deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: #fff; padding: 44px 0 36px;
+  }
+  header.hero .heroinner { position: relative; }
+  header.hero .tag {
+    display: inline-block; background: rgba(242,199,92,0.15); color: var(--gold);
+    border: 1px solid rgba(242,199,92,0.4); font-size: 13px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 12px;
+    border-radius: 20px; margin-bottom: 16px;
+  }
+  header.hero h1 { font-size: clamp(26px, 4vw, 42px); line-height: 1.15; margin: 0 0 12px; font-weight: 800; max-width: 880px; }
+  header.hero .authors { font-size: 14.5px; color: #dfe6f2; margin-bottom: 4px; }
+  header.hero .affil { font-size: 12px; color: #9fb0cc; }
+  header.hero .logo { position: absolute; top: 0; right: 0; width: 68px; }
+
+  nav.quicknav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--panel-bg); border-bottom: 1px solid var(--border);
+    overflow-x: auto; white-space: nowrap;
+  }
+  nav.quicknav .wrap { display: flex; gap: 4px; padding: 0 24px; }
+  nav.quicknav a {
+    display: inline-block; padding: 13px 14px; font-size: 13.5px; font-weight: 600;
+    color: var(--muted); text-decoration: none; border-bottom: 3px solid transparent;
+  }
+  nav.quicknav a:hover { color: var(--steel); border-bottom-color: var(--steel); }
+
+  section { padding: 52px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  h2.sectitle { font-size: clamp(21px, 2.8vw, 28px); font-weight: 800; color: var(--navy); margin: 0 0 8px; }
+
+  .eyebrow { font-size: 12.5px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+
+  p.lede { font-size: 16px; color: var(--muted); max-width: 820px; margin: 0 0 26px; }
+
+  .poster-frame, .findimg {
+    border: 1px solid var(--border); border-radius: 10px; padding: 12px;
+    background: var(--chip-bg); cursor: zoom-in; margin: 14px 0;
+  }
+  .poster-frame:hover, .findimg:hover { outline: 2px solid var(--steel); }
+  .poster-caption { font-size: 13px; color: var(--muted); margin-top: 8px; text-align: center; }
+
+  .grid-2 { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items: center; }
+  @media (max-width: 820px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .chip { background: var(--chip-bg); border: 1px solid var(--border); border-radius: 8px; padding: 9px 13px; font-size: 13px; }
+  .chip b { color: var(--red); font-size: 14.5px; }
+
+  .scaleup { background: var(--navy); color: #fff; border-radius: 14px; padding: 36px 30px; text-align: center; }
+  .scaleup h3 { margin: 0 0 22px; font-size: 18px; color: var(--gold); font-weight: 700; }
+  .scale-row { display: flex; justify-content: center; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .scale-num { text-align: center; }
+  .scale-num .old { font-size: 20px; color: #9fb0cc; text-decoration: line-through; }
+  .scale-num .new { font-size: 36px; font-weight: 800; color: #fff; }
+  .scale-num .lbl { font-size: 12.5px; color: #b9c6de; margin-top: 4px; }
+  .scale-arrow { font-size: 24px; color: var(--gold); }
+
+  .qc-card { border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 22px; background: var(--panel-bg); }
+  .qc-num { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 800; font-size: 14px; margin-right: 10px; }
+  .qc-title { font-size: 18.5px; font-weight: 800; color: var(--navy); display: inline; vertical-align: middle; }
+  .qc-body { margin-top: 14px; }
+  .twoimg { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) { .twoimg { grid-template-columns: 1fr; } }
+  .threeimg { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media (max-width: 900px) { .threeimg { grid-template-columns: 1fr; } }
+
+  .stat-row { display: flex; gap: 26px; flex-wrap: wrap; margin: 14px 0; }
+  .stat-big { font-size: 30px; font-weight: 800; }
+  .stat-lbl { font-size: 12.5px; color: var(--muted); margin-top: 2px; max-width: 240px; }
+
+  .pullquote {
+    background: var(--chip-bg); border-left: 5px solid var(--steel); padding: 20px 24px;
+    font-size: 17px; font-weight: 700; font-style: italic; color: var(--navy);
+    border-radius: 6px; margin-top: 16px;
+  }
+
+  .explore-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 10px; }
+  @media (max-width: 900px) { .explore-grid { grid-template-columns: 1fr; } }
+  .explore-card {
+    display: block; text-decoration: none; border: 2px solid var(--steel); border-radius: 12px;
+    padding: 26px 20px; text-align: center; background: var(--chip-bg); transition: all 0.15s ease;
+  }
+  .explore-card:hover { background: var(--steel); }
+  .explore-card:hover * { color: #fff !important; }
+  .explore-card .ic { font-size: 34px; margin-bottom: 10px; }
+  .explore-card .ti { font-size: 16.5px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+  .explore-card .de { font-size: 13px; color: var(--muted); }
+  .explore-card .go { font-size: 12.5px; font-weight: 700; color: var(--steel); margin-top: 12px; display: block; }
+
+  .future-list { list-style: none; padding: 0; margin: 0; }
+  .future-list li { padding: 13px 0 13px 28px; border-bottom: 1px solid var(--border); position: relative; font-size: 15.5px; }
+  .future-list li:last-child { border-bottom: none; }
+  .future-list li::before { content: "→"; position: absolute; left: 0; top: 13px; color: var(--red); font-weight: 800; }
+
+  footer { background: var(--navy); color: #cfd8e8; padding: 40px 0 34px; }
+  .foot-grid { display: grid; grid-template-columns: 1fr auto; gap: 36px; align-items: center; }
+  @media (max-width: 700px) { .foot-grid { grid-template-columns: 1fr; text-align: center; } }
+  footer h4 { color: #fff; margin: 0 0 8px; font-size: 15.5px; }
+  footer p { font-size: 13px; margin: 4px 0; color: #a9b6cc; }
+  #qrcode { background: #fff; padding: 10px; border-radius: 8px; display: inline-block; }
+  .qr-cap { font-size: 11.5px; color: #a9b6cc; margin-top: 8px; text-align: center; }
+  .expiry-note { text-align: center; font-size: 12px; color: #7f8fae; padding-top: 22px; margin-top: 22px; border-top: 1px solid rgba(255,255,255,0.12); }
+
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(6,10,18,0.92); z-index: 999; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 96vw; max-height: 92vh; border-radius: 6px; }
+
+  .expired-overlay {
+    display: none; position: fixed; inset: 0; background: var(--navy); color: #fff;
+    z-index: 2000; align-items: center; justify-content: center; text-align: center; padding: 40px;
+  }
+
+  .watermark {
+    position: fixed; inset: 0; z-index: 1500; pointer-events: none;
+    display: flex; flex-wrap: wrap; align-content: flex-start; overflow: hidden;
+    opacity: 0.09; transform: rotate(-26deg) scale(1.5); transform-origin: center;
+  }
+  .watermark span {
+    display: inline-block; font-size: 15px; font-weight: 800; color: var(--navy);
+    padding: 26px 34px; white-space: nowrap; letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+<div id="watermark" class="watermark"></div>
+
+<div id="expiredOverlay" class="expired-overlay">
+  <div>
+    <div style="font-size:44px; margin-bottom:16px;">🧬</div>
+    <h2 style="color:#fff; font-size:24px; margin-bottom:10px;">This page has ended</h2>
+    <p style="color:#b9c6de; font-size:15px; max-width:420px; margin:0 auto;">Thanks for stopping by the poster at AbGradCon 2026! This interactive companion was temporary and is no longer available.</p>
+    <p style="color:#8494ae; font-size:13px; margin-top:22px;">mruthyunjay@arizona.edu</p>
+    <a href="javascript:void(0)" onclick="unlockPreview()" style="display:inline-block; margin-top:14px; color:#5a6472; font-size:11.5px; text-decoration:underline;">Presenter preview</a>
+  </div>
+</div>
+
+<div id="mainContent">
+<header class="hero">
+  <div class="wrap heroinner">
+    <img class="logo" src="images/ua_logo.png" alt="University of Arizona">
+    <div class="tag">AbGradCon 2026 · Interactive Poster Companion</div>
+    <h1>How Evolutionary History Shapes Thermal Adaptation in Prokaryotes</h1>
+    <div class="authors">Mruthyunjay Kubendran Sumathi<sup>1</sup>, Solange Duhamel<sup>2</sup>, Régis Ferrière<sup>1,3,4</sup></div>
+    <div class="affil">1 Dept. of Ecology & Evolutionary Biology, U. Arizona · 2 Dept. of Molecular & Cellular Biology, U. Arizona · 3 IBENS, CNRS INSERM ENS-PSL · 4 iGLOBES, CNRS-ENS-PSL, U. Arizona</div>
+  </div>
+</header>
+
+<nav class="quicknav">
+  <div class="wrap">
+    <a href="#qc">1 · Data QC</a>
+    <a href="#correlation">2 · Correlation Check</a>
+    <a href="#result">3 · Headline Result</a>
+    <a href="#history">4 · Ancestor</a>
+    <a href="#explore">5 · Hands-On</a>
+    <a href="#sowhat">What's Next</a>
+  </div>
+</nav>
+
+<section id="intro" style="padding-bottom: 28px;">
+  <div class="wrap">
+    <p class="lede" style="font-size:17px; max-width: 900px; margin-bottom:0;">The full methodology behind the poster, step by step — from raw data quality checks through to the evolutionary model, across <b style="color:var(--text);">5,023 archaeal genomes</b> spanning <b style="color:var(--text);">20 phyla</b>. Follow along, or jump to any step above.</p>
+  </div>
+</section>
+
+<section id="qc">
+  <div class="wrap">
+    <div class="eyebrow">Step 1 of 5 · Data QC & Correction</div>
+    <h2 class="sectitle">Checking our work</h2>
+    <p class="lede">Two questions I asked of my own data before believing the result — this is the methodology walk-through in detail.</p>
+
+    <div class="qc-card">
+      <span class="qc-num">1</span><span class="qc-title">Who actually gets cultured — and does it bias the tree?</span>
+      <div class="qc-body">
+        <div class="stat-row">
+          <div><div class="stat-big" style="color:var(--red);">357</div><div class="stat-lbl">genomes with real measured Topt</div></div>
+          <div><div class="stat-big" style="color:var(--red);">4,666</div><div class="stat-lbl">genomes with no temperature data at all</div></div>
+        </div>
+        <div class="twoimg">
+          <div class="findimg" onclick="openLightbox('images/tree_bias.png')"><img src="images/tree_bias.png" alt="Full tree, cultured vs uncultured branches"></div>
+          <div class="findimg" onclick="openLightbox('images/bar_bias.png')"><img src="images/bar_bias.png" alt="Taxonomic composition, cultured vs uncultured"></div>
+        </div>
+        <p class="lede" style="margin:0;">Red branches (left) are every genome with a real temperature measurement — they cluster in specific pockets of the tree, not spread evenly. The bar chart confirms why: the measured subset is dominated by Halobacteriota, while the unmeasured majority spans far more phyla. Any claim has to survive this imbalance, not ignore it.</p>
+      </div>
+    </div>
+
+    <div class="qc-card">
+      <span class="qc-num">2</span><span class="qc-title">Does a smaller, cleaner tree still tell the truth?</span>
+      <div class="qc-body">
+        <div class="stat-row">
+          <div><div class="stat-big" style="color:var(--steel);">R = 0.976–0.999</div><div class="stat-lbl">across 6 traits, comparing ancestral node estimates from the 357-tip measured tree vs. the full 3,500-tip predicted tree</div></div>
+        </div>
+        <div class="findimg" onclick="openLightbox('images/validation_multitrait.png')"><img src="images/validation_multitrait.png" alt="Multi-trait internal node validation"></div>
+        <p class="lede" style="margin:0;">Ancestral state reconstructions from the smaller, high-confidence tree land almost exactly on the same values as the full domain-wide tree, for every trait tested. A focused, well-measured dataset isn't a compromise here — it reconstructs the same deep history as the much larger one.</p>
+      </div>
+    </div>
+
+    <div class="pullquote" style="border-color:var(--purple); color:var(--purple);">And every one of these relationships is tested with phylogenetic correction (Pagel's λ ≈ 0.93–0.99) — without it, closely related genomes would be counted as independent data points they aren't.</div>
+  </div>
+</section>
+
+<section id="correlation">
+  <div class="wrap">
+    <div class="eyebrow">Step 2 of 5 · Dimensionality &amp; Correlation Check</div>
+    <h2 class="sectitle">Which temperature variable actually moves the genome?</h2>
+    <p class="lede">The correlation panel on the poster shows raw trait correlations before any correction — almost everything looks related. That's the problem: closely related genomes aren't independent data points, so shared ancestry alone can manufacture correlations that have nothing to do with adaptation. Run the same relationships through Phylogenetic Generalized Least Squares instead, and the picture changes:</p>
+
+    <div class="threeimg" style="margin-bottom: 18px;">
+      <div class="findimg" onclick="openLightbox('images/pgls_tmin.png')"><img src="images/pgls_tmin.png" alt="PGLS significance: trait vs Tmin"></div>
+      <div class="findimg" onclick="openLightbox('images/pgls_tmax.png')"><img src="images/pgls_tmax.png" alt="PGLS significance: trait vs Tmax"></div>
+      <div class="findimg" onclick="openLightbox('images/pgls_topt.png')"><img src="images/pgls_topt.png" alt="PGLS significance: trait vs Topt"></div>
+    </div>
+    <p class="lede" style="margin:0;">Most of that "everything correlates with everything" pattern collapses. What survives: Tmin and Tmax turn out to be far stronger architectural constraints than Topt itself, which shows almost no significant structural relationships once phylogeny is properly accounted for.</p>
+  </div>
+</section>
+
+<section id="result">
+  <div class="eyebrow wrap" style="margin-bottom:-8px;">Step 3 of 5 · Multivariate Path Analysis — The Headline Result</div>
+  <div class="wrap">
+    <h2 class="sectitle">Coding density — not genome size — is the universal driver, in every archaeal lineage</h2>
+    <p class="lede">No single story fits all of Archaea by assumption — so this was run separately, phylum by phylum, rather than pooling everything into one global average. What came back was the same answer, independently, in each one:</p>
+    <div class="stat-row">
+      <div><div class="stat-big" style="color:var(--steel);">RVI ≈ 1.0</div><div class="stat-lbl">for coding density, in 4/4 major phyla tested independently</div></div>
+    </div>
+    <div class="findimg" onclick="openLightbox('images/rvi_heatmap.png')"><img src="images/rvi_heatmap.png" alt="Multivariate PGLS RVI heatmap"></div>
+    <div class="findimg" onclick="openLightbox('images/path_diagrams.png')"><img src="images/path_diagrams.png" alt="Phylogenetic path diagrams"></div>
+    <p class="lede" style="margin:0;">Genome size → coding density edges of −0.4 to −0.66 recur in every clade's best-fit causal model. A smaller genome is a downstream consequence of tighter packing — not the trait selection targets directly.</p>
+    <div class="pullquote">The environment doesn't shrink the genome. A lineage must already carry an efficient, tightly packed architecture to survive a thermal extreme — the small genome is the receipt, not the cause.</div>
+  </div>
+</section>
+
+<section id="ambiguous" style="padding-bottom: 12px;">
+  <div class="wrap">
+    <h2 class="sectitle">But at the whole-domain level, phylogenetic path analysis is still ambiguous</h2>
+    <div class="stat-row">
+      <div><div class="stat-big" style="color:var(--red);">~3.5%</div><div class="stat-lbl">weight on the single best-supported causal model, out of 519 candidate structures tested — no dominant winner</div></div>
+    </div>
+    <p class="lede" style="max-width:900px;">A single "coding density wins" arrow, averaged across all of Archaea, hides which lineage did what and when — and the formal path analysis confirms there's no one dominant causal structure at that scale. To go further we have to stop asking "what wins on average" and start asking "what did the ancestor look like, and what path did each lineage take from there." That's a question about internal nodes, not tips — which means it's a question this page can let you ask yourself.</p>
+  </div>
+</section>
+
+<section id="history">
+  <div class="wrap">
+    <div class="eyebrow">Step 4 of 5 · Ancestral Reconstruction</div>
+    <h2 class="sectitle">The ancestor of Archaea was hot and small — and that's the whole issue</h2>
+    <div class="findimg" onclick="openLightbox('images/trait_map.png')"><img src="images/trait_map.png" alt="Circular phylogeny with Topt and genome size rings"></div>
+    <p class="lede" style="max-width:900px;">Trace the rings inward: the deepest branches sit at high Topt (bright band) with small genomes (dark band) — a genome under permanent thermodynamic pressure. Every lineage that later moved toward cooler, less extreme temperatures shows the same pattern in reverse: genome size expands, coding density relaxes, complexity accumulates.</p>
+    <div class="stat-row" style="margin-top:6px;">
+      <div><div class="stat-big" style="color:var(--teal);">r = −0.44</div><div class="stat-lbl">Genome size increases as Tmin drops (colder tolerance)</div></div>
+      <div><div class="stat-big" style="color:var(--teal);">r = +0.35–.39</div><div class="stat-lbl">Coding density rises at BOTH thermal extremes</div></div>
+    </div>
+    <div class="pullquote" style="border-color:var(--teal); color:var(--teal);">Remove the temperature stress, and a lineage doesn't just survive somewhere new — it gets room to explore. That release, repeated across every branch that left the heat, is the evolutionary history of Archaea.</div>
+  </div>
+</section>
+
+<section id="explore">
+  <div class="wrap">
+    <div class="eyebrow">Step 5 of 5 · Hands-On Exploration</div>
+    <h2 class="sectitle">Now trace it yourself</h2>
+    <p class="lede">One live, zoomable, rotatable explorer — the actual ancestral-state reconstructions behind the image above. Toggle between optimal, max, and min temperature, search for a species by name, or trace a lineage from root to tip and watch genome size and temperature move together (or not).</p>
+    <div class="explore-grid" style="grid-template-columns: 1fr;">
+      <a class="explore-card" href="evolutionary-trajectories.html" target="_blank" rel="noopener">
+        <div class="ic">🌡️🔥❄️</div>
+        <div class="ti">Open the Evolutionary Trajectories Explorer</div>
+        <div class="de">Toggle Topt / Tmax / Tmin · search any species · full ancestral tree</div>
+        <span class="go">Open interactive explorer →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="sowhat">
+  <div class="wrap">
+    <h2 class="sectitle">A genome-first rule for finding thermal limits — on Earth or elsewhere</h2>
+    <ul class="future-list">
+      <li>Recalibrate genomic thermometers per-domain before trusting sequence-only habitability calls</li>
+      <li>Extend the coding-density framework to Bacteria to test whether the rule is truly universal</li>
+      <li>Reconstruct ancestral coding density, not just genome size, to date when preadaptation first appears</li>
+    </ul>
+    <div class="pullquote" style="margin-top:24px;">Preadaptation, not streamlining, writes the rules of archaeal thermal life.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <h4>Questions? Come find me at the poster, or:</h4>
+      <p>mruthyunjay@arizona.edu</p>
+      <p>Acknowledgments: Régis Ferrière · Solange Duhamel · Francois Guyot · Scott Saleska · Ferrière Lab & Duhamel Lab</p>
+      <p>Data: GTDB r226 · Tempura · ThermoBase</p>
+    </div>
+    <div style="text-align:center;">
+      <div id="qrcode"></div>
+      <div class="qr-cap">Scan to reopen this page</div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="expiry-note">This companion page is temporary and will be taken offline shortly after AbGradCon 2026.</div>
+  </div>
+</footer>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Full size">
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  // ---- Live window: content shows now through the cutoff below ----
+  // Tucson (Arizona) is UTC-7 year-round, no daylight saving.
+  const END = new Date("2026-09-15T21:00:00-07:00"); // 9:00 PM Tucson, Sept 15
+  const now = new Date();
+
+  // Presenter preview: click "Presenter preview" and enter the passcode to
+  // always see live content on this device, even after the cutoff.
+  // This is stored only in this browser (localStorage) — nothing is sent anywhere.
+  function hasPreviewUnlock() {
+    try { return localStorage.getItem('mru_preview_unlocked') === 'yes'; } catch (e) { return false; }
+  }
+  function unlockPreview() {
+    const code = prompt('Presenter passcode:');
+    if (code === null) return;
+    if (code === 'mru2026') {
+      try { localStorage.setItem('mru_preview_unlocked', 'yes'); } catch (e) {}
+      location.reload();
+    } else {
+      alert('Incorrect passcode.');
+    }
+  }
+  const isPreview = hasPreviewUnlock();
+
+  if (!isPreview && now > END) {
+    document.getElementById('mainContent').style.display = 'none';
+    document.getElementById('expiredOverlay').style.display = 'flex';
+  }
+
+  // ---- Visible watermark: tiled across the page, present in any screenshot ----
+  (function () {
+    const stamp = "AbGradCon 2026 · Preliminary — unpublished, do not circulate · " + now.toLocaleString('en-US', { timeZone: 'America/Phoenix' }) + " AZ";
+    const wm = document.getElementById('watermark');
+    for (let i = 0; i < 70; i++) {
+      const s = document.createElement('span');
+      s.textContent = stamp;
+      wm.appendChild(s);
+    }
+  })();
+
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+  try {
+    const cleanUrl = window.location.origin + window.location.pathname;
+    new QRCode(document.getElementById("qrcode"), {
+      text: cleanUrl.indexOf('http') === 0 ? cleanUrl : 'https://claude.ai',
+      width: 128, height: 128,
+      colorDark: "#0C234B", colorLight: "#ffffff"
+    });
+  } catch (e) { console.log('QR generation skipped', e); }
+</script>
+
+</body>
+</html>
